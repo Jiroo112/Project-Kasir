@@ -4,10 +4,18 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Image;
 import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.ImageIcon;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
+import javax.swing.table.TableModel;
 import koneksi.konek;
 
 public class menu_kariawan extends javax.swing.JFrame {
@@ -19,6 +27,51 @@ public class menu_kariawan extends javax.swing.JFrame {
         background();
         chart();
     }
+    
+     Porsi data = new Porsi();
+     Transaksi trs = new Transaksi();
+     
+    private String nama;
+    public void setNama(String nama){
+        String strnama = nama;
+        this.nama = strnama;
+    }
+    public void invoice(){
+        String no_transaksi;
+        Date tgl_transaksi = new Date();
+        SimpleDateFormat dateformat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        
+        try {
+            Statement st = konek.GetConnection().createStatement();
+            ResultSet rs = st.executeQuery("SELECT MAX(kode_transaksi) AS invoice FROM transaksi");
+            rs.next();
+            rs.getString("invoice");
+            if(rs.getString("invoice")==null){
+                no_transaksi = ("T-001");
+                try {
+                    Statement dt = konek.GetConnection().createStatement();
+                    dt.executeUpdate("INSERT INTO transaksi(kode_transaksi, tgl_transaksi) VALUES ('"+no_transaksi+"','"+dateformat.format(tgl_transaksi)+"')");
+                    dt.close();
+                } catch (Exception e) {
+                }
+            }
+            else{
+                long id = Long.parseLong(rs.getString("invoice").substring(2, rs.getString("invoice").length()));
+                id++;
+                no_transaksi = ("T-" + String.format("%03d", id));
+                try {
+                    Statement dt = konek.GetConnection().createStatement();
+                    dt.executeUpdate("INSERT INTO transaksi(kode_transaksi, tgl_transaksi) VALUES ('"+no_transaksi+"','"+dateformat.format(tgl_transaksi)+"')");
+                    dt.close();
+                } catch (Exception e) {
+                }
+            }
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, e.getMessage());
+        }
+    }
+    
+
     public void chart(){
        ImageIcon ii = new ImageIcon(getClass().getResource("icon/chart2.png"));
        Image image = (ii).getImage().getScaledInstance(chart.getWidth(), chart.getHeight(), Image.SCALE_SMOOTH);
@@ -67,7 +120,8 @@ public class menu_kariawan extends javax.swing.JFrame {
                 });
                 minuman.setModel(tbl);
             }
-        } catch (Exception e) {
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(this, e.getMessage());
         }
     }
     @SuppressWarnings("unchecked")
@@ -77,6 +131,8 @@ public class menu_kariawan extends javax.swing.JFrame {
         jPanel4 = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
         keluar = new javax.swing.JLabel();
+        invoice = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         minuman = new javax.swing.JTable();
         jScrollPane2 = new javax.swing.JScrollPane();
@@ -108,6 +164,13 @@ public class menu_kariawan extends javax.swing.JFrame {
         });
         jPanel1.add(keluar, new org.netbeans.lib.awtextra.AbsoluteConstraints(731, 6, -1, -1));
 
+        invoice.setForeground(new java.awt.Color(255, 255, 255));
+        jPanel1.add(invoice, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 0, 180, 30));
+
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel2.setText("Invoice :");
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 0, -1, 30));
+
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 470, 800, 30));
 
         minuman.setModel(new javax.swing.table.DefaultTableModel(
@@ -125,6 +188,11 @@ public class menu_kariawan extends javax.swing.JFrame {
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
+            }
+        });
+        minuman.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                minumanMouseClicked(evt);
             }
         });
         jScrollPane1.setViewportView(minuman);
@@ -148,9 +216,20 @@ public class menu_kariawan extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
+        makanan.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                makananMouseClicked(evt);
+            }
+        });
         jScrollPane2.setViewportView(makanan);
 
         getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 150, 240, 220));
+
+        chart.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                chartMouseClicked(evt);
+            }
+        });
         getContentPane().add(chart, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 390, 60, 60));
         getContentPane().add(design, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, 500));
 
@@ -165,6 +244,7 @@ public class menu_kariawan extends javax.swing.JFrame {
             keluar.setFont(fn);
         } catch (Exception e) {
         }
+        invoice();
     }//GEN-LAST:event_formWindowOpened
 
     private void keluarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_keluarMouseClicked
@@ -173,15 +253,78 @@ public class menu_kariawan extends javax.swing.JFrame {
         login.setVisible(true);
     }//GEN-LAST:event_keluarMouseClicked
 
+    private void makananMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_makananMouseClicked
+        int index = makanan.getSelectedRow();
+        TableModel model = makanan.getModel();
+        String makanan = model.getValueAt(index, 0).toString();
+        String harga = model.getValueAt(index, 1).toString();
+       
+        data.setVisible(true);
+        data.pack();
+        
+        try {
+            Statement st = konek.GetConnection().createStatement();
+            ResultSet rs = st.executeQuery("SELECT * FROM menu WHERE nama_menu = '"+makanan+"';");
+            if(rs.next()){
+                byte[] img = rs.getBytes("gambar");
+                ImageIcon image = new ImageIcon(img);
+                Image im = image.getImage();
+                Image myimg = im.getScaledInstance(data.gambar.getWidth(), data.gambar.getHeight(), Image.SCALE_SMOOTH);
+                ImageIcon newImage = new ImageIcon(myimg);
+                data.gambar.setIcon(newImage);
+            }
+            rs.close();
+        } 
+        catch (Exception e) {
+        }
+        data.makanan.setText(makanan);
+        data.harga.setText(harga);
+        data.setHarga(harga);
+        data.setMenu(makanan);
+    }//GEN-LAST:event_makananMouseClicked
+
+    private void minumanMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_minumanMouseClicked
+        int index = minuman.getSelectedRow();
+        TableModel model = minuman.getModel();
+        String minuman = model.getValueAt(index, 0).toString();
+        String harga = model.getValueAt(index, 1).toString();
+        
+        data.setVisible(true);
+        data.pack();
+        
+        try {
+            Statement st = konek.GetConnection().createStatement();
+            ResultSet rs = st.executeQuery("SELECT gambar FROM menu WHERE nama_menu = '"+minuman+"';");
+            if(rs.next()){
+                byte[] img = rs.getBytes("gambar");
+                ImageIcon image = new ImageIcon(img);
+                Image im = image.getImage();
+                Image myimg = im.getScaledInstance(data.gambar.getWidth(), data.gambar.getHeight(), Image.SCALE_SMOOTH);
+                ImageIcon newImage = new ImageIcon(myimg);
+                data.gambar.setIcon(newImage);
+            }
+            rs.close();
+        } 
+        catch (Exception e) {
+        }
+        data.makanan.setText(minuman);
+        data.harga.setText(harga);
+        data.setHarga(harga);
+        data.setMenu(minuman);
+    }//GEN-LAST:event_minumanMouseClicked
+
+    private void chartMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_chartMouseClicked
+        this.setVisible(false);
+        trs.setNama(nama);
+        System.out.println(nama);
+        trs.setVisible(true);
+    }//GEN-LAST:event_chartMouseClicked
+
     /**
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
+        
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Default".equals(info.getName())) {
@@ -211,12 +354,14 @@ public class menu_kariawan extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel chart;
     private javax.swing.JLabel design;
+    private javax.swing.JLabel invoice;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JLabel keluar;
-    private javax.swing.JTable makanan;
+    public javax.swing.JTable makanan;
     private javax.swing.JTable minuman;
     // End of variables declaration//GEN-END:variables
 }

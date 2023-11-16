@@ -19,7 +19,6 @@ public class login_page extends javax.swing.JFrame {
        ii = new ImageIcon(image);
        Design.setIcon(ii);
     }
-
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -183,6 +182,7 @@ public class login_page extends javax.swing.JFrame {
                 }
                 else{
                     menu_kariawan menu = new menu_kariawan();
+                    menu.setNama(id);
                     this.setVisible(false);
                     menu.setVisible(true);
                     menu.pack();
@@ -192,7 +192,9 @@ public class login_page extends javax.swing.JFrame {
             }
             else{
                 JOptionPane.showMessageDialog(rootPane,"salah");
-            }
+            }       
+            
+            
         } catch (Exception e) {
             
         }
@@ -213,7 +215,7 @@ public class login_page extends javax.swing.JFrame {
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
+                if ("Default".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
                 }

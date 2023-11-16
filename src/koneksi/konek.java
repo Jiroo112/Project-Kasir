@@ -16,5 +16,4 @@ public class konek {
         }
         return koneksi;
     }
-    
 }
