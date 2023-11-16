@@ -148,9 +148,9 @@ public class BelanjaMentah extends javax.swing.JFrame {
         jPanel1.add(jLabel4);
         jLabel4.setBounds(150, 20, 170, 40);
 
-        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/regis karyawan123.png"))); // NOI18N
+        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/Picture1.png"))); // NOI18N
         jPanel1.add(jLabel5);
-        jLabel5.setBounds(0, -10, 480, 0);
+        jLabel5.setBounds(0, -10, 810, 520);
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 480, 480));
 

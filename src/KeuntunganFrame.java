@@ -245,11 +245,11 @@ public class KeuntunganFrame extends javax.swing.JFrame {
         jPanel1.add(refreshButton);
         refreshButton.setBounds(50, 260, 75, 23);
 
-        background.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/regis karyawan123.png"))); // NOI18N
+        background.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/Picture1.png"))); // NOI18N
         jPanel1.add(background);
-        background.setBounds(0, 0, 490, 480);
+        background.setBounds(0, 0, 810, 510);
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 480, 460));
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, 500));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
