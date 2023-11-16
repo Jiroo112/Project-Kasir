@@ -132,7 +132,6 @@ public class menu_kariawan extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         keluar = new javax.swing.JLabel();
         invoice = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         minuman = new javax.swing.JTable();
         jScrollPane2 = new javax.swing.JScrollPane();
@@ -166,10 +165,6 @@ public class menu_kariawan extends javax.swing.JFrame {
 
         invoice.setForeground(new java.awt.Color(255, 255, 255));
         jPanel1.add(invoice, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 0, 180, 30));
-
-        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel2.setText("Invoice :");
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 0, -1, 30));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 470, 800, 30));
 
@@ -316,7 +311,6 @@ public class menu_kariawan extends javax.swing.JFrame {
     private void chartMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_chartMouseClicked
         this.setVisible(false);
         trs.setNama(nama);
-        System.out.println(nama);
         trs.setVisible(true);
     }//GEN-LAST:event_chartMouseClicked
 
@@ -355,7 +349,6 @@ public class menu_kariawan extends javax.swing.JFrame {
     private javax.swing.JLabel chart;
     private javax.swing.JLabel design;
     private javax.swing.JLabel invoice;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;

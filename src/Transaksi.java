@@ -274,7 +274,6 @@ public class Transaksi extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, e.getMessage());
         }
         menu_kariawan kry = new menu_kariawan();
-        System.out.println(name);
         this.setVisible(false);
         kry.setVisible(true);
     }//GEN-LAST:event_saveMouseClicked
