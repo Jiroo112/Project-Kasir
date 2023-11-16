@@ -13,7 +13,10 @@ public class login_page extends javax.swing.JFrame {
 
     public login_page() {
         initComponents();
-        
+        gambar();
+    }
+    
+    public void gambar(){
        ImageIcon ii = new ImageIcon(getClass().getResource("icon/logo.png"));
        Image image = (ii).getImage().getScaledInstance(Design.getWidth(), Design.getHeight(), Image.SCALE_SMOOTH);
        ii = new ImageIcon(image);
