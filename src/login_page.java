@@ -176,7 +176,7 @@ public class login_page extends javax.swing.JFrame {
                 String jabatan = rs.getString("jabatan");
                 if(jabatan.equals("Admin")){
                     this.setVisible(false);
-                    menu_admin menu = new menu_admin();
+                    dashboard_admin menu = new dashboard_admin();
                     menu.setVisible(true);
                     menu.pack();
                     menu.setLocation(null);
@@ -184,13 +184,12 @@ public class login_page extends javax.swing.JFrame {
 
                 }
                 else{
-                    menu_kariawan menu = new menu_kariawan();
-                    menu.setNama(id);
+                    dashboard_kasir menu2 = new dashboard_kasir();
                     this.setVisible(false);
-                    menu.setVisible(true);
-                    menu.pack();
-                    menu.setLocation(null);
-                    menu.setDefaultCloseOperation(EXIT_ON_CLOSE);
+                    menu2.setVisible(true);
+                    menu2.pack();
+                    menu2.setLocation(null);
+                    menu2.setDefaultCloseOperation(EXIT_ON_CLOSE);
                 }
             }
             else{

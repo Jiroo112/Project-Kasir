@@ -244,7 +244,7 @@ public class RegistrasiKaryawan extends javax.swing.JFrame {
 
         background.setBackground(new java.awt.Color(72, 219, 161));
         background.setFont(new java.awt.Font("Serif", 1, 18)); // NOI18N
-        background.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/regis karyawan123.png"))); // NOI18N
+        background.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/Picture1.png"))); // NOI18N
         jPanel1.add(background);
         background.setBounds(0, 0, 790, 490);
 
