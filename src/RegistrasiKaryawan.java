@@ -20,7 +20,7 @@ import java.sql.ResultSet;
 import javax.swing.JOptionPane;
 import java.sql.Statement;
 import java.sql.PreparedStatement;
-import com.mysql.cj.jdbc.Driver;
+//import com.mysql.cj.jdbc.Driver;
 import java.awt.HeadlessException;
 import java.sql.SQLException;
 /**

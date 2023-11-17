@@ -129,6 +129,7 @@ public class Transaksi extends javax.swing.JFrame {
         bayar = new javax.swing.JTextField();
         kembali = new javax.swing.JLabel();
         total = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
         bg = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -224,6 +225,17 @@ public class Transaksi extends javax.swing.JFrame {
         jPanel1.add(total);
         total.setBounds(180, 390, 70, 25);
 
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setText("Keluar");
+        jLabel1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel1MouseClicked(evt);
+            }
+        });
+        jPanel1.add(jLabel1);
+        jLabel1.setBounds(710, 470, 70, 20);
+
         bg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/transaksi 2.png"))); // NOI18N
         jPanel1.add(bg);
         bg.setBounds(0, 0, 800, 500);
@@ -285,6 +297,15 @@ public class Transaksi extends javax.swing.JFrame {
         tanggal();
     }//GEN-LAST:event_formWindowOpened
 
+    private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked
+        // TODO add your handling code here:
+        int respon = JOptionPane.showConfirmDialog(this, "Apakah Yakin Mau Keluar ?", 
+                "Konfirmasi", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+        if (respon == JOptionPane.YES_OPTION){
+            new menu_kariawan().setVisible(true);
+        }
+    }//GEN-LAST:event_jLabel1MouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -325,6 +346,7 @@ public class Transaksi extends javax.swing.JFrame {
     private javax.swing.JLabel delete;
     private javax.swing.JTable detail;
     private javax.swing.JLabel invoice;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel kembali;

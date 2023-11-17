@@ -82,8 +82,8 @@ public class riwayat_transaksi extends javax.swing.JFrame {
         date2 = new com.toedter.calendar.JDateChooser();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        jButton2 = new javax.swing.JButton();
         jLabel8 = new javax.swing.JLabel();
+        jButton2 = new javax.swing.JButton();
 
         jLabel2.setText("jLabel2");
 
@@ -177,6 +177,9 @@ public class riwayat_transaksi extends javax.swing.JFrame {
         jLabel6.setText("Sampai Tanggal");
         jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 40, 110, -1));
 
+        jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/background.png"))); // NOI18N
+        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 520, 400));
+
         jButton2.setBackground(new java.awt.Color(204, 255, 204));
         jButton2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jButton2.setText("CARI");
@@ -186,9 +189,6 @@ public class riwayat_transaksi extends javax.swing.JFrame {
             }
         });
         jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 50, 63, 30));
-
-        jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/koneksi/Menu [67882D5] (1).png"))); // NOI18N
-        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 520, 400));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -252,6 +252,8 @@ public class riwayat_transaksi extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
+        this.setVisible(false);
+        new dashboard_kasir().setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void txt_pemasukanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_pemasukanActionPerformed
