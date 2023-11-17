@@ -233,13 +233,14 @@ public class menu_kariawan extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+     invoice(); 
         try {
             Font fn = Font.createFont(Font.TRUETYPE_FONT,getClass().getResourceAsStream("font/Inter-Bold.otf"));
             fn = fn.deriveFont(Font.PLAIN,12);
             keluar.setFont(fn);
         } catch (Exception e) {
         }
-        invoice();
+
     }//GEN-LAST:event_formWindowOpened
 
     private void keluarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_keluarMouseClicked
@@ -311,6 +312,7 @@ public class menu_kariawan extends javax.swing.JFrame {
     private void chartMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_chartMouseClicked
         this.setVisible(false);
         trs.setNama(nama);
+        trs.username.setText(nama);
         trs.setVisible(true);
     }//GEN-LAST:event_chartMouseClicked
 

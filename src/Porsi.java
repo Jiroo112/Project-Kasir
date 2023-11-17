@@ -18,9 +18,9 @@ public class Porsi extends javax.swing.JFrame {
         initComponents();
     }
         
-    private double price;
+    private int price;
     public void setHarga(String harga){
-        double intharga = Double.parseDouble(harga);
+        int intharga = Integer.valueOf(harga);
         this.price = intharga;
     }
     private String menu;
@@ -31,8 +31,8 @@ public class Porsi extends javax.swing.JFrame {
     
     public String kode_menu;
     public String kode_trans;
-    public double subtotal;
-    public double porsi;
+    public int subtotal;
+    public int porsi;
     
     private void kode_menu(){
         try {
@@ -185,7 +185,7 @@ public class Porsi extends javax.swing.JFrame {
         DecimalFormat df = new DecimalFormat("#.##");
         if(evt.getKeyCode()==KeyEvent.VK_ENTER){
             String strporsi = jumlah.getText();
-             porsi = Double.parseDouble(strporsi);
+             porsi = Integer.valueOf(strporsi);
              subtotal = porsi*price;
             total.setText(String.valueOf(df.format(subtotal)));
         }

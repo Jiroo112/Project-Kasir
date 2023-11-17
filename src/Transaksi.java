@@ -55,13 +55,13 @@ public class Transaksi extends javax.swing.JFrame {
         
         try {
             Statement st = konek.GetConnection().createStatement();
-            ResultSet rs = st.executeQuery("SELECT  menu.nama_menu, detail_transaksi.jumlah, detail_transaksi.subtotal, detail_transaksi.layanan_transaksi FROM detail_transaksi JOIN menu ON detail_transaksi.kode_menu=menu.kode_menu WHERE detail_transaksi.kode_transaksi = (SELECT MAX(kode_transaksi) FROM detail_transaksi);");
+            ResultSet rs = st.executeQuery("SELECT  menu.nama_menu, detail_transaksi.jumlah, detail_transaksi.subtotal, detail_transaksi.layanan_pemesanan FROM detail_transaksi JOIN menu ON detail_transaksi.kode_menu=menu.kode_menu WHERE detail_transaksi.kode_transaksi = (SELECT MAX(kode_transaksi) FROM detail_transaksi);");
             while(rs.next()){
                 tbl.addRow(new Object[]{
                      rs.getString("nama_menu"),
                      rs.getString("jumlah"),
                      rs.getString("subtotal"),
-                     rs.getString("layanan_transaksi")
+                     rs.getString("layanan_pemesanan")
                 });
             }
         } catch (Exception e) {
@@ -283,6 +283,7 @@ public class Transaksi extends javax.swing.JFrame {
         table();
         total();
         tanggal();
+        usr();
     }//GEN-LAST:event_formWindowOpened
 
     /**

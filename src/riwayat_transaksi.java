@@ -78,11 +78,11 @@ public class riwayat_transaksi extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         txt_pemasukan = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
-        date1 = new com.toedter.calendar.JDateChooser();
-        date2 = new com.toedter.calendar.JDateChooser();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jButton2 = new javax.swing.JButton();
+        date1 = new com.toedter.calendar.JDateChooser();
+        date2 = new com.toedter.calendar.JDateChooser();
         jLabel8 = new javax.swing.JLabel();
 
         jLabel2.setText("jLabel2");
@@ -109,7 +109,7 @@ public class riwayat_transaksi extends javax.swing.JFrame {
         jLabel1.setText("Pilih Tanggal");
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 150, -1));
 
-        tabel.setBackground(new java.awt.Color(204, 255, 204));
+        tabel.setBackground(new java.awt.Color(0, 102, 102));
         tabel.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null},
@@ -133,72 +133,69 @@ public class riwayat_transaksi extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(tabel);
 
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 100, 492, 179));
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 130, 740, 230));
 
+        jLabel3.setBackground(new java.awt.Color(255, 255, 255));
         jLabel3.setFont(new java.awt.Font("Rockwell", 1, 20)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(0, 0, 0));
         jLabel3.setText("Total Pemasukan : ");
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 300, -1, -1));
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 440, -1, -1));
         jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(477, 376, 137, -1));
 
-        txt_pemasukan.setBackground(new java.awt.Color(204, 255, 153));
+        txt_pemasukan.setBackground(new java.awt.Color(0, 153, 153));
+        txt_pemasukan.setForeground(new java.awt.Color(255, 255, 255));
         txt_pemasukan.setDisabledTextColor(new java.awt.Color(0, 0, 0));
         txt_pemasukan.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txt_pemasukanActionPerformed(evt);
             }
         });
-        jPanel1.add(txt_pemasukan, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 290, 260, 40));
+        jPanel1.add(txt_pemasukan, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 430, 260, 40));
 
-        jButton1.setBackground(new java.awt.Color(204, 255, 204));
+        jButton1.setBackground(new java.awt.Color(0, 102, 102));
         jButton1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jButton1.setForeground(new java.awt.Color(255, 255, 255));
         jButton1.setText("Kembali");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 350, 94, 40));
+        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 440, 94, 30));
 
-        date1.setBackground(new java.awt.Color(153, 255, 153));
-        date1.setDateFormatString("yyyy-MM- dd");
-        date1.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                date1MouseClicked(evt);
-            }
-        });
-        jPanel1.add(date1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 60, 166, -1));
-
-        date2.setDateFormatString("yyyy-MM-dd");
-        jPanel1.add(date2, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 60, 181, -1));
-
+        jLabel5.setForeground(new java.awt.Color(0, 0, 0));
         jLabel5.setText("Dari Tanggal");
         jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 40, 90, -1));
 
+        jLabel6.setForeground(new java.awt.Color(0, 0, 0));
         jLabel6.setText("Sampai Tanggal");
         jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 40, 110, -1));
 
-        jButton2.setBackground(new java.awt.Color(204, 255, 204));
+        jButton2.setBackground(new java.awt.Color(0, 102, 102));
         jButton2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jButton2.setForeground(new java.awt.Color(255, 255, 255));
         jButton2.setText("CARI");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 50, 63, 30));
+        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 50, 63, 30));
+        jPanel1.add(date1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 60, 130, -1));
+        jPanel1.add(date2, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 60, 130, -1));
 
-        jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/koneksi/Menu [67882D5] (1).png"))); // NOI18N
-        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 520, 400));
+        jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/background.png"))); // NOI18N
+        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, 500));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 521, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 402, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
