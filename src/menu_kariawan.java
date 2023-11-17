@@ -132,6 +132,7 @@ public class menu_kariawan extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         keluar = new javax.swing.JLabel();
         invoice = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         minuman = new javax.swing.JTable();
         jScrollPane2 = new javax.swing.JScrollPane();
@@ -154,6 +155,7 @@ public class menu_kariawan extends javax.swing.JFrame {
         jPanel1.setBackground(new java.awt.Color(115, 206, 191));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        keluar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         keluar.setForeground(new java.awt.Color(255, 255, 255));
         keluar.setText("Keluar");
         keluar.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -165,6 +167,16 @@ public class menu_kariawan extends javax.swing.JFrame {
 
         invoice.setForeground(new java.awt.Color(255, 255, 255));
         jPanel1.add(invoice, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 0, 180, 30));
+
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setText("Dashboard");
+        jLabel1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel1MouseClicked(evt);
+            }
+        });
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 0, -1, 30));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 470, 800, 30));
 
@@ -316,6 +328,12 @@ public class menu_kariawan extends javax.swing.JFrame {
         trs.setVisible(true);
     }//GEN-LAST:event_chartMouseClicked
 
+    private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked
+        // TODO add your handling code here:
+        this.setVisible(false);
+        new dashboard_kasir().setVisible(true);
+    }//GEN-LAST:event_jLabel1MouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -351,6 +369,7 @@ public class menu_kariawan extends javax.swing.JFrame {
     private javax.swing.JLabel chart;
     private javax.swing.JLabel design;
     private javax.swing.JLabel invoice;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
