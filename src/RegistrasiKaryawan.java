@@ -72,8 +72,8 @@ public class RegistrasiKaryawan extends javax.swing.JFrame {
         jLabelLaporan = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
-        background = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
+        background = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -240,7 +240,12 @@ public class RegistrasiKaryawan extends javax.swing.JFrame {
         jPanel3.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(422, 6, -1, -1));
 
         jPanel1.add(jPanel3);
-        jPanel3.setBounds(10, 460, 780, 30);
+        jPanel3.setBounds(-10, 460, 800, 30);
+
+        jLabel8.setFont(new java.awt.Font("Serif", 1, 24)); // NOI18N
+        jLabel8.setText("Password");
+        jPanel1.add(jLabel8);
+        jLabel8.setBounds(100, 260, 180, 32);
 
         background.setBackground(new java.awt.Color(72, 219, 161));
         background.setFont(new java.awt.Font("Serif", 1, 18)); // NOI18N
@@ -248,14 +253,10 @@ public class RegistrasiKaryawan extends javax.swing.JFrame {
         jPanel1.add(background);
         background.setBounds(0, 0, 790, 490);
 
-        jLabel8.setFont(new java.awt.Font("Serif", 1, 24)); // NOI18N
-        jLabel8.setText("Password");
-        jPanel1.add(jLabel8);
-        jLabel8.setBounds(100, 260, 180, 32);
-
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -10, 790, 490));
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void passwordFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passwordFieldActionPerformed
@@ -295,17 +296,17 @@ public class RegistrasiKaryawan extends javax.swing.JFrame {
     if (password.equals(repassword)) {
         try {
             // Menyimpan data ke dalam tabel MySQL
-            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/percobaan_projek1", "root", "");
+            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/aplikasi_warung", "root", "");
             connection.setAutoCommit(false); // Nonaktifkan otomatis commit
 
             // Query pertama: INSERT ke tabel data_karyawan
-            String sqlTabel1 = "INSERT INTO data_karyawan (nama_karyawan, jabatan, username, no_hp, jenis_kelamin) VALUES (?, ?, ?, ?, ?)";
+            String sqlTabel1 = "INSERT INTO data_karyawan (username, nama_karyawan, jenis_kelamin, no_hp, jabatan) VALUES (?, ?, ?, ?, ?)";
             statementTabel1 = connection.prepareStatement(sqlTabel1);
-            statementTabel1.setString(1, nama_karyawan);
-            statementTabel1.setString(2, jabatan);
-            statementTabel1.setString(3, username);
+            statementTabel1.setString(2, nama_karyawan);
+            statementTabel1.setString(5, jabatan);
+            statementTabel1.setString(1, username);
             statementTabel1.setString(4, no_hp);
-            statementTabel1.setString(5, jenis_kelamin);
+            statementTabel1.setString(3, jenis_kelamin);
 
             // Eksekusi query pertama
             statementTabel1.executeUpdate();
@@ -368,7 +369,7 @@ public class RegistrasiKaryawan extends javax.swing.JFrame {
     }//GEN-LAST:event_genderComboActionPerformed
 
     private void jLabelDataKaryawanMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelDataKaryawanMouseClicked
-        menu_kariawan p = new menu_kariawan();
+        data_karyawan p = new data_karyawan();
         p.setVisible(true);
         dispose();
     }//GEN-LAST:event_jLabelDataKaryawanMouseClicked

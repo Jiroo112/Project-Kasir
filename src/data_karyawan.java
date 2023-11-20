@@ -105,7 +105,7 @@ public class data_karyawan extends javax.swing.JFrame {
         jPanel1.add(btn_edit);
         btn_edit.setBounds(630, 390, 130, 40);
 
-        jPanel2.setBackground(new java.awt.Color(115, 206, 191));
+        jPanel2.setBackground(new java.awt.Color(0, 102, 102));
         jPanel2.setForeground(new java.awt.Color(115, 206, 191));
         jPanel2.setLayout(null);
 
@@ -204,7 +204,6 @@ public class data_karyawan extends javax.swing.JFrame {
         int index = karyawan.getSelectedRow();
         
         DefaultTableModel tblModel = (DefaultTableModel)karyawan.getModel();
-        
         String Username = tblModel.getValueAt(index, 0).toString();
         
         try {
@@ -218,7 +217,7 @@ public class data_karyawan extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_hapusActionPerformed
 
     private void jLabel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MouseClicked
-        menu_kariawan menu = new menu_kariawan();
+        data menu = new data();
         menu.setVisible(true);
         dispose();
     }//GEN-LAST:event_jLabel3MouseClicked

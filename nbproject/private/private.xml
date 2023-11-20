@@ -3,11 +3,16 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+            <file>file:/C:/Users/ok/Documents/NetBeansProjects/kasir/src/report.jrxml</file>
             <file>file:/C:/Users/ok/Documents/NetBeansProjects/kasir/src/koneksi/konek.java</file>
             <file>file:/C:/Users/ok/Documents/NetBeansProjects/kasir/src/Transaksi.java</file>
+            <file>file:/C:/Users/ok/Documents/NetBeansProjects/kasir/src/tambah.java</file>
             <file>file:/C:/Users/ok/Documents/NetBeansProjects/kasir/src/login_page.java</file>
             <file>file:/C:/Users/ok/Documents/NetBeansProjects/kasir/src/dashboard_admin.java</file>
-            <file>file:/C:/Users/ok/Documents/NetBeansProjects/kasir/src/dashboard_kasir.java</file>
+            <file>file:/C:/Users/ok/Documents/NetBeansProjects/kasir/src/data.java</file>
+            <file>file:/C:/Users/ok/Documents/NetBeansProjects/kasir/src/edit.java</file>
+            <file>file:/C:/Users/ok/Documents/NetBeansProjects/kasir/src/menu_kariawan.java</file>
+            <file>file:/C:/Users/ok/Documents/NetBeansProjects/kasir/src/edit_menu.java</file>
         </group>
     </open-files>
 </project-private>
