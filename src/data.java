@@ -79,7 +79,6 @@ public class data extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(800, 500));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel2.setLayout(null);
@@ -127,14 +126,14 @@ public class data extends javax.swing.JFrame {
         keluar.setBackground(new java.awt.Color(0, 153, 153));
         keluar.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         keluar.setForeground(new java.awt.Color(255, 255, 255));
-        keluar.setText("Keluar");
+        keluar.setText("Kembali");
         keluar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 keluarActionPerformed(evt);
             }
         });
         jPanel2.add(keluar);
-        keluar.setBounds(630, 430, 80, 27);
+        keluar.setBounds(630, 430, 90, 27);
 
         edit.setBackground(new java.awt.Color(0, 153, 153));
         edit.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
