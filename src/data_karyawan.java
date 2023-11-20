@@ -171,6 +171,7 @@ public class data_karyawan extends javax.swing.JFrame {
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, 500));
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btn_editActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_editActionPerformed
@@ -218,7 +219,7 @@ public class data_karyawan extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_hapusActionPerformed
 
     private void jLabel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MouseClicked
-        menu_kariawan menu = new menu_kariawan();
+        data menu = new data();
         menu.setVisible(true);
         dispose();
     }//GEN-LAST:event_jLabel3MouseClicked
