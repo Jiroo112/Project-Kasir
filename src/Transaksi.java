@@ -1,14 +1,21 @@
 import java.awt.Color;
 import java.awt.Image;
 import java.awt.event.KeyEvent;
+import java.sql.Connection;
 import javax.swing.ImageIcon;
 import javax.swing.table.DefaultTableModel;
 import java.sql.ResultSet;
 import koneksi.konek;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.HashMap;
 import javax.swing.JOptionPane;
 import javax.swing.table.TableModel;
+import net.sf.jasperreports.engine.JasperCompileManager;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.view.JasperViewer;
 
 
 public class Transaksi extends javax.swing.JFrame {
@@ -130,6 +137,7 @@ public class Transaksi extends javax.swing.JFrame {
         kembali = new javax.swing.JLabel();
         total = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
         bg = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -234,7 +242,16 @@ public class Transaksi extends javax.swing.JFrame {
             }
         });
         jPanel1.add(jLabel1);
-        jLabel1.setBounds(710, 470, 70, 20);
+        jLabel1.setBounds(710, 470, 70, 30);
+
+        jButton1.setText("jButton1");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton1);
+        jButton1.setBounds(400, 60, 75, 23);
 
         bg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/transaksi 2.png"))); // NOI18N
         jPanel1.add(bg);
@@ -281,13 +298,25 @@ public class Transaksi extends javax.swing.JFrame {
         try {
             Statement st = konek.GetConnection().createStatement();
             st.executeUpdate("UPDATE transaksi SET username = '"+name+"', total = '"+total1+"', bayar = '"+b+"', kembalian = '"+jumlah+"' WHERE kode_transaksi = '"+id+"'");
-            JOptionPane.showMessageDialog(null, "Berhasil");
+            try {
+                 String report =("C:\\Users\\ok\\Documents\\NetBeansProjects\\kasir\\src\\report.jrxml");
+                 Connection koneksi = konek.GetConnection();
+                 HashMap hash = new HashMap();
+                 JasperReport Jrp = JasperCompileManager.compileReport(report);
+                 JasperPrint pr = JasperFillManager.fillReport(Jrp, hash,koneksi);
+                 JasperViewer.viewReport(pr,false);
+            } catch (Exception e) {
+            }
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, e.getMessage());
-        }
-        menu_kariawan kry = new menu_kariawan();
-        this.setVisible(false);
-        kry.setVisible(true);
+        } 
+        
+        int respon = JOptionPane.showConfirmDialog(this, "Ingin Bertransaksi lagi ?", "Konfirmasi", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+            if (respon == JOptionPane.YES_OPTION){
+                menu_kariawan kry = new menu_kariawan();
+                this.setVisible(false);
+                kry.setVisible(true);
+            }
     }//GEN-LAST:event_saveMouseClicked
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
@@ -306,6 +335,18 @@ public class Transaksi extends javax.swing.JFrame {
             new menu_kariawan().setVisible(true);
         }
     }//GEN-LAST:event_jLabel1MouseClicked
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        try {
+            String report =("C:\\Users\\ok\\Documents\\NetBeansProjects\\kasir\\src\\report.jrxml");
+            Connection koneksi = konek.GetConnection();
+            HashMap hash = new HashMap();
+            JasperReport Jrp = JasperCompileManager.compileReport(report);
+            JasperPrint pr = JasperFillManager.fillReport(Jrp, hash,koneksi);
+            JasperViewer.viewReport(pr);
+        } catch (Exception e) {
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -347,6 +388,7 @@ public class Transaksi extends javax.swing.JFrame {
     private javax.swing.JLabel delete;
     private javax.swing.JTable detail;
     private javax.swing.JLabel invoice;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
