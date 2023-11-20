@@ -68,7 +68,7 @@ public class dashboard_admin extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jLabel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseClicked
-        menu_admin menu = new menu_admin();
+        data menu = new data();
         menu.setVisible(true);
         dispose();
     }//GEN-LAST:event_jLabel2MouseClicked

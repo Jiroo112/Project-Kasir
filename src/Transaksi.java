@@ -310,13 +310,10 @@ public class Transaksi extends javax.swing.JFrame {
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, e.getMessage());
         } 
-        
-        int respon = JOptionPane.showConfirmDialog(this, "Ingin Bertransaksi lagi ?", "Konfirmasi", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
-            if (respon == JOptionPane.YES_OPTION){
-                menu_kariawan kry = new menu_kariawan();
-                this.setVisible(false);
-                kry.setVisible(true);
-            }
+        dashboard_kasir db = new dashboard_kasir();
+        this.setVisible(false);
+        db.setVisible(true);
+        db.pack();
     }//GEN-LAST:event_saveMouseClicked
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
