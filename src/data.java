@@ -7,6 +7,7 @@ import javax.swing.table.DefaultTableModel;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import javax.swing.table.TableModel;
 import koneksi.konek;
 /**
  *
@@ -76,7 +77,12 @@ public class data extends javax.swing.JFrame {
         keluar = new javax.swing.JButton();
         edit = new javax.swing.JButton();
         tambah_menu = new javax.swing.JButton();
+        jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -98,6 +104,11 @@ public class data extends javax.swing.JFrame {
         makanan.setGridColor(new java.awt.Color(0, 0, 0));
         makanan.setRowHeight(25);
         makanan.getTableHeader().setReorderingAllowed(false);
+        makanan.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                makananMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(makanan);
 
         jPanel2.add(jScrollPane1);
@@ -133,19 +144,19 @@ public class data extends javax.swing.JFrame {
             }
         });
         jPanel2.add(keluar);
-        keluar.setBounds(630, 430, 90, 27);
+        keluar.setBounds(630, 400, 90, 27);
 
         edit.setBackground(new java.awt.Color(0, 153, 153));
         edit.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         edit.setForeground(new java.awt.Color(255, 255, 255));
-        edit.setText("edit");
+        edit.setText("Edit");
         edit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 editActionPerformed(evt);
             }
         });
         jPanel2.add(edit);
-        edit.setBounds(410, 430, 80, 27);
+        edit.setBounds(410, 400, 90, 27);
 
         tambah_menu.setBackground(new java.awt.Color(0, 153, 153));
         tambah_menu.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
@@ -157,11 +168,65 @@ public class data extends javax.swing.JFrame {
             }
         });
         jPanel2.add(tambah_menu);
-        tambah_menu.setBounds(520, 430, 90, 27);
+        tambah_menu.setBounds(520, 400, 90, 27);
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/menu.png"))); // NOI18N
-        jPanel2.add(jLabel1);
-        jLabel1.setBounds(0, 0, 800, 500);
+        jPanel1.setBackground(new java.awt.Color(0, 102, 102));
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel1.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setText("KELUAR");
+        jLabel1.setVerticalAlignment(javax.swing.SwingConstants.TOP);
+        jLabel1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel1MouseClicked(evt);
+            }
+        });
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 10, -1, -1));
+
+        jLabel3.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel3.setText("DAFTAR MENU");
+        jLabel3.setVerticalAlignment(javax.swing.SwingConstants.TOP);
+        jLabel3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel3MouseClicked(evt);
+            }
+        });
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 10, -1, -1));
+
+        jLabel5.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel5.setText("LAPORAN");
+        jLabel5.setVerticalAlignment(javax.swing.SwingConstants.TOP);
+        jLabel5.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel5MouseClicked(evt);
+            }
+        });
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 10, -1, -1));
+
+        jLabel4.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel4.setText("REGISTRASI");
+        jLabel4.setVerticalAlignment(javax.swing.SwingConstants.TOP);
+        jLabel4.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel4MouseClicked(evt);
+            }
+        });
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 10, -1, -1));
+
+        jPanel2.add(jPanel1);
+        jPanel1.setBounds(0, 460, 800, 40);
+
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/111.png"))); // NOI18N
+        jPanel2.add(jLabel2);
+        jLabel2.setBounds(-60, 0, 890, 500);
 
         getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, 500));
 
@@ -178,13 +243,47 @@ public class data extends javax.swing.JFrame {
 
     private void tambah_menuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tambah_menuActionPerformed
         this.setVisible(false);
-        new tambah().setVisible(true);
+        new tamba().setVisible(true);
     }//GEN-LAST:event_tambah_menuActionPerformed
 
+    private void jLabel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MouseClicked
+        data menu = new data();
+        menu.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_jLabel3MouseClicked
+
+    private void jLabel4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel4MouseClicked
+        RegistrasiKaryawan regist = new RegistrasiKaryawan();
+        regist.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_jLabel4MouseClicked
+
+    private void jLabel5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel5MouseClicked
+        KeuntunganFrame untung = new KeuntunganFrame();
+        untung.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_jLabel5MouseClicked
+
+    private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked
+        int result = JOptionPane.showConfirmDialog(null, "Apakah anda yakin ingin keluar?");
+        if (result == JOptionPane.YES_NO_OPTION) {
+            login_page login = new login_page();
+            login.setVisible(true);
+            dispose();
+        } else {
+            JOptionPane.showMessageDialog(null, "Batal keluar");
+        }
+    }//GEN-LAST:event_jLabel1MouseClicked
+
     private void editActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editActionPerformed
+        // TODO add your handling code here:
         this.setVisible(false);
-        new edit().setVisible(true);
+        new editt().setVisible(true);
     }//GEN-LAST:event_editActionPerformed
+
+    private void makananMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_makananMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_makananMouseClicked
 
     /**
      * @param args the command line arguments
@@ -225,6 +324,11 @@ public class data extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton edit;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane3;
