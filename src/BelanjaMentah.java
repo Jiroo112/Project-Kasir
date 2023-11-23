@@ -14,16 +14,7 @@ import javax.swing.JTable;
 
 
 public class BelanjaMentah extends javax.swing.JFrame {
-
-    public class konek {
-    public static Connection Getconnection() throws SQLException {
-        String url = "jdbc:mysql://localhost:3306/percobaan_projek1";
-        String username = "root";
-        String password = "";
-        return DriverManager.getConnection(url, username, password);
-    }
-}
-    
+ 
     
     public BelanjaMentah() {
         initComponents();
@@ -38,14 +29,14 @@ public class BelanjaMentah extends javax.swing.JFrame {
     tabel.setModel(tbl);
     
     try{
-            Statement statement = (Statement)konek.Getconnection().createStatement();
-            ResultSet res= statement.executeQuery("select * from modalmodal");
+            Statement statement = (Statement)konek.GetConnection().createStatement();
+            ResultSet res= statement.executeQuery("select * from modal");
             while(res.next())
 
         while (res.next()) {
             tbl.addRow(new Object[] {
                 res.getDate("tanggal"),
-                res.getInt("uang_belanja"),
+                res.getInt("modal"),
                 res.getString("keterangan")
             });
          tabel.setModel(tbl);
@@ -77,6 +68,7 @@ public class BelanjaMentah extends javax.swing.JFrame {
         tabel = new javax.swing.JTable();
         jButtonSimpan = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
+        keluar = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -84,15 +76,15 @@ public class BelanjaMentah extends javax.swing.JFrame {
 
         jPanel1.setLayout(null);
 
-        jLabel1.setFont(new java.awt.Font("Serif", 1, 14)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Serif", 1, 18)); // NOI18N
         jLabel1.setText("tanggal");
         jPanel1.add(jLabel1);
-        jLabel1.setBounds(50, 90, 80, 20);
+        jLabel1.setBounds(60, 90, 80, 30);
 
-        jLabel3.setFont(new java.awt.Font("Serif", 1, 14)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Serif", 1, 18)); // NOI18N
         jLabel3.setText("keterangan");
         jPanel1.add(jLabel3);
-        jLabel3.setBounds(50, 150, 100, 16);
+        jLabel3.setBounds(60, 160, 100, 30);
 
         date1.setDateFormatString("yyyy-MM- dd");
         date1.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -101,14 +93,14 @@ public class BelanjaMentah extends javax.swing.JFrame {
             }
         });
         jPanel1.add(date1);
-        date1.setBounds(170, 90, 240, 22);
+        date1.setBounds(230, 82, 370, 30);
         jPanel1.add(kulakField);
-        kulakField.setBounds(170, 120, 240, 22);
+        kulakField.setBounds(230, 122, 370, 30);
 
-        jLabel2.setFont(new java.awt.Font("Serif", 1, 14)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Serif", 1, 18)); // NOI18N
         jLabel2.setText("uang belanja");
         jPanel1.add(jLabel2);
-        jLabel2.setBounds(50, 120, 110, 20);
+        jLabel2.setBounds(60, 120, 110, 30);
 
         keteranganField.setColumns(20);
         keteranganField.setRows(5);
@@ -116,7 +108,7 @@ public class BelanjaMentah extends javax.swing.JFrame {
         jScrollPane1.setViewportView(keteranganField);
 
         jPanel1.add(jScrollPane1);
-        jScrollPane1.setBounds(170, 150, 240, 110);
+        jScrollPane1.setBounds(230, 160, 370, 110);
 
         tabel.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -132,7 +124,7 @@ public class BelanjaMentah extends javax.swing.JFrame {
         jScrollPane2.setViewportView(tabel);
 
         jPanel1.add(jScrollPane2);
-        jScrollPane2.setBounds(40, 280, 400, 160);
+        jScrollPane2.setBounds(40, 290, 730, 200);
 
         jButtonSimpan.setText("simpan");
         jButtonSimpan.addActionListener(new java.awt.event.ActionListener() {
@@ -141,18 +133,27 @@ public class BelanjaMentah extends javax.swing.JFrame {
             }
         });
         jPanel1.add(jButtonSimpan);
-        jButtonSimpan.setBounds(370, 450, 72, 23);
+        jButtonSimpan.setBounds(630, 220, 90, 50);
 
-        jLabel4.setFont(new java.awt.Font("Serif", 1, 24)); // NOI18N
+        jLabel4.setFont(new java.awt.Font("Serif", 1, 36)); // NOI18N
         jLabel4.setText("Belanja Harian");
         jPanel1.add(jLabel4);
-        jLabel4.setBounds(150, 20, 170, 40);
+        jLabel4.setBounds(270, 20, 280, 40);
+
+        keluar.setText("keluar");
+        keluar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                keluarActionPerformed(evt);
+            }
+        });
+        jPanel1.add(keluar);
+        keluar.setBounds(630, 170, 90, 40);
 
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/Picture1.png"))); // NOI18N
         jPanel1.add(jLabel5);
         jLabel5.setBounds(0, -10, 810, 520);
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 480, 480));
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 810, 510));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -172,8 +173,8 @@ public class BelanjaMentah extends javax.swing.JFrame {
         String keterangan = keteranganField.getText();
 
         try {
-            connection = konek.Getconnection();
-            String sqlTabel1 = "INSERT INTO modalmodal (tanggal, uang_belanja, keterangan) VALUES (?, ?, ?)";
+            connection = konek.GetConnection();
+            String sqlTabel1 = "INSERT INTO modal (tanggal, modal, keterangan) VALUES (?, ?, ?)";
             statementTabel1 = connection.prepareStatement(sqlTabel1);
             statementTabel1.setString(1, tanggal1);
             statementTabel1.setString(2, uang_belanja);
@@ -193,7 +194,7 @@ public class BelanjaMentah extends javax.swing.JFrame {
                 ex.printStackTrace();
             }
             e.printStackTrace();
-            JOptionPane.showMessageDialog(this, "Registrasi Gagal. Terjadi kesalahan database.");
+            JOptionPane.showMessageDialog(this, "simpan Gagal. Terjadi kesalahan database.");
         } finally {
             try {
                 if (statementTabel1 != null) {
@@ -208,6 +209,12 @@ public class BelanjaMentah extends javax.swing.JFrame {
         }
     
     }//GEN-LAST:event_jButtonSimpanActionPerformed
+
+    private void keluarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_keluarActionPerformed
+         dashboard_admin das = new dashboard_admin();
+        das.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_keluarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -255,6 +262,7 @@ public class BelanjaMentah extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JButton keluar;
     private javax.swing.JTextArea keteranganField;
     private javax.swing.JTextField kulakField;
     private javax.swing.JTable tabel;

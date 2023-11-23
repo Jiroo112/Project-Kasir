@@ -62,8 +62,7 @@ public class RegistrasiKaryawan extends javax.swing.JFrame {
         usernameField = new javax.swing.JTextField();
         phoneField = new javax.swing.JTextField();
         nameField = new javax.swing.JTextField();
-        jabatanField = new javax.swing.JTextField();
-        genderCombo = new javax.swing.JComboBox<>();
+        jabatancom = new javax.swing.JComboBox<>();
         jsimpan = new javax.swing.JButton();
         rePassField = new javax.swing.JTextField();
         jPanel3 = new javax.swing.JPanel();
@@ -73,6 +72,7 @@ public class RegistrasiKaryawan extends javax.swing.JFrame {
         jLabel12 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
+        genderCombo1 = new javax.swing.JComboBox<>();
         background = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -160,28 +160,17 @@ public class RegistrasiKaryawan extends javax.swing.JFrame {
         jPanel1.add(nameField);
         nameField.setBounds(100, 140, 230, 30);
 
-        jabatanField.setBackground(new java.awt.Color(72, 219, 161));
-        jabatanField.setFont(new java.awt.Font("Serif", 1, 18)); // NOI18N
-        jabatanField.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(102, 153, 255), 1, true));
-        jabatanField.addActionListener(new java.awt.event.ActionListener() {
+        jabatancom.setBackground(new java.awt.Color(72, 219, 161));
+        jabatancom.setFont(new java.awt.Font("Serif", 1, 14)); // NOI18N
+        jabatancom.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Admin", "Kasir" }));
+        jabatancom.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 255)));
+        jabatancom.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jabatanFieldActionPerformed(evt);
+                jabatancomActionPerformed(evt);
             }
         });
-        jPanel1.add(jabatanField);
-        jabatanField.setBounds(420, 210, 230, 30);
-
-        genderCombo.setBackground(new java.awt.Color(72, 219, 161));
-        genderCombo.setFont(new java.awt.Font("Serif", 1, 14)); // NOI18N
-        genderCombo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Laki-laki", "Perempuan" }));
-        genderCombo.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 255)));
-        genderCombo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                genderComboActionPerformed(evt);
-            }
-        });
-        jPanel1.add(genderCombo);
-        genderCombo.setBounds(420, 140, 230, 30);
+        jPanel1.add(jabatancom);
+        jabatancom.setBounds(420, 220, 230, 30);
 
         jsimpan.setBackground(new java.awt.Color(72, 219, 161));
         jsimpan.setFont(new java.awt.Font("Serif", 1, 18)); // NOI18N
@@ -247,6 +236,18 @@ public class RegistrasiKaryawan extends javax.swing.JFrame {
         jPanel1.add(jLabel8);
         jLabel8.setBounds(100, 260, 180, 32);
 
+        genderCombo1.setBackground(new java.awt.Color(72, 219, 161));
+        genderCombo1.setFont(new java.awt.Font("Serif", 1, 14)); // NOI18N
+        genderCombo1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Laki-laki", "Perempuan" }));
+        genderCombo1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 255)));
+        genderCombo1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                genderCombo1ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(genderCombo1);
+        genderCombo1.setBounds(420, 150, 230, 30);
+
         background.setBackground(new java.awt.Color(72, 219, 161));
         background.setFont(new java.awt.Font("Serif", 1, 18)); // NOI18N
         background.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/Picture1.png"))); // NOI18N
@@ -275,10 +276,6 @@ public class RegistrasiKaryawan extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_nameFieldActionPerformed
 
-    private void jabatanFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jabatanFieldActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jabatanFieldActionPerformed
-
     private void jsimpanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jsimpanActionPerformed
                                             
     Connection connection = null;
@@ -286,53 +283,49 @@ public class RegistrasiKaryawan extends javax.swing.JFrame {
     PreparedStatement statementTabel2 = null;
 
     String nama_karyawan = nameField.getText();
-    String jabatan = jabatanField.getText();
+    String jabatan = jabatancom.getSelectedItem().toString();
     String username = usernameField.getText();
     String password = passwordField.getText();
     String repassword = rePassField.getText();
     String no_hp = phoneField.getText();
-    String jenis_kelamin = genderCombo.getSelectedItem().toString();
+    String jenis_kelamin = genderCombo1.getSelectedItem().toString();
 
     if (password.equals(repassword)) {
         try {
-            // Menyimpan data ke dalam tabel MySQL
+          
             connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/aplikasi_warung", "root", "");
-            connection.setAutoCommit(false); // Nonaktifkan otomatis commit
+            connection.setAutoCommit(false); 
 
-            // Query pertama: INSERT ke tabel data_karyawan
-            String sqlTabel1 = "INSERT INTO data_karyawan (username, nama_karyawan, jenis_kelamin, no_hp, jabatan) VALUES (?, ?, ?, ?, ?)";
-            statementTabel1 = connection.prepareStatement(sqlTabel1);
-            statementTabel1.setString(2, nama_karyawan);
-            statementTabel1.setString(5, jabatan);
-            statementTabel1.setString(1, username);
-            statementTabel1.setString(4, no_hp);
-            statementTabel1.setString(3, jenis_kelamin);
-
-            // Eksekusi query pertama
+        String sqlTabel1 = "INSERT INTO data_karyawan (username, nama_karyawan, jenis_kelamin, no_hp, jabatan) VALUES (?, ?, ?, ?, ?)";
+        statementTabel1 = connection.prepareStatement(sqlTabel1);
+        statementTabel1.setString(1, username); 
+        statementTabel1.setString(2, nama_karyawan); 
+        statementTabel1.setString(3, jenis_kelamin);
+        statementTabel1.setString(4, no_hp); 
+        statementTabel1.setString(5, jabatan);  
+            
             statementTabel1.executeUpdate();
-
-            // Query kedua: INSERT ke tabel akun
+            
             String sqlTabel2 = "INSERT INTO akun (username, password) VALUES (?, ?)";
             statementTabel2 = connection.prepareStatement(sqlTabel2);
             statementTabel2.setString(1, username);
             statementTabel2.setString(2, password);
 
-            // Eksekusi query kedua
             statementTabel2.executeUpdate();
 
-            // Commit transaksi
             connection.commit();
 
             JOptionPane.showMessageDialog(this, "Registrasi Berhasil");
             nameField.setText("");
-            jabatanField.setText("");
+            jabatancom.setSelectedItem("");
+            genderCombo1.setSelectedItem("");
             usernameField.setText("");
             passwordField.setText("");
             rePassField.setText("");
             phoneField.setText("");
         } catch (SQLException e) {
             try {
-                // Rollback jika terjadi kesalahan
+           
                 if (connection != null) {
                     connection.rollback();
                 }
@@ -340,33 +333,17 @@ public class RegistrasiKaryawan extends javax.swing.JFrame {
                 ex.printStackTrace();
             }
             e.printStackTrace();
-            JOptionPane.showMessageDialog(this, "Registrasi Gagal. Terjadi kesalahan database.");
-        } finally {
-            try {
-                // Tutup PreparedStatement
-                if (statementTabel1 != null) {
-                    statementTabel1.close();
-                }
-                if (statementTabel2 != null) {
-                    statementTabel2.close();
-                }
-                // Tutup koneksi
-                if (connection != null) {
-                    connection.close();
-                }
-            } catch (SQLException ex) {
-                ex.printStackTrace();
-            }
+            JOptionPane.showMessageDialog(this, "Registrasi Gagal. Terjadi kesalahan database."+e.getMessage());
         }
     } else {
         JOptionPane.showMessageDialog(this, "Kata Sandi dan Konfirmasi Kata Sandi Tidak Cocok. Registrasi Gagal.");
     }
-
+    
     }//GEN-LAST:event_jsimpanActionPerformed
 
-    private void genderComboActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_genderComboActionPerformed
+    private void jabatancomActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jabatancomActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_genderComboActionPerformed
+    }//GEN-LAST:event_jabatancomActionPerformed
 
     private void jLabelDataKaryawanMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelDataKaryawanMouseClicked
         data_karyawan p = new data_karyawan();
@@ -386,6 +363,10 @@ public class RegistrasiKaryawan extends javax.swing.JFrame {
        dispose();
        
     }//GEN-LAST:event_labelKeluarMouseClicked
+
+    private void genderCombo1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_genderCombo1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_genderCombo1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -425,7 +406,7 @@ public class RegistrasiKaryawan extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel background;
-    private javax.swing.JComboBox<String> genderCombo;
+    private javax.swing.JComboBox<String> genderCombo1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
@@ -440,7 +421,7 @@ public class RegistrasiKaryawan extends javax.swing.JFrame {
     private javax.swing.JLabel jLabelLaporan;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JTextField jabatanField;
+    private javax.swing.JComboBox<String> jabatancom;
     private javax.swing.JButton jsimpan;
     private javax.swing.JLabel labelKeluar;
     private javax.swing.JTextField nameField;
