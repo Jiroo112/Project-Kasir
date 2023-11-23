@@ -176,20 +176,21 @@ public class login_page extends javax.swing.JFrame {
                 String jabatan = rs.getString("jabatan");
                 if(jabatan.equals("Admin")){
                     this.setVisible(false);
-                    dashboard_admin menu = new dashboard_admin();
-                    menu.setVisible(true);
-                    menu.pack();
-                    menu.setLocation(null);
-                    menu.setDefaultCloseOperation(EXIT_ON_CLOSE);
+                    dashboard_admin dasbord_admin = new dashboard_admin();
+                    dasbord_admin.setVisible(true);
+                    dasbord_admin.pack();
+                    dasbord_admin.setLocation(null);
+                    dasbord_admin.setDefaultCloseOperation(EXIT_ON_CLOSE);
 
                 }
                 else{
-                    dashboard_kasir menu2 = new dashboard_kasir();
+                    dashboard_kasir dasbord_kayawan = new dashboard_kasir();
                     this.setVisible(false);
-                    menu2.setVisible(true);
-                    menu2.pack();
-                    menu2.setLocation(null);
-                    menu2.setDefaultCloseOperation(EXIT_ON_CLOSE);
+                    dasbord_kayawan.setNama(id);
+                    dasbord_kayawan.setVisible(true);
+                    dasbord_kayawan.pack();
+                    dasbord_kayawan.setLocation(null);
+                    dasbord_kayawan.setDefaultCloseOperation(EXIT_ON_CLOSE);
                 }
             }
             else{

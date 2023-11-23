@@ -4,8 +4,13 @@ public class dashboard_kasir extends javax.swing.JFrame {
     public dashboard_kasir() {
         initComponents();
     }
-
-
+    
+    private String nama;
+    public void setNama(String nama){
+        String strnama = nama;
+        this.nama = strnama;
+    }
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -49,6 +54,7 @@ public class dashboard_kasir extends javax.swing.JFrame {
     private void jLabel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MouseClicked
         menu_kariawan menu = new menu_kariawan();
         menu.setVisible(true);
+        menu.setNama(nama);
         dispose();
     }//GEN-LAST:event_jLabel3MouseClicked
 
