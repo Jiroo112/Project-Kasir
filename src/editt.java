@@ -4,6 +4,7 @@
  */
 
 import com.mysql.cj.jdbc.Driver;
+import java.awt.Color;
 import java.awt.Image;
 import java.io.File;
 import java.sql.Connection;
@@ -31,6 +32,48 @@ private String filemenu;
     public editt() {
         initComponents();
     }
+    public void minuman(){
+        DefaultTableModel tbl = new DefaultTableModel();
+        tbl.addColumn("Minuman");
+        tbl.addColumn("Harga");
+        data.minuman.setModel(tbl);
+        data.minuman.getTableHeader().setBackground(new Color(115,206,191));
+        data.minuman.getTableHeader().setForeground(new Color(255,255,255));
+        try {
+            Statement st = konek.GetConnection().createStatement();
+            ResultSet rs = st.executeQuery("SELECT nama_menu, harga FROM menu WHERE kode_menu LIKE '%MI%'");
+            while(rs.next()){
+                tbl.addRow(new Object[]{
+                    rs.getString("nama_menu"),
+                    rs.getString("harga")
+                });
+                data.minuman.setModel(tbl);
+            }
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(this, e.getMessage());
+        }
+    }
+        public void makanan(){
+        DefaultTableModel tbl = new DefaultTableModel();
+        tbl.addColumn("Makanan");
+        tbl.addColumn("Harga");
+        data.makanan.setModel(tbl);
+        data.makanan.getTableHeader().setBackground(new Color(115,206,191));
+        data.makanan.getTableHeader().setForeground(new Color(255,255,255));
+        try {
+            Statement st = konek.GetConnection().createStatement();
+            ResultSet rs = st.executeQuery("SELECT nama_menu, harga FROM menu WHERE kode_menu LIKE '%MA%'");
+            while(rs.next()){
+                tbl.addRow(new Object[]{
+                    rs.getString("nama_menu"),
+                    rs.getString("harga")
+                });
+                data.makanan.setModel(tbl);
+            }
+        } catch (Exception e) {
+        }
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -149,8 +192,8 @@ private String filemenu;
         } catch (Exception t) {
             JOptionPane.showMessageDialog(null, "Menu Gagal Dihapus");
         }
-        this.setVisible(false);
-        new data().setVisible(true);
+        makanan();
+        minuman();
     }//GEN-LAST:event_btn_hapusActionPerformed
 
     private void btn_simpanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_simpanActionPerformed
@@ -166,8 +209,8 @@ private String filemenu;
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Menu Gagal Disimpan");
         }
-        this.setVisible(false);
-        new data().setVisible(true);
+        makanan();
+        minuman();
     }//GEN-LAST:event_btn_simpanActionPerformed
 
     private void btn_pilihActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_pilihActionPerformed
@@ -227,7 +270,7 @@ private String filemenu;
     private javax.swing.JButton btn_keluar;
     private javax.swing.JButton btn_pilih;
     private javax.swing.JButton btn_simpan;
-    private javax.swing.JLabel filefoto;
+    public static javax.swing.JLabel filefoto;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

@@ -80,9 +80,7 @@ public class data extends javax.swing.JFrame {
 
         jPanel4 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        minuman = new javax.swing.JTable();
         jScrollPane2 = new javax.swing.JScrollPane();
-        makanan = new javax.swing.JTable();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -292,7 +290,6 @@ public class data extends javax.swing.JFrame {
         } catch (Exception e) {
             JOptionPane.showMessageDialog(rootPane, e.getMessage());
         }
-
     }//GEN-LAST:event_minumanMouseClicked
 
     private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked
@@ -382,8 +379,8 @@ public class data extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JButton keluar;
-    public javax.swing.JTable makanan;
-    private javax.swing.JTable minuman;
+    public static final javax.swing.JTable makanan = new javax.swing.JTable();
+    public static final javax.swing.JTable minuman = new javax.swing.JTable();
     private javax.swing.JButton tambah_menu;
     // End of variables declaration//GEN-END:variables
 }
