@@ -169,7 +169,7 @@ public class data extends javax.swing.JFrame {
                 jLabel1MouseClicked(evt);
             }
         });
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 0, -1, -1));
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 10, -1, -1));
 
         jLabel3.setBackground(new java.awt.Color(255, 255, 255));
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -181,7 +181,7 @@ public class data extends javax.swing.JFrame {
                 jLabel3MouseClicked(evt);
             }
         });
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 0, -1, -1));
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 10, -1, -1));
 
         jLabel5.setBackground(new java.awt.Color(255, 255, 255));
         jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -193,7 +193,7 @@ public class data extends javax.swing.JFrame {
                 jLabel5MouseClicked(evt);
             }
         });
-        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 0, -1, -1));
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 10, -1, -1));
 
         jLabel4.setBackground(new java.awt.Color(255, 255, 255));
         jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -205,9 +205,9 @@ public class data extends javax.swing.JFrame {
                 jLabel4MouseClicked(evt);
             }
         });
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 0, -1, -1));
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 10, -1, -1));
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 470, 810, 40));
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 460, 780, 40));
 
         keluar.setBackground(new java.awt.Color(0, 153, 153));
         keluar.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
@@ -218,7 +218,7 @@ public class data extends javax.swing.JFrame {
                 keluarActionPerformed(evt);
             }
         });
-        getContentPane().add(keluar, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 420, -1, -1));
+        getContentPane().add(keluar, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 400, -1, -1));
 
         tambah_menu.setBackground(new java.awt.Color(0, 153, 153));
         tambah_menu.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
@@ -229,10 +229,10 @@ public class data extends javax.swing.JFrame {
                 tambah_menuActionPerformed(evt);
             }
         });
-        getContentPane().add(tambah_menu, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 420, -1, -1));
+        getContentPane().add(tambah_menu, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 400, -1, -1));
 
         jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/111.png"))); // NOI18N
-        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(-70, 0, 880, 510));
+        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(-70, 0, 850, 500));
 
         pack();
         setLocationRelativeTo(null);
@@ -244,51 +244,61 @@ public class data extends javax.swing.JFrame {
 
     private void makananMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_makananMouseClicked
         int index = makanan.getSelectedRow();
+        editt p = new editt();
         TableModel model = makanan.getModel();
         String makanan = model.getValueAt(index, 0).toString();
         String harga = model.getValueAt(index, 1).toString();
        
-        data.setVisible(true);
-        data.pack();
+        p.setVisible(true);
+        p.pack();
         
-        try {
+        p.txt_nama.setText(makanan);
+        p.txt_harga.setText(harga);
+                try {
             Statement st = konek.GetConnection().createStatement();
-            ResultSet rs = st.executeQuery("SELECT * FROM menu WHERE nama_menu = '"+makanan+"';");
+            ResultSet rs = st.executeQuery("SELECT kode_menu FROM menu WHERE nama_menu = '"+makanan+"';");
             if(rs.next()){
-                
+              String kode_menu = rs.getString("kode_menu");
+              
+              p.txt_kode.setText(kode_menu);
             }
             rs.close();
-        } 
-        catch (Exception e) {
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(rootPane, e.getMessage());
         }
     }//GEN-LAST:event_makananMouseClicked
 
     private void minumanMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_minumanMouseClicked
          int index = minuman.getSelectedRow();
+        editt p = new editt();
         TableModel model = minuman.getModel();
         String minuman = model.getValueAt(index, 0).toString();
         String harga = model.getValueAt(index, 1).toString();
         
-        data.setVisible(true);
-        data.pack();
-        
-        try {
+        p.setVisible(true);
+        p.pack();
+ 
+        p.txt_nama.setText(minuman);
+        p.txt_harga.setText(harga);
+                try {
             Statement st = konek.GetConnection().createStatement();
-            ResultSet rs = st.executeQuery("SELECT * FROM menu WHERE nama_menu = '"+minuman+"';");
-            int baris;
+            ResultSet rs = st.executeQuery("SELECT kode_menu FROM menu WHERE nama_menu = '"+minuman+"';");
             if(rs.next()){
-            
+              String kode_menu = rs.getString("kode_menu");
+              
+              p.txt_kode.setText(kode_menu);
             }
             rs.close();
-        } 
-        catch (Exception e) {
-        }  
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(rootPane, e.getMessage());
+        }
+
     }//GEN-LAST:event_minumanMouseClicked
 
     private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked
         int result = JOptionPane.showConfirmDialog(null, "Apakah anda yakin ingin keluar?");
         if (result == JOptionPane.YES_NO_OPTION) {
-            
+            dispose();
         } else {
             JOptionPane.showMessageDialog(null, "Batal keluar");
         }
@@ -301,15 +311,21 @@ public class data extends javax.swing.JFrame {
     }//GEN-LAST:event_jLabel3MouseClicked
 
     private void jLabel5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel5MouseClicked
-        
+        KeuntunganFrame untung = new KeuntunganFrame();
+        untung.setVisible(true);
+        dispose();
     }//GEN-LAST:event_jLabel5MouseClicked
 
     private void jLabel4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel4MouseClicked
-        
+        RegistrasiKaryawan regis = new RegistrasiKaryawan();
+        regis.setVisible(true);
+        dispose();
     }//GEN-LAST:event_jLabel4MouseClicked
 
     private void keluarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_keluarActionPerformed
-        
+        dashboard_admin d = new dashboard_admin();
+        d.setVisible(true);
+        dispose();
     }//GEN-LAST:event_keluarActionPerformed
 
     private void tambah_menuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tambah_menuActionPerformed

@@ -130,9 +130,7 @@ private String filemenu;
     }// </editor-fold>//GEN-END:initComponents
 
     private void btn_keluarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_keluarActionPerformed
-        // TODO add your handling code here:
-        this.setVisible(false);
-        new data().setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_btn_keluarActionPerformed
 
     private void btn_hapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_hapusActionPerformed
@@ -236,8 +234,8 @@ private String filemenu;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JTextField txt_harga;
-    private javax.swing.JTextField txt_kode;
-    private javax.swing.JTextField txt_nama;
+    public javax.swing.JTextField txt_harga;
+    public javax.swing.JTextField txt_kode;
+    public javax.swing.JTextField txt_nama;
     // End of variables declaration//GEN-END:variables
 }

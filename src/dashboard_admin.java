@@ -1,4 +1,7 @@
 
+import javax.swing.JOptionPane;
+
+
 
 
 
@@ -21,6 +24,7 @@ public class dashboard_admin extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
+        home = new javax.swing.JLabel();
         background = new javax.swing.JLabel();
 
         jLabel5.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -63,6 +67,13 @@ public class dashboard_admin extends javax.swing.JFrame {
         });
         getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 290, 300, 130));
 
+        home.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                homeMouseClicked(evt);
+            }
+        });
+        getContentPane().add(home, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 430, 50, 50));
+
         background.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/Screenshot (580).png"))); // NOI18N
         getContentPane().add(background, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, 500));
 
@@ -99,6 +110,17 @@ public class dashboard_admin extends javax.swing.JFrame {
         login.setVisible(true);
         dispose();
     }//GEN-LAST:event_jLabel5MouseClicked
+
+    private void homeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_homeMouseClicked
+        int result = JOptionPane.showConfirmDialog(null, "Apakah anda yakin ingin keluar?");
+        if (result == JOptionPane.YES_NO_OPTION) {
+            login_page login = new login_page();
+            login.setVisible(true);
+            dispose();
+        } else {
+            JOptionPane.showMessageDialog(null, "Batal keluar");
+        }
+    }//GEN-LAST:event_homeMouseClicked
 
     /**
      * @param args the command line arguments
@@ -137,6 +159,7 @@ public class dashboard_admin extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel background;
+    private javax.swing.JLabel home;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

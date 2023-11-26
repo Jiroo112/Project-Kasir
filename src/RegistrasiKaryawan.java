@@ -69,8 +69,7 @@ public class RegistrasiKaryawan extends javax.swing.JFrame {
         labelKeluar = new javax.swing.JLabel();
         jLabelDataKaryawan = new javax.swing.JLabel();
         jLabelLaporan = new javax.swing.JLabel();
-        jLabel12 = new javax.swing.JLabel();
-        jLabel13 = new javax.swing.JLabel();
+        labelmenu = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         genderCombo1 = new javax.swing.JComboBox<>();
         background = new javax.swing.JLabel();
@@ -200,7 +199,7 @@ public class RegistrasiKaryawan extends javax.swing.JFrame {
                 labelKeluarMouseClicked(evt);
             }
         });
-        jPanel3.add(labelKeluar, new org.netbeans.lib.awtextra.AbsoluteConstraints(739, 6, -1, -1));
+        jPanel3.add(labelKeluar, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 10, -1, -1));
 
         jLabelDataKaryawan.setForeground(new java.awt.Color(255, 255, 255));
         jLabelDataKaryawan.setText("Data Karyawan");
@@ -209,7 +208,7 @@ public class RegistrasiKaryawan extends javax.swing.JFrame {
                 jLabelDataKaryawanMouseClicked(evt);
             }
         });
-        jPanel3.add(jLabelDataKaryawan, new org.netbeans.lib.awtextra.AbsoluteConstraints(643, 6, -1, -1));
+        jPanel3.add(jLabelDataKaryawan, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 10, -1, -1));
 
         jLabelLaporan.setForeground(new java.awt.Color(255, 255, 255));
         jLabelLaporan.setText("Laporan");
@@ -218,18 +217,19 @@ public class RegistrasiKaryawan extends javax.swing.JFrame {
                 jLabelLaporanMouseClicked(evt);
             }
         });
-        jPanel3.add(jLabelLaporan, new org.netbeans.lib.awtextra.AbsoluteConstraints(582, 6, -1, -1));
+        jPanel3.add(jLabelLaporan, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 10, -1, -1));
 
-        jLabel12.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel12.setText("Registrasi");
-        jPanel3.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(514, 6, -1, -1));
-
-        jLabel13.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel13.setText("Daftar Menu");
-        jPanel3.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(422, 6, -1, -1));
+        labelmenu.setForeground(new java.awt.Color(255, 255, 255));
+        labelmenu.setText("Daftar Menu");
+        labelmenu.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                labelmenuMouseClicked(evt);
+            }
+        });
+        jPanel3.add(labelmenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 10, -1, -1));
 
         jPanel1.add(jPanel3);
-        jPanel3.setBounds(-10, 460, 800, 30);
+        jPanel3.setBounds(-10, 450, 800, 40);
 
         jLabel8.setFont(new java.awt.Font("Serif", 1, 24)); // NOI18N
         jLabel8.setText("Password");
@@ -368,6 +368,12 @@ public class RegistrasiKaryawan extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_genderCombo1ActionPerformed
 
+    private void labelmenuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelmenuMouseClicked
+        data menu = new data();
+        menu.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_labelmenuMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -408,8 +414,6 @@ public class RegistrasiKaryawan extends javax.swing.JFrame {
     private javax.swing.JLabel background;
     private javax.swing.JComboBox<String> genderCombo1;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -424,6 +428,7 @@ public class RegistrasiKaryawan extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> jabatancom;
     private javax.swing.JButton jsimpan;
     private javax.swing.JLabel labelKeluar;
+    private javax.swing.JLabel labelmenu;
     private javax.swing.JTextField nameField;
     private javax.swing.JTextField passwordField;
     private javax.swing.JTextField phoneField;
