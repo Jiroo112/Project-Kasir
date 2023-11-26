@@ -1,6 +1,4 @@
 
-
-
 import com.mysql.jdbc.Driver;
 import java.awt.Image;
 import java.awt.image.BufferedImage;

@@ -1,29 +1,38 @@
 
-
-import com.mysql.cj.jdbc.Driver;
 import java.awt.Color;
-import javax.swing.JOptionPane;
-import javax.swing.table.DefaultTableModel;
+import java.sql.Statement;
+import java.awt.Dimension;
+import java.awt.Font;
+import java.awt.Image;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.ImageIcon;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.JTableHeader;
 import javax.swing.table.TableModel;
 import koneksi.konek;
-/**
- *
- * @author oser
- */
+
 public class data extends javax.swing.JFrame {
 
-    /**
-     * Creates new form data
-     */
     public data() {
         initComponents();
         makanan();
         minuman();
-    }
 
+    }
+    
+     editt data = new editt();
+     
+ 
+    
+ 
     public void makanan(){
         DefaultTableModel tbl = new DefaultTableModel();
         tbl.addColumn("Makanan");
@@ -39,6 +48,7 @@ public class data extends javax.swing.JFrame {
                     rs.getString("nama_menu"),
                     rs.getString("harga")
                 });
+                makanan.setModel(tbl);
             }
         } catch (Exception e) {
         }
@@ -64,111 +74,87 @@ public class data extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, e.getMessage());
         }
     }
-
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel2 = new javax.swing.JPanel();
+        jPanel4 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        makanan = new javax.swing.JTable();
-        jScrollPane3 = new javax.swing.JScrollPane();
         minuman = new javax.swing.JTable();
-        keluar = new javax.swing.JButton();
-        edit = new javax.swing.JButton();
-        tambah_menu = new javax.swing.JButton();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        makanan = new javax.swing.JTable();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
+        keluar = new javax.swing.JButton();
+        tambah_menu = new javax.swing.JButton();
+        jLabel6 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jPanel2.setLayout(null);
-
-        makanan.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null}
-            },
-            new String [] {
-                "Makanan", "Harga"
-            }
-        ));
-        makanan.setEnabled(false);
-        makanan.setGridColor(new java.awt.Color(0, 0, 0));
-        makanan.setRowHeight(25);
-        makanan.getTableHeader().setReorderingAllowed(false);
-        makanan.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                makananMouseClicked(evt);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
             }
         });
-        jScrollPane1.setViewportView(makanan);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanel2.add(jScrollPane1);
-        jScrollPane1.setBounds(70, 150, 271, 220);
+        jPanel4.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel4.setLayout(null);
+        getContentPane().add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         minuman.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null},
-                {null, null},
                 {null, null},
                 {null, null}
             },
             new String [] {
                 "Minuman", "Harga"
             }
-        ));
-        minuman.setEnabled(false);
-        minuman.setGridColor(new java.awt.Color(0, 0, 0));
-        minuman.setRowHeight(25);
-        minuman.getTableHeader().setReorderingAllowed(false);
-        jScrollPane3.setViewportView(minuman);
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false
+            };
 
-        jPanel2.add(jScrollPane3);
-        jScrollPane3.setBounds(430, 150, 280, 220);
-
-        keluar.setBackground(new java.awt.Color(0, 153, 153));
-        keluar.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        keluar.setForeground(new java.awt.Color(255, 255, 255));
-        keluar.setText("Kembali");
-        keluar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                keluarActionPerformed(evt);
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
             }
         });
-        jPanel2.add(keluar);
-        keluar.setBounds(630, 400, 90, 27);
-
-        edit.setBackground(new java.awt.Color(0, 153, 153));
-        edit.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        edit.setForeground(new java.awt.Color(255, 255, 255));
-        edit.setText("Edit");
-        edit.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                editActionPerformed(evt);
+        minuman.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                minumanMouseClicked(evt);
             }
         });
-        jPanel2.add(edit);
-        edit.setBounds(410, 400, 90, 27);
+        jScrollPane1.setViewportView(minuman);
 
-        tambah_menu.setBackground(new java.awt.Color(0, 153, 153));
-        tambah_menu.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        tambah_menu.setForeground(new java.awt.Color(255, 255, 255));
-        tambah_menu.setText("Tambah");
-        tambah_menu.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tambah_menuActionPerformed(evt);
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 150, 240, 220));
+
+        makanan.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null},
+                {null, null}
+            },
+            new String [] {
+                "Makanan", "Harga"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
             }
         });
-        jPanel2.add(tambah_menu);
-        tambah_menu.setBounds(520, 400, 90, 27);
+        makanan.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                makananMouseClicked(evt);
+            }
+        });
+        jScrollPane2.setViewportView(makanan);
+
+        getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 150, 240, 220));
 
         jPanel1.setBackground(new java.awt.Color(0, 102, 102));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -183,7 +169,7 @@ public class data extends javax.swing.JFrame {
                 jLabel1MouseClicked(evt);
             }
         });
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 10, -1, -1));
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 0, -1, -1));
 
         jLabel3.setBackground(new java.awt.Color(255, 255, 255));
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -195,7 +181,7 @@ public class data extends javax.swing.JFrame {
                 jLabel3MouseClicked(evt);
             }
         });
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 10, -1, -1));
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 0, -1, -1));
 
         jLabel5.setBackground(new java.awt.Color(255, 255, 255));
         jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -207,7 +193,7 @@ public class data extends javax.swing.JFrame {
                 jLabel5MouseClicked(evt);
             }
         });
-        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 10, -1, -1));
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 0, -1, -1));
 
         jLabel4.setBackground(new java.awt.Color(255, 255, 255));
         jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -219,32 +205,94 @@ public class data extends javax.swing.JFrame {
                 jLabel4MouseClicked(evt);
             }
         });
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 10, -1, -1));
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 0, -1, -1));
 
-        jPanel2.add(jPanel1);
-        jPanel1.setBounds(0, 460, 800, 40);
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 470, 810, 40));
 
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/111.png"))); // NOI18N
-        jPanel2.add(jLabel2);
-        jLabel2.setBounds(-60, 0, 890, 500);
+        keluar.setBackground(new java.awt.Color(0, 153, 153));
+        keluar.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        keluar.setForeground(new java.awt.Color(255, 255, 255));
+        keluar.setText("Kembali");
+        keluar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                keluarActionPerformed(evt);
+            }
+        });
+        getContentPane().add(keluar, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 420, -1, -1));
 
-        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, 500));
+        tambah_menu.setBackground(new java.awt.Color(0, 153, 153));
+        tambah_menu.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        tambah_menu.setForeground(new java.awt.Color(255, 255, 255));
+        tambah_menu.setText("Tambah");
+        tambah_menu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tambah_menuActionPerformed(evt);
+            }
+        });
+        getContentPane().add(tambah_menu, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 420, -1, -1));
+
+        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/111.png"))); // NOI18N
+        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(-70, 0, 880, 510));
 
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void keluarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_keluarActionPerformed
-        dashboard_admin db = new dashboard_admin();
-        this.setVisible(false);
-        db.setVisible(true);
-        db.pack();
-    }//GEN-LAST:event_keluarActionPerformed
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
 
-    private void tambah_menuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tambah_menuActionPerformed
-        this.setVisible(false);
-        new tamba().setVisible(true);
-    }//GEN-LAST:event_tambah_menuActionPerformed
+    }//GEN-LAST:event_formWindowOpened
+
+    private void makananMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_makananMouseClicked
+        int index = makanan.getSelectedRow();
+        TableModel model = makanan.getModel();
+        String makanan = model.getValueAt(index, 0).toString();
+        String harga = model.getValueAt(index, 1).toString();
+       
+        data.setVisible(true);
+        data.pack();
+        
+        try {
+            Statement st = konek.GetConnection().createStatement();
+            ResultSet rs = st.executeQuery("SELECT * FROM menu WHERE nama_menu = '"+makanan+"';");
+            if(rs.next()){
+                
+            }
+            rs.close();
+        } 
+        catch (Exception e) {
+        }
+    }//GEN-LAST:event_makananMouseClicked
+
+    private void minumanMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_minumanMouseClicked
+         int index = minuman.getSelectedRow();
+        TableModel model = minuman.getModel();
+        String minuman = model.getValueAt(index, 0).toString();
+        String harga = model.getValueAt(index, 1).toString();
+        
+        data.setVisible(true);
+        data.pack();
+        
+        try {
+            Statement st = konek.GetConnection().createStatement();
+            ResultSet rs = st.executeQuery("SELECT * FROM menu WHERE nama_menu = '"+minuman+"';");
+            int baris;
+            if(rs.next()){
+            
+            }
+            rs.close();
+        } 
+        catch (Exception e) {
+        }  
+    }//GEN-LAST:event_minumanMouseClicked
+
+    private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked
+        int result = JOptionPane.showConfirmDialog(null, "Apakah anda yakin ingin keluar?");
+        if (result == JOptionPane.YES_NO_OPTION) {
+            
+        } else {
+            JOptionPane.showMessageDialog(null, "Batal keluar");
+        }
+    }//GEN-LAST:event_jLabel1MouseClicked
 
     private void jLabel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MouseClicked
         data menu = new data();
@@ -252,48 +300,28 @@ public class data extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_jLabel3MouseClicked
 
-    private void jLabel4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel4MouseClicked
-        RegistrasiKaryawan regist = new RegistrasiKaryawan();
-        regist.setVisible(true);
-        dispose();
-    }//GEN-LAST:event_jLabel4MouseClicked
-
     private void jLabel5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel5MouseClicked
-        KeuntunganFrame untung = new KeuntunganFrame();
-        untung.setVisible(true);
-        dispose();
+        
     }//GEN-LAST:event_jLabel5MouseClicked
 
-    private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked
-        int result = JOptionPane.showConfirmDialog(null, "Apakah anda yakin ingin keluar?");
-        if (result == JOptionPane.YES_NO_OPTION) {
-            login_page login = new login_page();
-            login.setVisible(true);
-            dispose();
-        } else {
-            JOptionPane.showMessageDialog(null, "Batal keluar");
-        }
-    }//GEN-LAST:event_jLabel1MouseClicked
+    private void jLabel4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel4MouseClicked
+        
+    }//GEN-LAST:event_jLabel4MouseClicked
 
-    private void editActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editActionPerformed
-        // TODO add your handling code here:
+    private void keluarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_keluarActionPerformed
+        
+    }//GEN-LAST:event_keluarActionPerformed
+
+    private void tambah_menuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tambah_menuActionPerformed
         this.setVisible(false);
-        new editt().setVisible(true);
-    }//GEN-LAST:event_editActionPerformed
-
-    private void makananMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_makananMouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_makananMouseClicked
+        new tamba().setVisible(true);
+    }//GEN-LAST:event_tambah_menuActionPerformed
 
     /**
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
+        
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Default".equals(info.getName())) {
@@ -312,6 +340,12 @@ public class data extends javax.swing.JFrame {
         }
         //</editor-fold>
         //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -322,20 +356,18 @@ public class data extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton edit;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JButton keluar;
-    private javax.swing.JTable makanan;
+    public javax.swing.JTable makanan;
     private javax.swing.JTable minuman;
     private javax.swing.JButton tambah_menu;
     // End of variables declaration//GEN-END:variables
-
 }

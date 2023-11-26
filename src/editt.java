@@ -24,14 +24,13 @@ import java.sql.Connection;
  */
 public class editt extends javax.swing.JFrame {
 private String filemenu;
+
     /**
      * Creates new form editt
      */
     public editt() {
         initComponents();
-       
     }
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -138,7 +137,6 @@ private String filemenu;
 
     private void btn_hapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_hapusActionPerformed
         // TODO add your handling code here:
-        
         String kode_menu = txt_kode.getText();
         String nama_menu = txt_nama.getText();
         String harga = txt_harga.getText();
@@ -166,6 +164,7 @@ private String filemenu;
             Statement st = konek.GetConnection().createStatement();
             st.executeUpdate("UPDATE menu SET nama_menu='" + nama_menu + "', harga= '" + harga + "' WHERE kode_menu='"+ kode_menu +"' OR nama_menu='" + nama_menu + "';");
             JOptionPane.showMessageDialog(null, "Menu Berhasil Disimpan");
+
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Menu Gagal Disimpan");
         }
