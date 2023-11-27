@@ -79,37 +79,37 @@ public class RegistrasiKaryawan extends javax.swing.JFrame {
 
         jPanel1.setLayout(null);
 
-        jLabel1.setFont(new java.awt.Font("Serif", 1, 36)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
         jLabel1.setText("Registrasi Karyawan");
         jPanel1.add(jLabel1);
-        jLabel1.setBounds(230, 20, 350, 60);
+        jLabel1.setBounds(230, 30, 350, 60);
 
-        jLabel2.setFont(new java.awt.Font("Serif", 1, 24)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel2.setText("Username");
         jPanel1.add(jLabel2);
         jLabel2.setBounds(100, 180, 190, 32);
 
-        jLabel3.setFont(new java.awt.Font("Serif", 1, 24)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel3.setText("RePassword");
         jPanel1.add(jLabel3);
         jLabel3.setBounds(100, 340, 200, 32);
 
-        jLabel4.setFont(new java.awt.Font("Serif", 1, 24)); // NOI18N
+        jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel4.setText("Nama");
         jPanel1.add(jLabel4);
         jLabel4.setBounds(110, 110, 160, 32);
 
-        jLabel5.setFont(new java.awt.Font("Serif", 1, 24)); // NOI18N
+        jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel5.setText("No. Telp");
         jPanel1.add(jLabel5);
         jLabel5.setBounds(420, 260, 170, 32);
 
-        jLabel6.setFont(new java.awt.Font("Serif", 1, 24)); // NOI18N
+        jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel6.setText("Gender");
         jPanel1.add(jLabel6);
         jLabel6.setBounds(420, 110, 170, 32);
 
-        jLabel7.setFont(new java.awt.Font("Serif", 1, 24)); // NOI18N
+        jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel7.setText("Jabatan");
         jPanel1.add(jLabel7);
         jLabel7.setBounds(420, 180, 170, 32);
@@ -160,7 +160,7 @@ public class RegistrasiKaryawan extends javax.swing.JFrame {
         nameField.setBounds(100, 140, 230, 30);
 
         jabatancom.setBackground(new java.awt.Color(72, 219, 161));
-        jabatancom.setFont(new java.awt.Font("Serif", 1, 14)); // NOI18N
+        jabatancom.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jabatancom.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Admin", "Kasir" }));
         jabatancom.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 255)));
         jabatancom.addActionListener(new java.awt.event.ActionListener() {
@@ -172,7 +172,7 @@ public class RegistrasiKaryawan extends javax.swing.JFrame {
         jabatancom.setBounds(420, 220, 230, 30);
 
         jsimpan.setBackground(new java.awt.Color(72, 219, 161));
-        jsimpan.setFont(new java.awt.Font("Serif", 1, 18)); // NOI18N
+        jsimpan.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jsimpan.setText("simpan");
         jsimpan.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -180,7 +180,7 @@ public class RegistrasiKaryawan extends javax.swing.JFrame {
             }
         });
         jPanel1.add(jsimpan);
-        jsimpan.setBounds(420, 380, 120, 31);
+        jsimpan.setBounds(420, 380, 120, 32);
 
         rePassField.setBackground(new java.awt.Color(72, 219, 161));
         rePassField.setFont(new java.awt.Font("Serif", 1, 18)); // NOI18N
@@ -192,6 +192,7 @@ public class RegistrasiKaryawan extends javax.swing.JFrame {
         jPanel3.setForeground(new java.awt.Color(255, 255, 255));
         jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        labelKeluar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         labelKeluar.setForeground(new java.awt.Color(255, 255, 255));
         labelKeluar.setText("Keluar");
         labelKeluar.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -201,6 +202,7 @@ public class RegistrasiKaryawan extends javax.swing.JFrame {
         });
         jPanel3.add(labelKeluar, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 10, -1, -1));
 
+        jLabelDataKaryawan.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabelDataKaryawan.setForeground(new java.awt.Color(255, 255, 255));
         jLabelDataKaryawan.setText("Data Karyawan");
         jLabelDataKaryawan.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -208,8 +210,9 @@ public class RegistrasiKaryawan extends javax.swing.JFrame {
                 jLabelDataKaryawanMouseClicked(evt);
             }
         });
-        jPanel3.add(jLabelDataKaryawan, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 10, -1, -1));
+        jPanel3.add(jLabelDataKaryawan, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 10, -1, -1));
 
+        jLabelLaporan.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabelLaporan.setForeground(new java.awt.Color(255, 255, 255));
         jLabelLaporan.setText("Laporan");
         jLabelLaporan.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -217,8 +220,9 @@ public class RegistrasiKaryawan extends javax.swing.JFrame {
                 jLabelLaporanMouseClicked(evt);
             }
         });
-        jPanel3.add(jLabelLaporan, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 10, -1, -1));
+        jPanel3.add(jLabelLaporan, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 10, -1, -1));
 
+        labelmenu.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         labelmenu.setForeground(new java.awt.Color(255, 255, 255));
         labelmenu.setText("Daftar Menu");
         labelmenu.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -226,18 +230,18 @@ public class RegistrasiKaryawan extends javax.swing.JFrame {
                 labelmenuMouseClicked(evt);
             }
         });
-        jPanel3.add(labelmenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 10, -1, -1));
+        jPanel3.add(labelmenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 10, -1, -1));
 
         jPanel1.add(jPanel3);
         jPanel3.setBounds(-10, 450, 800, 40);
 
-        jLabel8.setFont(new java.awt.Font("Serif", 1, 24)); // NOI18N
+        jLabel8.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel8.setText("Password");
         jPanel1.add(jLabel8);
         jLabel8.setBounds(100, 260, 180, 32);
 
         genderCombo1.setBackground(new java.awt.Color(72, 219, 161));
-        genderCombo1.setFont(new java.awt.Font("Serif", 1, 14)); // NOI18N
+        genderCombo1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         genderCombo1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Laki-laki", "Perempuan" }));
         genderCombo1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 255)));
         genderCombo1.addActionListener(new java.awt.event.ActionListener() {
@@ -249,7 +253,7 @@ public class RegistrasiKaryawan extends javax.swing.JFrame {
         genderCombo1.setBounds(420, 150, 230, 30);
 
         background.setBackground(new java.awt.Color(72, 219, 161));
-        background.setFont(new java.awt.Font("Serif", 1, 18)); // NOI18N
+        background.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         background.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/Picture1.png"))); // NOI18N
         jPanel1.add(background);
         background.setBounds(0, 0, 790, 490);
@@ -351,12 +355,6 @@ public class RegistrasiKaryawan extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_jLabelDataKaryawanMouseClicked
 
-    private void jLabelLaporanMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelLaporanMouseClicked
-       KeuntunganFrame untung = new KeuntunganFrame();
-        untung.setVisible(true);
-        dispose();
-    }//GEN-LAST:event_jLabelLaporanMouseClicked
-
     private void labelKeluarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelKeluarMouseClicked
        login_page login = new login_page();
        login.setVisible(true);
@@ -373,6 +371,12 @@ public class RegistrasiKaryawan extends javax.swing.JFrame {
         menu.setVisible(true);
         dispose();
     }//GEN-LAST:event_labelmenuMouseClicked
+
+    private void jLabelLaporanMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelLaporanMouseClicked
+        KeuntunganFrame untung = new KeuntunganFrame();
+        untung.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_jLabelLaporanMouseClicked
 
     /**
      * @param args the command line arguments
