@@ -31,21 +31,42 @@ private String filemenu;
      */
     public editt() {
         initComponents();
+        foto();
+    }
+        public void foto(){
+        String makanan = txt_nama.getText();
+                try {
+            Statement st = konek.GetConnection().createStatement();
+            ResultSet rs = st.executeQuery("SELECT * FROM menu WHERE nama_menu = '"+makanan+"';");
+            if(rs.next()){
+                byte[] img = rs.getBytes("gambar");
+                ImageIcon image = new ImageIcon(img);
+                Image im = image.getImage();
+                Image myimg = im.getScaledInstance(filefoto.getWidth(), filefoto.getHeight(), Image.SCALE_SMOOTH);
+                ImageIcon newImage = new ImageIcon(myimg);
+                filefoto.setIcon(newImage);
+            }
+            rs.close();
+        } 
+        catch (Exception e) {
+        }
     }
     public void minuman(){
         DefaultTableModel tbl = new DefaultTableModel();
         tbl.addColumn("Minuman");
         tbl.addColumn("Harga");
+        tbl.addColumn("Stok");
         data.minuman.setModel(tbl);
         data.minuman.getTableHeader().setBackground(new Color(115,206,191));
         data.minuman.getTableHeader().setForeground(new Color(255,255,255));
         try {
             Statement st = konek.GetConnection().createStatement();
-            ResultSet rs = st.executeQuery("SELECT nama_menu, harga FROM menu WHERE kode_menu LIKE '%MI%'");
+            ResultSet rs = st.executeQuery("SELECT nama_menu, harga, stok FROM menu WHERE kode_menu LIKE '%MI%'");
             while(rs.next()){
                 tbl.addRow(new Object[]{
                     rs.getString("nama_menu"),
-                    rs.getString("harga")
+                    rs.getString("harga"),
+                    rs.getString("stok")
                 });
                 data.minuman.setModel(tbl);
             }
@@ -57,16 +78,18 @@ private String filemenu;
         DefaultTableModel tbl = new DefaultTableModel();
         tbl.addColumn("Makanan");
         tbl.addColumn("Harga");
+        tbl.addColumn("Stok");
         data.makanan.setModel(tbl);
         data.makanan.getTableHeader().setBackground(new Color(115,206,191));
         data.makanan.getTableHeader().setForeground(new Color(255,255,255));
         try {
             Statement st = konek.GetConnection().createStatement();
-            ResultSet rs = st.executeQuery("SELECT nama_menu, harga FROM menu WHERE kode_menu LIKE '%MA%'");
+            ResultSet rs = st.executeQuery("SELECT nama_menu, harga, stok FROM menu WHERE kode_menu LIKE '%MA%'");
             while(rs.next()){
                 tbl.addRow(new Object[]{
                     rs.getString("nama_menu"),
-                    rs.getString("harga")
+                    rs.getString("harga"),
+                    rs.getString("stok")
                 });
                 data.makanan.setModel(tbl);
             }
@@ -96,9 +119,17 @@ private String filemenu;
         btn_simpan = new javax.swing.JButton();
         btn_pilih = new javax.swing.JButton();
         filefoto = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        txt_stok = new javax.swing.JSpinner();
         jLabel6 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setUndecorated(true);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setPreferredSize(new java.awt.Dimension(500, 400));
@@ -109,19 +140,25 @@ private String filemenu;
         jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(242, 0, 141, 51));
 
         jLabel1.setFont(new java.awt.Font("Trebuchet MS", 0, 24)); // NOI18N
-        jLabel1.setText("Kode Menu");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(27, 104, -1, -1));
-        jPanel1.add(txt_kode, new org.netbeans.lib.awtextra.AbsoluteConstraints(167, 94, 180, 40));
+        jLabel1.setText("Kode Menu :");
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 60, -1, -1));
+        jPanel1.add(txt_kode, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 60, 180, 30));
 
         jLabel2.setFont(new java.awt.Font("Trebuchet MS", 0, 24)); // NOI18N
-        jLabel2.setText("Nama ");
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(27, 174, -1, -1));
-        jPanel1.add(txt_nama, new org.netbeans.lib.awtextra.AbsoluteConstraints(167, 164, 180, 40));
+        jLabel2.setText("Nama : ");
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 110, -1, -1));
+
+        txt_nama.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txt_namaActionPerformed(evt);
+            }
+        });
+        jPanel1.add(txt_nama, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 110, 180, 30));
 
         jLabel3.setFont(new java.awt.Font("Trebuchet MS", 0, 24)); // NOI18N
-        jLabel3.setText("Harga");
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(27, 244, -1, -1));
-        jPanel1.add(txt_harga, new org.netbeans.lib.awtextra.AbsoluteConstraints(167, 234, 180, 40));
+        jLabel3.setText("Harga :");
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 170, -1, -1));
+        jPanel1.add(txt_harga, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 170, 180, 30));
 
         btn_keluar.setFont(new java.awt.Font("Segoe UI Emoji", 0, 18)); // NOI18N
         btn_keluar.setText("Keluar");
@@ -157,13 +194,18 @@ private String filemenu;
                 btn_pilihActionPerformed(evt);
             }
         });
-        jPanel1.add(btn_pilih, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 100, 100, 23));
+        jPanel1.add(btn_pilih, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 70, 100, 23));
 
         filefoto.setBackground(new java.awt.Color(255, 255, 255));
         filefoto.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jPanel1.add(filefoto, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 130, 180, 160));
+        jPanel1.add(filefoto, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 100, 180, 160));
 
-        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/Picture1.png"))); // NOI18N
+        jLabel4.setFont(new java.awt.Font("Trebuchet MS", 0, 24)); // NOI18N
+        jLabel4.setText("Stok :");
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 220, -1, -1));
+        jPanel1.add(txt_stok, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 220, 90, 30));
+
+        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/Picture1_1.png"))); // NOI18N
         jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 620, 400));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 620, 400));
@@ -173,7 +215,9 @@ private String filemenu;
     }// </editor-fold>//GEN-END:initComponents
 
     private void btn_keluarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_keluarActionPerformed
-        this.dispose();
+        dispose();
+        makanan();
+        minuman();
     }//GEN-LAST:event_btn_keluarActionPerformed
 
     private void btn_hapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_hapusActionPerformed
@@ -201,9 +245,10 @@ private String filemenu;
         String kode_menu = txt_kode.getText();
         String nama_menu = txt_nama.getText();
         String harga = txt_harga.getText();
+        String stok = txt_stok.getValue().toString();
         try {
             Statement st = konek.GetConnection().createStatement();
-            st.executeUpdate("UPDATE menu SET nama_menu='" + nama_menu + "', harga= '" + harga + "' WHERE kode_menu='"+ kode_menu +"' OR nama_menu='" + nama_menu + "';");
+            st.executeUpdate("UPDATE menu SET nama_menu='" + nama_menu + "', harga= '" + harga + "', stok= '"+stok+"' WHERE kode_menu='"+ kode_menu +"' OR nama_menu='" + nama_menu + "';");
             JOptionPane.showMessageDialog(null, "Menu Berhasil Disimpan");
 
         } catch (Exception e) {
@@ -228,6 +273,14 @@ private String filemenu;
             JOptionPane.showMessageDialog(null, e.getMessage());
         }
     }//GEN-LAST:event_btn_pilihActionPerformed
+
+    private void txt_namaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_namaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txt_namaActionPerformed
+
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        foto();
+    }//GEN-LAST:event_formWindowOpened
 
     /**
      * @param args the command line arguments
@@ -274,11 +327,13 @@ private String filemenu;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     public javax.swing.JTextField txt_harga;
     public javax.swing.JTextField txt_kode;
     public javax.swing.JTextField txt_nama;
+    public javax.swing.JSpinner txt_stok;
     // End of variables declaration//GEN-END:variables
 }

@@ -88,16 +88,18 @@ public class menu_kariawan extends javax.swing.JFrame {
         DefaultTableModel tbl = new DefaultTableModel();
         tbl.addColumn("Makanan");
         tbl.addColumn("Harga");
+        tbl.addColumn("Stok");
         makanan.setModel(tbl);
         makanan.getTableHeader().setBackground(new Color(115,206,191));
         makanan.getTableHeader().setForeground(new Color(255,255,255));
         try {
             Statement st = konek.GetConnection().createStatement();
-            ResultSet rs = st.executeQuery("SELECT nama_menu, harga FROM menu WHERE kode_menu LIKE '%MA%'");
+            ResultSet rs = st.executeQuery("SELECT nama_menu, harga, stok FROM menu WHERE kode_menu LIKE '%MA%'");
             while(rs.next()){
                 tbl.addRow(new Object[]{
                     rs.getString("nama_menu"),
-                    rs.getString("harga")
+                    rs.getString("harga"),
+                    rs.getString("stok")
                 });
             }
         } catch (Exception e) {
@@ -107,16 +109,18 @@ public class menu_kariawan extends javax.swing.JFrame {
         DefaultTableModel tbl = new DefaultTableModel();
         tbl.addColumn("Minuman");
         tbl.addColumn("Harga");
+        tbl.addColumn("Stok");
         minuman.setModel(tbl);
         minuman.getTableHeader().setBackground(new Color(115,206,191));
         minuman.getTableHeader().setForeground(new Color(255,255,255));
         try {
             Statement st = konek.GetConnection().createStatement();
-            ResultSet rs = st.executeQuery("SELECT nama_menu, harga FROM menu WHERE kode_menu LIKE '%MI%'");
+            ResultSet rs = st.executeQuery("SELECT nama_menu, harga, stok FROM menu WHERE kode_menu LIKE '%MI%'");
             while(rs.next()){
                 tbl.addRow(new Object[]{
                     rs.getString("nama_menu"),
-                    rs.getString("harga")
+                    rs.getString("harga"),
+                    rs.getString("stok")
                 });
                 minuman.setModel(tbl);
             }
@@ -182,15 +186,15 @@ public class menu_kariawan extends javax.swing.JFrame {
 
         minuman.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null},
-                {null, null}
+                {null, null, null},
+                {null, null, null}
             },
             new String [] {
-                "Minuman", "Harga"
+                "Minuman", "Harga", "Stok"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false
+                false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -208,15 +212,15 @@ public class menu_kariawan extends javax.swing.JFrame {
 
         makanan.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null},
-                {null, null}
+                {null, null, null},
+                {null, null, null}
             },
             new String [] {
-                "Makanan", "Harga"
+                "Makanan", "Harga", "Stok"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false
+                false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {

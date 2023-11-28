@@ -37,16 +37,18 @@ public class data extends javax.swing.JFrame {
         DefaultTableModel tbl = new DefaultTableModel();
         tbl.addColumn("Makanan");
         tbl.addColumn("Harga");
+        tbl.addColumn("Stok");
         makanan.setModel(tbl);
         makanan.getTableHeader().setBackground(new Color(115,206,191));
         makanan.getTableHeader().setForeground(new Color(255,255,255));
         try {
             Statement st = konek.GetConnection().createStatement();
-            ResultSet rs = st.executeQuery("SELECT nama_menu, harga FROM menu WHERE kode_menu LIKE '%MA%'");
+            ResultSet rs = st.executeQuery("SELECT nama_menu, harga, stok FROM menu WHERE kode_menu LIKE '%MA%'");
             while(rs.next()){
                 tbl.addRow(new Object[]{
                     rs.getString("nama_menu"),
-                    rs.getString("harga")
+                    rs.getString("harga"),
+                    rs.getString("stok")
                 });
                 makanan.setModel(tbl);
             }
@@ -57,16 +59,18 @@ public class data extends javax.swing.JFrame {
         DefaultTableModel tbl = new DefaultTableModel();
         tbl.addColumn("Minuman");
         tbl.addColumn("Harga");
+        tbl.addColumn("Stok");
         minuman.setModel(tbl);
         minuman.getTableHeader().setBackground(new Color(115,206,191));
         minuman.getTableHeader().setForeground(new Color(255,255,255));
         try {
             Statement st = konek.GetConnection().createStatement();
-            ResultSet rs = st.executeQuery("SELECT nama_menu, harga FROM menu WHERE kode_menu LIKE '%MI%'");
+            ResultSet rs = st.executeQuery("SELECT nama_menu, harga, stok FROM menu WHERE kode_menu LIKE '%MI%'");
             while(rs.next()){
                 tbl.addRow(new Object[]{
                     rs.getString("nama_menu"),
-                    rs.getString("harga")
+                    rs.getString("harga"),
+                    rs.getString("stok")
                 });
                 minuman.setModel(tbl);
             }
@@ -83,7 +87,6 @@ public class data extends javax.swing.JFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         keluar = new javax.swing.JButton();
@@ -104,15 +107,15 @@ public class data extends javax.swing.JFrame {
 
         minuman.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null},
-                {null, null}
+                {null, null, null},
+                {null, null, null}
             },
             new String [] {
-                "Minuman", "Harga"
+                "Minuman", "Harga", "Stok"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false
+                false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -130,15 +133,15 @@ public class data extends javax.swing.JFrame {
 
         makanan.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null},
-                {null, null}
+                {null, null, null},
+                {null, null, null}
             },
             new String [] {
-                "Makanan", "Harga"
+                "Makanan", "Harga", "Stok"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false
+                false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -168,18 +171,6 @@ public class data extends javax.swing.JFrame {
             }
         });
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 10, -1, -1));
-
-        jLabel3.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel3.setText("DAFTAR MENU");
-        jLabel3.setVerticalAlignment(javax.swing.SwingConstants.TOP);
-        jLabel3.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel3MouseClicked(evt);
-            }
-        });
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 10, -1, -1));
 
         jLabel5.setBackground(new java.awt.Color(255, 255, 255));
         jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -254,11 +245,13 @@ public class data extends javax.swing.JFrame {
         p.txt_harga.setText(harga);
                 try {
             Statement st = konek.GetConnection().createStatement();
-            ResultSet rs = st.executeQuery("SELECT kode_menu FROM menu WHERE nama_menu = '"+makanan+"';");
+            ResultSet rs = st.executeQuery("SELECT kode_menu, stok FROM menu WHERE nama_menu = '"+makanan+"';");
             if(rs.next()){
               String kode_menu = rs.getString("kode_menu");
+              int stok = rs.getInt("stok");
               
               p.txt_kode.setText(kode_menu);
+              p.txt_stok.setValue(stok);
             }
             rs.close();
         } catch (Exception e) {
@@ -280,11 +273,13 @@ public class data extends javax.swing.JFrame {
         p.txt_harga.setText(harga);
                 try {
             Statement st = konek.GetConnection().createStatement();
-            ResultSet rs = st.executeQuery("SELECT kode_menu FROM menu WHERE nama_menu = '"+minuman+"';");
+            ResultSet rs = st.executeQuery("SELECT kode_menu, stok FROM menu WHERE nama_menu = '"+minuman+"';");
             if(rs.next()){
               String kode_menu = rs.getString("kode_menu");
+              int stok = rs.getInt("stok");
               
               p.txt_kode.setText(kode_menu);
+              p.txt_stok.setValue(stok);
             }
             rs.close();
         } catch (Exception e) {
@@ -300,12 +295,6 @@ public class data extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Batal keluar");
         }
     }//GEN-LAST:event_jLabel1MouseClicked
-
-    private void jLabel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MouseClicked
-        data menu = new data();
-        menu.setVisible(true);
-        dispose();
-    }//GEN-LAST:event_jLabel3MouseClicked
 
     private void jLabel5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel5MouseClicked
         KeuntunganFrame untung = new KeuntunganFrame();
@@ -370,7 +359,6 @@ public class data extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
