@@ -30,13 +30,13 @@ public class BelanjaMentah extends javax.swing.JFrame {
     
     try{
             Statement statement = (Statement)konek.GetConnection().createStatement();
-            ResultSet res= statement.executeQuery("select * from modal");
+            ResultSet res= statement.executeQuery("select * from belanja");
             while(res.next())
 
         while (res.next()) {
             tbl.addRow(new Object[] {
                 res.getDate("tanggal"),
-                res.getInt("modal"),
+                res.getInt("total"),
                 res.getString("keterangan")
             });
          tabel.setModel(tbl);
@@ -76,12 +76,12 @@ public class BelanjaMentah extends javax.swing.JFrame {
 
         jPanel1.setLayout(null);
 
-        jLabel1.setFont(new java.awt.Font("Serif", 1, 18)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel1.setText("tanggal");
         jPanel1.add(jLabel1);
         jLabel1.setBounds(60, 90, 80, 30);
 
-        jLabel3.setFont(new java.awt.Font("Serif", 1, 18)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel3.setText("keterangan");
         jPanel1.add(jLabel3);
         jLabel3.setBounds(60, 160, 100, 30);
@@ -97,7 +97,7 @@ public class BelanjaMentah extends javax.swing.JFrame {
         jPanel1.add(kulakField);
         kulakField.setBounds(230, 122, 370, 30);
 
-        jLabel2.setFont(new java.awt.Font("Serif", 1, 18)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel2.setText("uang belanja");
         jPanel1.add(jLabel2);
         jLabel2.setBounds(60, 120, 110, 30);
@@ -110,6 +110,7 @@ public class BelanjaMentah extends javax.swing.JFrame {
         jPanel1.add(jScrollPane1);
         jScrollPane1.setBounds(230, 160, 370, 110);
 
+        tabel.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         tabel.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null},
@@ -126,6 +127,7 @@ public class BelanjaMentah extends javax.swing.JFrame {
         jPanel1.add(jScrollPane2);
         jScrollPane2.setBounds(40, 290, 730, 200);
 
+        jButtonSimpan.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jButtonSimpan.setText("simpan");
         jButtonSimpan.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -133,14 +135,15 @@ public class BelanjaMentah extends javax.swing.JFrame {
             }
         });
         jPanel1.add(jButtonSimpan);
-        jButtonSimpan.setBounds(630, 220, 90, 50);
+        jButtonSimpan.setBounds(630, 220, 90, 40);
 
-        jLabel4.setFont(new java.awt.Font("Serif", 1, 36)); // NOI18N
+        jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
         jLabel4.setText("Belanja Harian");
         jPanel1.add(jLabel4);
-        jLabel4.setBounds(270, 20, 280, 40);
+        jLabel4.setBounds(270, 20, 270, 40);
 
-        keluar.setText("keluar");
+        keluar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        keluar.setText("kembali");
         keluar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 keluarActionPerformed(evt);
@@ -151,9 +154,9 @@ public class BelanjaMentah extends javax.swing.JFrame {
 
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/Picture1.png"))); // NOI18N
         jPanel1.add(jLabel5);
-        jLabel5.setBounds(0, -10, 810, 520);
+        jLabel5.setBounds(0, 0, 800, 500);
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 810, 510));
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, 500));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -174,45 +177,24 @@ public class BelanjaMentah extends javax.swing.JFrame {
 
         try {
             connection = konek.GetConnection();
-            String sqlTabel1 = "INSERT INTO modal (tanggal, modal, keterangan) VALUES (?, ?, ?)";
+            String sqlTabel1 = "INSERT INTO belanja (tanggal, total, keterangan) VALUES (?, ?, ?)";
             statementTabel1 = connection.prepareStatement(sqlTabel1);
             statementTabel1.setString(1, tanggal1);
             statementTabel1.setString(2, uang_belanja);
             statementTabel1.setString(3, keterangan);
             statementTabel1.executeUpdate();
 
-            // Refresh the table after successful insert
             data_table();
-            JOptionPane.showMessageDialog(this, "Simpan Berhasil");
-        } catch (SQLException e) {
-            try {
-                // Rollback jika terjadi kesalahan
-                if (connection != null) {
-                    connection.rollback();
-                }
-            } catch (SQLException ex) {
-                ex.printStackTrace();
-            }
-            e.printStackTrace();
-            JOptionPane.showMessageDialog(this, "simpan Gagal. Terjadi kesalahan database.");
-        } finally {
-            try {
-                if (statementTabel1 != null) {
-                    statementTabel1.close();
-                }
-                if (connection != null) {
-                    connection.close();
-                }
-            } catch (SQLException ex) {
-                ex.printStackTrace();
-            }
-        }
-    
+    JOptionPane.showMessageDialog(this, "Simpan Berhasil");
+} catch (SQLException e) {
+    e.printStackTrace();
+    JOptionPane.showMessageDialog(this, "Simpan Gagal. Terjadi kesalahan database.");
+}
     }//GEN-LAST:event_jButtonSimpanActionPerformed
 
     private void keluarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_keluarActionPerformed
-         dashboard_admin das = new dashboard_admin();
-        das.setVisible(true);
+         laporanUang uang = new laporanUang();
+        uang.setVisible(true);
         dispose();
     }//GEN-LAST:event_keluarActionPerformed
 
