@@ -291,6 +291,8 @@ public class data extends javax.swing.JFrame {
         int result = JOptionPane.showConfirmDialog(null, "Apakah anda yakin ingin keluar?");
         if (result == JOptionPane.YES_NO_OPTION) {
             dispose();
+            login_page log = new login_page();
+            log.setVisible(true);
         } else {
             JOptionPane.showMessageDialog(null, "Batal keluar");
         }

@@ -65,14 +65,14 @@ public class dashboard_admin extends javax.swing.JFrame {
                 jLabel4MouseClicked(evt);
             }
         });
-        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 330, 300, 130));
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 290, 320, 130));
 
         home.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 homeMouseClicked(evt);
             }
         });
-        getContentPane().add(home, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 430, 50, 50));
+        getContentPane().add(home, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 430, 50, 60));
 
         background.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/Screenshot (580).png"))); // NOI18N
         getContentPane().add(background, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, 500));
