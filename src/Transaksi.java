@@ -289,13 +289,14 @@ public class Transaksi extends javax.swing.JFrame {
             Statement st = konek.GetConnection().createStatement();
             st.executeUpdate("UPDATE transaksi SET username = '"+name+"', total = '"+total1+"', bayar = '"+b+"', kembalian = '"+jumlah+"' WHERE kode_transaksi = '"+id+"'");
             try {
-                 String report =("C:\\Users\\ok\\Documents\\NetBeansProjects\\kasir\\src\\report.jrxml");
+                 String report =("D:\\projek\\Project-Kasir\\kasir9\\Project-Kasir\\src\\report.jrxml");
                  Connection koneksi = konek.GetConnection();
                  HashMap hash = new HashMap();
                  JasperReport Jrp = JasperCompileManager.compileReport(report);
                  JasperPrint pr = JasperFillManager.fillReport(Jrp, hash,koneksi);
                  JasperViewer.viewReport(pr,false);
             } catch (Exception e) {
+                
             }
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, e.getMessage());

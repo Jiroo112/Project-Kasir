@@ -202,7 +202,7 @@ private String filemenu;
 
         jLabel4.setFont(new java.awt.Font("Trebuchet MS", 0, 24)); // NOI18N
         jLabel4.setText("Stok :");
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 220, -1, -1));
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 220, -1, -1));
         jPanel1.add(txt_stok, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 220, 90, 30));
 
         jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/Picture1_1.png"))); // NOI18N
@@ -248,11 +248,11 @@ private String filemenu;
         String stok = txt_stok.getValue().toString();
         try {
             Statement st = konek.GetConnection().createStatement();
-            st.executeUpdate("UPDATE menu SET nama_menu='" + nama_menu + "', harga= '" + harga + "', stok= '"+stok+"' WHERE kode_menu='"+ kode_menu +"' OR nama_menu='" + nama_menu + "';");
+            st.executeUpdate("UPDATE menu SET nama_menu='" + nama_menu + "', harga= '" + harga + "', stok = stok +'"+stok+"' WHERE kode_menu='"+ kode_menu +"' OR nama_menu='" + nama_menu + "';");
             JOptionPane.showMessageDialog(null, "Menu Berhasil Disimpan");
 
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "Menu Gagal Disimpan");
+            JOptionPane.showMessageDialog(null, "Menu Gagal Disimpan"+e.getMessage());
         }
         makanan();
         minuman();

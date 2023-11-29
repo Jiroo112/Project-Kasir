@@ -245,13 +245,13 @@ public class data extends javax.swing.JFrame {
         p.txt_harga.setText(harga);
                 try {
             Statement st = konek.GetConnection().createStatement();
-            ResultSet rs = st.executeQuery("SELECT kode_menu, stok FROM menu WHERE nama_menu = '"+makanan+"';");
+            ResultSet rs = st.executeQuery("SELECT kode_menu FROM menu WHERE nama_menu = '"+makanan+"';");
             if(rs.next()){
               String kode_menu = rs.getString("kode_menu");
-              int stok = rs.getInt("stok");
+              
               
               p.txt_kode.setText(kode_menu);
-              p.txt_stok.setValue(stok);
+              
             }
             rs.close();
         } catch (Exception e) {
@@ -273,13 +273,13 @@ public class data extends javax.swing.JFrame {
         p.txt_harga.setText(harga);
                 try {
             Statement st = konek.GetConnection().createStatement();
-            ResultSet rs = st.executeQuery("SELECT kode_menu, stok FROM menu WHERE nama_menu = '"+minuman+"';");
+            ResultSet rs = st.executeQuery("SELECT kode_menu FROM menu WHERE nama_menu = '"+minuman+"';");
             if(rs.next()){
               String kode_menu = rs.getString("kode_menu");
-              int stok = rs.getInt("stok");
+
               
               p.txt_kode.setText(kode_menu);
-              p.txt_stok.setValue(stok);
+
             }
             rs.close();
         } catch (Exception e) {

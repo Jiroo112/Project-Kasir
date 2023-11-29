@@ -252,7 +252,7 @@ public class menu_kariawan extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
-
+        invoice();
         try {
             Font fn = Font.createFont(Font.TRUETYPE_FONT,getClass().getResourceAsStream("font/Inter-Bold.otf"));
             fn = fn.deriveFont(Font.PLAIN,12);
