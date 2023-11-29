@@ -146,6 +146,9 @@ public class menu_kariawan extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowActivated(java.awt.event.WindowEvent evt) {
+                formWindowActivated(evt);
+            }
             public void windowOpened(java.awt.event.WindowEvent evt) {
                 formWindowOpened(evt);
             }
@@ -249,7 +252,7 @@ public class menu_kariawan extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
-     invoice(); 
+
         try {
             Font fn = Font.createFont(Font.TRUETYPE_FONT,getClass().getResourceAsStream("font/Inter-Bold.otf"));
             fn = fn.deriveFont(Font.PLAIN,12);
@@ -266,33 +269,38 @@ public class menu_kariawan extends javax.swing.JFrame {
     }//GEN-LAST:event_keluarMouseClicked
 
     private void makananMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_makananMouseClicked
-        int index = makanan.getSelectedRow();
-        TableModel model = makanan.getModel();
-        String makanan = model.getValueAt(index, 0).toString();
-        String harga = model.getValueAt(index, 1).toString();
-       
+    int index = makanan.getSelectedRow();
+    TableModel model = makanan.getModel();
+    String makanan = model.getValueAt(index, 0).toString();
+    String harga = model.getValueAt(index, 1).toString();
+    String stok = model.getValueAt(index, 2).toString();
+    
+    if(stok.equals("0")){
+        JOptionPane.showMessageDialog(this, "Stok habis");
+    }
+    else{
         data.setVisible(true);
         data.pack();
-        
-        try {
+    }
+         try {
             Statement st = konek.GetConnection().createStatement();
             ResultSet rs = st.executeQuery("SELECT * FROM menu WHERE nama_menu = '"+makanan+"';");
-            if(rs.next()){
-                byte[] img = rs.getBytes("gambar");
-                ImageIcon image = new ImageIcon(img);
-                Image im = image.getImage();
-                Image myimg = im.getScaledInstance(data.gambar.getWidth(), data.gambar.getHeight(), Image.SCALE_SMOOTH);
-                ImageIcon newImage = new ImageIcon(myimg);
-                data.gambar.setIcon(newImage);
-            }
-            rs.close();
-        } 
+                if(rs.next()){
+                    byte[] img = rs.getBytes("gambar");
+                    ImageIcon image = new ImageIcon(img);
+                    Image im = image.getImage();
+                    Image myimg = im.getScaledInstance(data.gambar.getWidth(), data.gambar.getHeight(), Image.SCALE_SMOOTH);
+                    ImageIcon newImage = new ImageIcon(myimg);
+                    data.gambar.setIcon(newImage);
+                }
+                rs.close();
+            } 
         catch (Exception e) {
-        }
-        data.makanan.setText(makanan);
-        data.harga.setText(harga);
-        data.setHarga(harga);
-        data.setMenu(makanan);
+            }
+    data.makanan.setText(makanan);
+    data.harga.setText(harga);
+    data.setHarga(harga);
+    data.setMenu(makanan);
     }//GEN-LAST:event_makananMouseClicked
 
     private void minumanMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_minumanMouseClicked
@@ -300,6 +308,15 @@ public class menu_kariawan extends javax.swing.JFrame {
         TableModel model = minuman.getModel();
         String minuman = model.getValueAt(index, 0).toString();
         String harga = model.getValueAt(index, 1).toString();
+        String stok = model.getValueAt(index, 2).toString();
+    
+        if(stok.equals("0")){
+            JOptionPane.showMessageDialog(this, "Stok habis");
+        }
+        else{
+            data.setVisible(true);
+            data.pack();
+        }
         
         data.setVisible(true);
         data.pack();
@@ -337,6 +354,11 @@ public class menu_kariawan extends javax.swing.JFrame {
         this.setVisible(false);
         new dashboard_kasir().setVisible(true);
     }//GEN-LAST:event_jLabel1MouseClicked
+
+    private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
+        makanan();
+        minuman();
+    }//GEN-LAST:event_formWindowActivated
 
     /**
      * @param args the command line arguments

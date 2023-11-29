@@ -33,7 +33,18 @@ public class Porsi extends javax.swing.JFrame {
     public String kode_trans;
     public int subtotal;
     public int porsi;
+    public int stok;
     
+    private void stok(){
+        try {
+            Statement st = konek.GetConnection().createStatement();
+            ResultSet rs = st.executeQuery("SELECT stok FROM menu WHERE nama_menu = '"+menu+"'");
+            if(rs.next()){
+                stok = rs.getInt("stok");
+            }
+        } catch (Exception e) {
+        }
+    }
     private void kode_menu(){
         try {
             Statement st = konek.GetConnection().createStatement();
@@ -76,6 +87,11 @@ public class Porsi extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowActivated(java.awt.event.WindowEvent evt) {
+                formWindowActivated(evt);
+            }
+        });
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setPreferredSize(new java.awt.Dimension(800, 500));
@@ -193,6 +209,13 @@ public class Porsi extends javax.swing.JFrame {
     }//GEN-LAST:event_jumlahKeyPressed
 
     private void beliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_beliActionPerformed
+        stok();
+        System.out.println(porsi);
+        System.out.println(stok);
+        if(porsi > stok){
+            JOptionPane.showMessageDialog(this, "Porsi melebihi persedian stok yang ada");
+        }
+        else{
         invoice();
         kode_menu();
         String lyn = layanan.getSelectedItem().toString();
@@ -212,13 +235,16 @@ public class Porsi extends javax.swing.JFrame {
          jumlah.setText("");
          total.setText("");
         this.setVisible(false);
-        
-
+        }
     }//GEN-LAST:event_beliActionPerformed
 
     private void jumlahActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jumlahActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jumlahActionPerformed
+
+    private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
+        // TODO add your handling code here:
+    }//GEN-LAST:event_formWindowActivated
 
     /**
      * @param args the command line arguments
