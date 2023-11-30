@@ -285,11 +285,16 @@ public class Transaksi extends javax.swing.JFrame {
         String name = username.getText();
         String id = invoice.getText();
         
+        dashboard_kasir db = new dashboard_kasir();
+        this.setVisible(false);
+        db.setVisible(true);
+        db.pack();
+        
         try {
             Statement st = konek.GetConnection().createStatement();
             st.executeUpdate("UPDATE transaksi SET username = '"+name+"', total = '"+total1+"', bayar = '"+b+"', kembalian = '"+jumlah+"' WHERE kode_transaksi = '"+id+"'");
             try {
-                 String report =("D:\\projek\\Project-Kasir\\kasir9\\Project-Kasir\\src\\report.jrxml");
+                 String report =("C:\\Users\\ok\\Documents\\NetBeansProjects\\kasir\\src\\report.jrxml");
                  Connection koneksi = konek.GetConnection();
                  HashMap hash = new HashMap();
                  JasperReport Jrp = JasperCompileManager.compileReport(report);
@@ -301,10 +306,6 @@ public class Transaksi extends javax.swing.JFrame {
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, e.getMessage());
         } 
-        dashboard_kasir db = new dashboard_kasir();
-        this.setVisible(false);
-        db.setVisible(true);
-        db.pack();
     }//GEN-LAST:event_saveMouseClicked
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened

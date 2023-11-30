@@ -16,6 +16,7 @@ public class Porsi extends javax.swing.JFrame {
 
     public Porsi() {
         initComponents();
+        setDefaultCloseOperation(DISPOSE_ON_CLOSE);
     }
         
     private int price;
@@ -210,8 +211,6 @@ public class Porsi extends javax.swing.JFrame {
 
     private void beliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_beliActionPerformed
         stok();
-        System.out.println(porsi);
-        System.out.println(stok);
         if(porsi > stok){
             JOptionPane.showMessageDialog(this, "Porsi melebihi persedian stok yang ada");
         }
