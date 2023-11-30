@@ -3,10 +3,15 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 
-import com.mysql.cj.jdbc.Driver;
+//import com.mysql.cj.jdbc.Driver;
+import com.mysql.cj.jdbc.Blob;
 import java.awt.Color;
 import java.awt.Image;
+import java.awt.image.BufferedImage;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
@@ -19,13 +24,20 @@ import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import java.sql.DriverManager;
 import java.sql.Connection;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.imageio.ImageIO;
+import java.sql.PreparedStatement;
 /**
  *
  * @author oser
  */
 public class editt extends javax.swing.JFrame {
 private String filemenu;
-
+Connection con = null;
+PreparedStatement ps = null;
+ResultSet rs = null;
+String path2 = null;
     /**
      * Creates new form editt
      */
@@ -242,17 +254,30 @@ private String filemenu;
 
     private void btn_simpanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_simpanActionPerformed
         // TODO add your handling code here:
-        String kode_menu = txt_kode.getText();
         String nama_menu = txt_nama.getText();
         String harga = txt_harga.getText();
         String stok = txt_stok.getValue().toString();
+        String kode_menu = txt_kode.getText();
+        String sql = ("UPDATE menu SET nama_menu= ? , harga= ? , gambar= ?, stok = stok + ? WHERE kode_menu= ? ;");
         try {
-            Statement st = konek.GetConnection().createStatement();
-            st.executeUpdate("UPDATE menu SET nama_menu='" + nama_menu + "', harga= '" + harga + "', stok = stok +'"+stok+"' WHERE kode_menu='"+ kode_menu +"' OR nama_menu='" + nama_menu + "';");
-            JOptionPane.showMessageDialog(null, "Menu Berhasil Disimpan");
-
+           Class.forName("com.mysql.cj.jdbc.Driver");
+           Connection con = (Connection) DriverManager.getConnection("jdbc:mysql://localhost:3306/aplikasi_warung", "root", "");
+           PreparedStatement pst = con.prepareStatement(sql);
+           pst.setString(1, nama_menu);
+           pst.setString(2, harga);
+           pst.setString(4, stok);
+           pst.setString(5, kode_menu);
+           InputStream is = new FileInputStream (new File(path2));
+           pst.setBlob(3, is);
+           pst.execute();
+           txt_kode.setText("");
+           txt_nama.setText("");
+           txt_harga.setText("");
+           txt_stok.getValue().toString();
+           filefoto.setIcon(null); 
+           JOptionPane.showMessageDialog(null, "Menu Berhasil Ditambahkan");
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "Menu Gagal Disimpan"+e.getMessage());
+            JOptionPane.showMessageDialog(null, "Menu Gagal Disimpan" + e.getMessage());
         }
         makanan();
         minuman();
@@ -260,18 +285,19 @@ private String filemenu;
 
     private void btn_pilihActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_pilihActionPerformed
         // TODO add your handling code here:
-        try{
-            JFileChooser chooser = new JFileChooser();
+        JFileChooser chooser = new JFileChooser();
             chooser.showOpenDialog(null);
             File f = chooser.getSelectedFile();
-            ImageIcon icon = new ImageIcon(f.toString());
-            Image img = icon.getImage().getScaledInstance(filefoto.getWidth(), filefoto.getHeight(), Image.SCALE_DEFAULT);
-            ImageIcon ic = new ImageIcon(img);
-            filefoto.setIcon(ic);
-            this.filemenu = f.getAbsolutePath();
-        } catch (Exception e){
-            JOptionPane.showMessageDialog(null, e.getMessage());
-        }
+            String path = f.getAbsolutePath();
+            path2 = path;
+    try {
+        BufferedImage bi = ImageIO.read(new File(path));
+        Image img = bi.getScaledInstance(180, 160, Image.SCALE_SMOOTH);
+        ImageIcon ic = new ImageIcon(img);
+        filefoto.setIcon(ic);
+    } catch (IOException ex) {
+        Logger.getLogger(tamba.class.getName()).log(Level.SEVERE, null, ex);
+    }
     }//GEN-LAST:event_btn_pilihActionPerformed
 
     private void txt_namaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_namaActionPerformed

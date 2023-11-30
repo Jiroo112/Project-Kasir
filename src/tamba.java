@@ -1,13 +1,23 @@
 
-import com.mysql.jdbc.Driver;
+//import com.mysql.cj.jdbc.Driver;
+//import com.sun.jdi.connect.spi.Connection;
 import java.awt.Image;
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import javax.swing.JOptionPane;
 import koneksi.konek;
 import java.sql.ResultSet;
+import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.sql.DriverManager;
+import java.sql.Connection;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 /**
@@ -15,7 +25,11 @@ import javax.swing.JFileChooser;
  * @author oser
  */
 public class tamba extends javax.swing.JFrame {
-private String filemenu;
+
+Connection con = null;
+PreparedStatement ps = null;
+ResultSet rs = null;
+String path2 = null;
     /**
      * Creates new form tamba
      */
@@ -24,9 +38,9 @@ private String filemenu;
         id_autoincrement();
     }
   private void id_autoincrement(){
-         try {
+        try {
             Statement st = konek.GetConnection().createStatement();
-            ResultSet rs = st.executeQuery("SELECT MAX(RIGHT(kode_menu,3)) AS no_auto FROM menu");
+            ResultSet rs = st.executeQuery("SELECT MAX(RIGHT(kode_menu,3)) AS no_auto FROM menu WHERE kode_menu LIKE 'MA%'");
             if(rs.next()){
                 String no_auto, nol_plus;
                 int p;
@@ -73,7 +87,9 @@ private String filemenu;
         jLabel12 = new javax.swing.JLabel();
         jCheckBox1 = new javax.swing.JCheckBox();
         jCheckBox2 = new javax.swing.JCheckBox();
-        jLabel4 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        txt_stok = new javax.swing.JSpinner();
+        jLabel8 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -90,21 +106,26 @@ private String filemenu;
         jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 90, 130, 40));
 
         txt_kode.setBackground(new java.awt.Color(0, 153, 153));
-        jPanel1.add(txt_kode, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 130, 220, 40));
+        jPanel1.add(txt_kode, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 120, 220, 40));
 
         jLabel3.setFont(new java.awt.Font("Segoe UI Emoji", 0, 24)); // NOI18N
         jLabel3.setText("Nama");
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 180, 130, 40));
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 160, 130, 40));
 
         txt_nama.setBackground(new java.awt.Color(0, 153, 153));
-        jPanel1.add(txt_nama, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 220, 220, 40));
+        txt_nama.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txt_namaActionPerformed(evt);
+            }
+        });
+        jPanel1.add(txt_nama, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 190, 220, 40));
 
         jLabel1.setFont(new java.awt.Font("Segoe UI Emoji", 0, 24)); // NOI18N
-        jLabel1.setText("Harga");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 270, 130, 40));
+        jLabel1.setText("Stok");
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 300, 130, 40));
 
         txt_harga.setBackground(new java.awt.Color(0, 153, 153));
-        jPanel1.add(txt_harga, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 310, 220, 40));
+        jPanel1.add(txt_harga, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 260, 220, 40));
 
         btn_pilih.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btn_pilih.setText("Pilih Foto");
@@ -209,7 +230,7 @@ private String filemenu;
                     .addComponent(jLabel11)
                     .addComponent(jLabel5)
                     .addComponent(jLabel12))
-                .addContainerGap(14, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 430, 810, 40));
@@ -221,7 +242,7 @@ private String filemenu;
                 jCheckBox1ActionPerformed(evt);
             }
         });
-        jPanel1.add(jCheckBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 360, -1, -1));
+        jPanel1.add(jCheckBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 370, -1, -1));
 
         jCheckBox2.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
         jCheckBox2.setText("Minuman");
@@ -230,11 +251,15 @@ private String filemenu;
                 jCheckBox2ActionPerformed(evt);
             }
         });
-        jPanel1.add(jCheckBox2, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 380, -1, -1));
+        jPanel1.add(jCheckBox2, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 390, -1, -1));
 
-        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/Picture1.png"))); // NOI18N
-        jLabel4.setText("jLabel4");
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 810, 470));
+        jLabel7.setFont(new java.awt.Font("Segoe UI Emoji", 0, 24)); // NOI18N
+        jLabel7.setText("Harga");
+        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 230, 130, 40));
+        jPanel1.add(txt_stok, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 330, 130, 30));
+
+        jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/Picture1.png"))); // NOI18N
+        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 810, 470));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -253,18 +278,19 @@ private String filemenu;
 
     private void btn_pilihActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_pilihActionPerformed
         // TODO add your handling code here:
-        try{
             JFileChooser chooser = new JFileChooser();
             chooser.showOpenDialog(null);
             File f = chooser.getSelectedFile();
-            ImageIcon icon = new ImageIcon(f.toString());
-            Image img = icon.getImage().getScaledInstance(filefoto.getWidth(), filefoto.getHeight(), Image.SCALE_DEFAULT);
-            ImageIcon ic = new ImageIcon(img);
-            filefoto.setIcon(ic);
-            this.filemenu = f.getAbsolutePath();
-        } catch (Exception e){
-            JOptionPane.showMessageDialog(null, e.getMessage());
-        }
+            String path = f.getAbsolutePath();
+            path2 = path;
+    try {
+        BufferedImage bi = ImageIO.read(new File(path));
+        Image img = bi.getScaledInstance(180, 160, Image.SCALE_SMOOTH);
+        ImageIcon ic = new ImageIcon(img);
+        filefoto.setIcon(ic);
+    } catch (IOException ex) {
+        Logger.getLogger(tamba.class.getName()).log(Level.SEVERE, null, ex);
+    }
     }//GEN-LAST:event_btn_pilihActionPerformed
 
     private void btn_simpanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_simpanActionPerformed
@@ -272,14 +298,27 @@ private String filemenu;
         String n= txt_kode.getText();
         String nama_menu = txt_nama.getText();
         String harga = txt_harga.getText();
-        String gambar = filefoto.getName();
+        String stok = txt_stok.getValue().toString();
+        String sql = ("INSERT INTO menu (kode_menu, nama_menu, harga, gambar, stok)" + " VALUES (?,?,?,?,?)");
         try {
-            Statement st = konek.GetConnection().createStatement();
-            st.executeUpdate ("INSERT INTO menu (kode_menu, nama_menu, harga, gambar)"
-                + " VALUES ('" + n + "','" + nama_menu + "','" + harga + "','" + gambar + "')");
-            JOptionPane.showMessageDialog(null, "Menu Berhasil Ditambahkan");
+           Class.forName("com.mysql.cj.jdbc.Driver");
+           Connection con = (Connection) DriverManager.getConnection("jdbc:mysql://localhost:3306/aplikasi_warung", "root", "");
+           PreparedStatement pst = con.prepareStatement(sql);
+           pst.setString(1, n);
+           pst.setString(2, nama_menu);
+           pst.setString(3, harga);
+           pst.setString(5, stok);
+           InputStream is = new FileInputStream (new File(path2));
+           pst.setBlob(4, is);
+           pst.execute();
+           txt_kode.setText("");
+           txt_nama.setText("");
+           txt_harga.setText("");
+           txt_stok.getValue().toString();
+           filefoto.setIcon(null); 
+           JOptionPane.showMessageDialog(null, "Menu Berhasil Ditambahkan");
             id_autoincrement();
-        } catch (Exception e) {
+        }catch(Exception e){
             JOptionPane.showMessageDialog(null, "Menu Gagal Ditambahkan");
         }
         this.setVisible(false);
@@ -296,7 +335,7 @@ private String filemenu;
         // TODO add your handling code here:
                 try {
             Statement st = konek.GetConnection().createStatement();
-            ResultSet rs = st.executeQuery("SELECT MAX(RIGHT(kode_menu,3)) AS no_auto FROM menu");
+            ResultSet rs = st.executeQuery("SELECT MAX(RIGHT(kode_menu,3)) AS no_auto FROM menu WHERE kode_menu LIKE 'MA%'");
             if(rs.next()){
                 String no_auto, nol_plus;
                 int p;
@@ -318,7 +357,7 @@ private String filemenu;
         // TODO add your handling code here:
            try {
             Statement st = konek.GetConnection().createStatement();
-            ResultSet rs = st.executeQuery("SELECT MAX(RIGHT(kode_menu,3)) AS no_auto FROM menu");
+            ResultSet rs = st.executeQuery("SELECT MAX(RIGHT(kode_menu,3)) AS no_auto FROM menu WHERE kode_menu LIKE 'MI%'");
             if(rs.next()){
                 String no_auto, nol_plus;
                 int p;
@@ -364,6 +403,10 @@ private String filemenu;
             JOptionPane.showMessageDialog(null, "Batal keluar");
         }
     }//GEN-LAST:event_jLabel12MouseClicked
+
+    private void txt_namaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_namaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txt_namaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -414,14 +457,16 @@ private String filemenu;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JSpinner jSpinner1;
     private javax.swing.JTextField txt_harga;
     private javax.swing.JTextField txt_kode;
     private javax.swing.JTextField txt_nama;
+    private javax.swing.JSpinner txt_stok;
     // End of variables declaration//GEN-END:variables
 }
