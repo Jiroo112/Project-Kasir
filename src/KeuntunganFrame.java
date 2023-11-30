@@ -17,7 +17,7 @@ import javax.swing.JTable;
 import javax.swing.JTextField;
 
 public class KeuntunganFrame extends javax.swing.JFrame {
-          double modal;
+    double modal;
     double transaksi;
     double keuntungan;
     
@@ -106,6 +106,9 @@ public class KeuntunganFrame extends javax.swing.JFrame {
 
     double keuntungan = transaksiValue - modalValue;
     keuntunganField.setText(String.valueOf(keuntungan));
+    
+    presentaseUntung();
+    
 
   /* private void refresh() {
   
@@ -115,6 +118,21 @@ public class KeuntunganFrame extends javax.swing.JFrame {
   
           date1.setDate(null);
          date2.setDate(null);*/
+}
+   public double hitungPresentaseUntung(double keuntungan, double modal) {
+    if (modal != 0) {
+        return (keuntungan / modal) * 100;
+    } else {
+        return 0.0;
+    }
+}
+
+public void presentaseUntung() {
+    double modalValue = Double.parseDouble(fieldModal.getText());
+    double keuntunganValue = Double.parseDouble(keuntunganField.getText());
+
+    double presentaseKeuntungan = hitungPresentaseUntung(keuntunganValue, modalValue);
+    presentaseField.setText(String.format("%.2f%%", presentaseKeuntungan));
 }
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -136,34 +154,50 @@ public class KeuntunganFrame extends javax.swing.JFrame {
         keuntunganField = new javax.swing.JTextField();
         BelanjaMentah = new javax.swing.JButton();
         kembalibtn = new javax.swing.JButton();
+        presentaseField = new javax.swing.JTextField();
         background = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jPanel1.setLayout(null);
+
+        date1.setBackground(new java.awt.Color(204, 255, 204));
         date1.setDateFormatString("yyyy-MM- dd");
         date1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 date1MouseClicked(evt);
             }
         });
+        jPanel1.add(date1);
+        date1.setBounds(60, 90, 280, 30);
 
+        date2.setBackground(new java.awt.Color(204, 255, 204));
         date2.setDateFormatString("yyyy-MM- dd");
         date2.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 date2MouseClicked(evt);
             }
         });
+        jPanel1.add(date2);
+        date2.setBounds(440, 90, 280, 30);
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
         jLabel1.setText("Perhitungan Keuntungan");
+        jPanel1.add(jLabel1);
+        jLabel1.setBounds(190, 10, 450, 48);
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel3.setText("sampai tanggal");
+        jPanel1.add(jLabel3);
+        jLabel3.setBounds(530, 60, 140, 30);
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel4.setText("dari tanggal");
+        jPanel1.add(jLabel4);
+        jLabel4.setBounds(120, 60, 110, 30);
 
+        ButtonHitung.setBackground(new java.awt.Color(204, 255, 204));
         ButtonHitung.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         ButtonHitung.setText("Hitung");
         ButtonHitung.addActionListener(new java.awt.event.ActionListener() {
@@ -171,16 +205,25 @@ public class KeuntunganFrame extends javax.swing.JFrame {
                 ButtonHitungActionPerformed(evt);
             }
         });
+        jPanel1.add(ButtonHitung);
+        ButtonHitung.setBounds(560, 140, 140, 30);
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel2.setText("Modal");
+        jPanel1.add(jLabel2);
+        jLabel2.setBounds(50, 140, 110, 25);
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel5.setText("Pemasukan");
+        jPanel1.add(jLabel5);
+        jLabel5.setBounds(50, 180, 160, 25);
 
         jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel6.setText("Keuntungan");
+        jPanel1.add(jLabel6);
+        jLabel6.setBounds(50, 220, 150, 25);
 
+        tabel.setBackground(new java.awt.Color(204, 255, 204));
         tabel.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         tabel.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -195,24 +238,40 @@ public class KeuntunganFrame extends javax.swing.JFrame {
         tabel.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         jScrollPane1.setViewportView(tabel);
 
+        jPanel1.add(jScrollPane1);
+        jScrollPane1.setBounds(40, 300, 730, 180);
+
+        fieldModal.setBackground(new java.awt.Color(204, 255, 204));
+        fieldModal.setForeground(new java.awt.Color(204, 255, 204));
         fieldModal.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 fieldModalActionPerformed(evt);
             }
         });
+        jPanel1.add(fieldModal);
+        fieldModal.setBounds(220, 140, 320, 30);
 
+        totalField.setBackground(new java.awt.Color(204, 255, 204));
+        totalField.setForeground(new java.awt.Color(204, 255, 204));
         totalField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 totalFieldActionPerformed(evt);
             }
         });
+        jPanel1.add(totalField);
+        totalField.setBounds(220, 180, 320, 30);
 
+        keuntunganField.setBackground(new java.awt.Color(204, 255, 204));
+        keuntunganField.setForeground(new java.awt.Color(204, 255, 204));
         keuntunganField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 keuntunganFieldActionPerformed(evt);
             }
         });
+        jPanel1.add(keuntunganField);
+        keuntunganField.setBounds(220, 220, 320, 30);
 
+        BelanjaMentah.setBackground(new java.awt.Color(204, 255, 204));
         BelanjaMentah.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         BelanjaMentah.setText("Belanja Mentah");
         BelanjaMentah.addActionListener(new java.awt.event.ActionListener() {
@@ -220,7 +279,10 @@ public class KeuntunganFrame extends javax.swing.JFrame {
                 BelanjaMentahActionPerformed(evt);
             }
         });
+        jPanel1.add(BelanjaMentah);
+        BelanjaMentah.setBounds(560, 180, 140, 30);
 
+        kembalibtn.setBackground(new java.awt.Color(204, 255, 204));
         kembalibtn.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         kembalibtn.setText("kembali");
         kembalibtn.addActionListener(new java.awt.event.ActionListener() {
@@ -228,85 +290,18 @@ public class KeuntunganFrame extends javax.swing.JFrame {
                 kembalibtnActionPerformed(evt);
             }
         });
+        jPanel1.add(kembalibtn);
+        kembalibtn.setBounds(560, 220, 140, 30);
+
+        presentaseField.setBackground(new java.awt.Color(204, 255, 204));
+        jPanel1.add(presentaseField);
+        presentaseField.setBounds(220, 260, 90, 30);
 
         background.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        background.setForeground(new java.awt.Color(204, 255, 204));
         background.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/background.png"))); // NOI18N
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(130, 130, 130)
-                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(300, 300, 300)
-                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(60, 60, 60)
-                .addComponent(date1, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(110, 110, 110)
-                .addComponent(date2, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(50, 50, 50)
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(60, 60, 60)
-                .addComponent(fieldModal, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(20, 20, 20)
-                .addComponent(ButtonHitung, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(50, 50, 50)
-                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(10, 10, 10)
-                .addComponent(totalField, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(20, 20, 20)
-                .addComponent(BelanjaMentah, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(50, 50, 50)
-                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(20, 20, 20)
-                .addComponent(keuntunganField, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(20, 20, 20)
-                .addComponent(kembalibtn, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(40, 40, 40)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 730, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(200, 200, 200)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 450, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addComponent(background)
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(70, 70, 70)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(date1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(date2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(20, 20, 20)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel2)
-                    .addComponent(fieldModal, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(ButtonHitung, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(10, 10, 10)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel5)
-                    .addComponent(totalField, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(BelanjaMentah, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(10, 10, 10)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel6)
-                    .addComponent(keuntunganField, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(kembalibtn, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(40, 40, 40)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addComponent(jLabel1))
-            .addComponent(background)
-        );
+        jPanel1.add(background);
+        background.setBounds(0, 0, 800, 500);
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, 500));
 
@@ -335,7 +330,7 @@ public class KeuntunganFrame extends javax.swing.JFrame {
 
     modal(tanggal1, tanggal2);
     transaksi(tanggal1, tanggal2);
-    Keuntungan(tanggal1, tanggal2); // Panggil metode Keuntungan
+    Keuntungan(tanggal1, tanggal2); 
 
     try{
    String sqlQry = "SELECT transaksi.tgl_transaksi, belanja.total, belanja.keterangan, transaksi.total " +
@@ -386,9 +381,9 @@ public class KeuntunganFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_BelanjaMentahActionPerformed
 
     private void kembalibtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_kembalibtnActionPerformed
-       laporanUang laporan = new laporanUang();
-        laporan.setVisible(true);
-        dispose();
+       dashboard_admin das = new dashboard_admin();
+       das.setVisible(true);
+       dispose();
     }//GEN-LAST:event_kembalibtnActionPerformed
 
     /**
@@ -444,6 +439,7 @@ public class KeuntunganFrame extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton kembalibtn;
     private javax.swing.JTextField keuntunganField;
+    private javax.swing.JTextField presentaseField;
     private javax.swing.JTable tabel;
     private javax.swing.JTextField totalField;
     // End of variables declaration//GEN-END:variables

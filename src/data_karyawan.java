@@ -60,6 +60,7 @@ public class data_karyawan extends javax.swing.JFrame {
 
         jPanel1.setLayout(null);
 
+        karyawan.setBackground(new java.awt.Color(204, 255, 204));
         karyawan.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -86,6 +87,7 @@ public class data_karyawan extends javax.swing.JFrame {
         jPanel1.add(jLabel2);
         jLabel2.setBounds(250, 10, 320, 70);
 
+        btn_hapus.setBackground(new java.awt.Color(204, 255, 204));
         btn_hapus.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         btn_hapus.setText("HAPUS");
         btn_hapus.addActionListener(new java.awt.event.ActionListener() {
@@ -96,6 +98,7 @@ public class data_karyawan extends javax.swing.JFrame {
         jPanel1.add(btn_hapus);
         btn_hapus.setBounds(510, 390, 110, 40);
 
+        btn_edit.setBackground(new java.awt.Color(204, 255, 204));
         btn_edit.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         btn_edit.setText("EDIT DATA");
         btn_edit.addActionListener(new java.awt.event.ActionListener() {

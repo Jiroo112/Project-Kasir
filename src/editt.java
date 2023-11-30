@@ -154,12 +154,15 @@ String path2 = null;
         jLabel1.setFont(new java.awt.Font("Trebuchet MS", 0, 24)); // NOI18N
         jLabel1.setText("Kode Menu :");
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 60, -1, -1));
+
+        txt_kode.setBackground(new java.awt.Color(204, 255, 204));
         jPanel1.add(txt_kode, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 60, 180, 30));
 
         jLabel2.setFont(new java.awt.Font("Trebuchet MS", 0, 24)); // NOI18N
         jLabel2.setText("Nama : ");
         jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 110, -1, -1));
 
+        txt_nama.setBackground(new java.awt.Color(204, 255, 204));
         txt_nama.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txt_namaActionPerformed(evt);
@@ -170,8 +173,11 @@ String path2 = null;
         jLabel3.setFont(new java.awt.Font("Trebuchet MS", 0, 24)); // NOI18N
         jLabel3.setText("Harga :");
         jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 170, -1, -1));
+
+        txt_harga.setBackground(new java.awt.Color(204, 255, 204));
         jPanel1.add(txt_harga, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 170, 180, 30));
 
+        btn_keluar.setBackground(new java.awt.Color(204, 255, 204));
         btn_keluar.setFont(new java.awt.Font("Segoe UI Emoji", 0, 18)); // NOI18N
         btn_keluar.setText("Keluar");
         btn_keluar.addActionListener(new java.awt.event.ActionListener() {
@@ -181,6 +187,7 @@ String path2 = null;
         });
         jPanel1.add(btn_keluar, new org.netbeans.lib.awtextra.AbsoluteConstraints(43, 326, 100, 40));
 
+        btn_hapus.setBackground(new java.awt.Color(204, 255, 204));
         btn_hapus.setFont(new java.awt.Font("Segoe UI Emoji", 0, 18)); // NOI18N
         btn_hapus.setText("Hapus");
         btn_hapus.addActionListener(new java.awt.event.ActionListener() {
@@ -190,6 +197,7 @@ String path2 = null;
         });
         jPanel1.add(btn_hapus, new org.netbeans.lib.awtextra.AbsoluteConstraints(247, 326, 100, 40));
 
+        btn_simpan.setBackground(new java.awt.Color(204, 255, 204));
         btn_simpan.setFont(new java.awt.Font("Segoe UI Emoji", 0, 18)); // NOI18N
         btn_simpan.setText("Simpan");
         btn_simpan.addActionListener(new java.awt.event.ActionListener() {

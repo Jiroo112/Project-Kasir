@@ -72,13 +72,20 @@ public class edit_karyawan extends javax.swing.JFrame {
         jLabel2.setText("EDIT KARYAWAN");
         jPanel1.add(jLabel2);
         jLabel2.setBounds(70, 10, 180, 40);
+
+        txt_username.setBackground(new java.awt.Color(204, 255, 204));
         jPanel1.add(txt_username);
         txt_username.setBounds(120, 60, 160, 20);
+
+        txt_nama.setBackground(new java.awt.Color(204, 255, 204));
         jPanel1.add(txt_nama);
         txt_nama.setBounds(120, 90, 160, 22);
+
+        txt_notelp.setBackground(new java.awt.Color(204, 255, 204));
         jPanel1.add(txt_notelp);
         txt_notelp.setBounds(120, 120, 160, 20);
 
+        btn_simpan.setBackground(new java.awt.Color(204, 255, 204));
         btn_simpan.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         btn_simpan.setText("SIMPAN");
         btn_simpan.addActionListener(new java.awt.event.ActionListener() {
@@ -105,6 +112,7 @@ public class edit_karyawan extends javax.swing.JFrame {
         jPanel1.add(jLabel5);
         jLabel5.setBounds(40, 150, 50, 16);
 
+        btn_kembali.setBackground(new java.awt.Color(204, 255, 204));
         btn_kembali.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         btn_kembali.setText("KEMBALI");
         btn_kembali.addActionListener(new java.awt.event.ActionListener() {
@@ -115,6 +123,7 @@ public class edit_karyawan extends javax.swing.JFrame {
         jPanel1.add(btn_kembali);
         btn_kembali.setBounds(180, 230, 120, 40);
 
+        jabatan.setBackground(new java.awt.Color(204, 255, 204));
         jabatan.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Admin", "Kasir" }));
         jabatan.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -128,9 +137,10 @@ public class edit_karyawan extends javax.swing.JFrame {
         jPanel1.add(jLabel6);
         jLabel6.setBounds(40, 180, 50, 16);
 
+        gender.setBackground(new java.awt.Color(204, 255, 204));
         gender.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Laki-laki", "Perempuan" }));
         jPanel1.add(gender);
-        gender.setBounds(120, 180, 94, 22);
+        gender.setBounds(120, 180, 95, 22);
 
         BG.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/Picture1.png"))); // NOI18N
         jPanel1.add(BG);

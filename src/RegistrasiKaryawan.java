@@ -30,14 +30,9 @@ import java.sql.SQLException;
 public class RegistrasiKaryawan extends javax.swing.JFrame {
    
 
-    /**
-     * Creates new form RegistrasiKaryawan
-     */
+  
     public RegistrasiKaryawan() {
-        setTitle("Registrasi Karyawan");
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         initComponents();
-        
         
     }
 
@@ -87,34 +82,34 @@ public class RegistrasiKaryawan extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel2.setText("Username");
         jPanel1.add(jLabel2);
-        jLabel2.setBounds(100, 180, 190, 32);
+        jLabel2.setBounds(110, 160, 190, 32);
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel3.setText("RePassword");
         jPanel1.add(jLabel3);
-        jLabel3.setBounds(100, 340, 200, 32);
+        jLabel3.setBounds(110, 320, 200, 32);
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel4.setText("Nama");
         jPanel1.add(jLabel4);
-        jLabel4.setBounds(110, 110, 160, 32);
+        jLabel4.setBounds(120, 90, 160, 32);
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel5.setText("No. Telp");
         jPanel1.add(jLabel5);
-        jLabel5.setBounds(420, 260, 170, 32);
+        jLabel5.setBounds(430, 240, 170, 32);
 
         jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel6.setText("Gender");
         jPanel1.add(jLabel6);
-        jLabel6.setBounds(420, 110, 170, 32);
+        jLabel6.setBounds(430, 90, 170, 32);
 
         jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel7.setText("Jabatan");
         jPanel1.add(jLabel7);
-        jLabel7.setBounds(420, 180, 170, 32);
+        jLabel7.setBounds(430, 160, 170, 32);
 
-        passwordField.setBackground(new java.awt.Color(72, 219, 161));
+        passwordField.setBackground(new java.awt.Color(0, 153, 153));
         passwordField.setFont(new java.awt.Font("Serif", 1, 18)); // NOI18N
         passwordField.setActionCommand("<Not Set>");
         passwordField.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(102, 153, 255), 1, true));
@@ -124,9 +119,9 @@ public class RegistrasiKaryawan extends javax.swing.JFrame {
             }
         });
         jPanel1.add(passwordField);
-        passwordField.setBounds(100, 300, 230, 30);
+        passwordField.setBounds(110, 280, 230, 30);
 
-        usernameField.setBackground(new java.awt.Color(72, 219, 161));
+        usernameField.setBackground(new java.awt.Color(0, 153, 153));
         usernameField.setFont(new java.awt.Font("Serif", 1, 18)); // NOI18N
         usernameField.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(102, 153, 255), 1, true));
         usernameField.addActionListener(new java.awt.event.ActionListener() {
@@ -135,9 +130,9 @@ public class RegistrasiKaryawan extends javax.swing.JFrame {
             }
         });
         jPanel1.add(usernameField);
-        usernameField.setBounds(100, 210, 230, 30);
+        usernameField.setBounds(110, 200, 230, 30);
 
-        phoneField.setBackground(new java.awt.Color(72, 219, 161));
+        phoneField.setBackground(new java.awt.Color(0, 153, 153));
         phoneField.setFont(new java.awt.Font("Serif", 1, 18)); // NOI18N
         phoneField.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(102, 153, 255), 1, true));
         phoneField.addActionListener(new java.awt.event.ActionListener() {
@@ -146,9 +141,9 @@ public class RegistrasiKaryawan extends javax.swing.JFrame {
             }
         });
         jPanel1.add(phoneField);
-        phoneField.setBounds(420, 300, 230, 30);
+        phoneField.setBounds(430, 280, 230, 30);
 
-        nameField.setBackground(new java.awt.Color(72, 219, 161));
+        nameField.setBackground(new java.awt.Color(0, 153, 153));
         nameField.setFont(new java.awt.Font("Serif", 1, 18)); // NOI18N
         nameField.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(102, 153, 255), 1, true));
         nameField.addActionListener(new java.awt.event.ActionListener() {
@@ -157,9 +152,9 @@ public class RegistrasiKaryawan extends javax.swing.JFrame {
             }
         });
         jPanel1.add(nameField);
-        nameField.setBounds(100, 140, 230, 30);
+        nameField.setBounds(110, 120, 230, 30);
 
-        jabatancom.setBackground(new java.awt.Color(72, 219, 161));
+        jabatancom.setBackground(new java.awt.Color(0, 153, 153));
         jabatancom.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jabatancom.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Admin", "Kasir" }));
         jabatancom.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 255)));
@@ -169,9 +164,9 @@ public class RegistrasiKaryawan extends javax.swing.JFrame {
             }
         });
         jPanel1.add(jabatancom);
-        jabatancom.setBounds(420, 220, 230, 30);
+        jabatancom.setBounds(430, 200, 240, 30);
 
-        jsimpan.setBackground(new java.awt.Color(72, 219, 161));
+        jsimpan.setBackground(new java.awt.Color(0, 153, 153));
         jsimpan.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jsimpan.setText("simpan");
         jsimpan.addActionListener(new java.awt.event.ActionListener() {
@@ -180,13 +175,13 @@ public class RegistrasiKaryawan extends javax.swing.JFrame {
             }
         });
         jPanel1.add(jsimpan);
-        jsimpan.setBounds(420, 380, 120, 32);
+        jsimpan.setBounds(490, 330, 120, 32);
 
-        rePassField.setBackground(new java.awt.Color(72, 219, 161));
+        rePassField.setBackground(new java.awt.Color(0, 153, 153));
         rePassField.setFont(new java.awt.Font("Serif", 1, 18)); // NOI18N
         rePassField.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(102, 153, 255), 1, true));
         jPanel1.add(rePassField);
-        rePassField.setBounds(100, 380, 230, 30);
+        rePassField.setBounds(110, 360, 230, 30);
 
         jPanel3.setBackground(new java.awt.Color(0, 102, 102));
         jPanel3.setForeground(new java.awt.Color(255, 255, 255));
@@ -238,9 +233,9 @@ public class RegistrasiKaryawan extends javax.swing.JFrame {
         jLabel8.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel8.setText("Password");
         jPanel1.add(jLabel8);
-        jLabel8.setBounds(100, 260, 180, 32);
+        jLabel8.setBounds(110, 240, 180, 32);
 
-        genderCombo1.setBackground(new java.awt.Color(72, 219, 161));
+        genderCombo1.setBackground(new java.awt.Color(0, 153, 153));
         genderCombo1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         genderCombo1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Laki-laki", "Perempuan" }));
         genderCombo1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 255)));
@@ -250,9 +245,9 @@ public class RegistrasiKaryawan extends javax.swing.JFrame {
             }
         });
         jPanel1.add(genderCombo1);
-        genderCombo1.setBounds(420, 150, 230, 30);
+        genderCombo1.setBounds(430, 120, 240, 30);
 
-        background.setBackground(new java.awt.Color(72, 219, 161));
+        background.setBackground(new java.awt.Color(0, 153, 153));
         background.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         background.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/Picture1.png"))); // NOI18N
         jPanel1.add(background);
@@ -282,34 +277,33 @@ public class RegistrasiKaryawan extends javax.swing.JFrame {
 
     private void jsimpanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jsimpanActionPerformed
                                             
-    Connection connection = null;
-    PreparedStatement statementTabel1 = null;
-    PreparedStatement statementTabel2 = null;
+      Connection connection = null;
+      PreparedStatement statementTabel1 = null;
+      PreparedStatement statementTabel2 = null;
 
-    String nama_karyawan = nameField.getText();
-    String jabatan = jabatancom.getSelectedItem().toString();
-    String username = usernameField.getText();
-    String password = passwordField.getText();
-    String repassword = rePassField.getText();
-    String no_hp = phoneField.getText();
-    String jenis_kelamin = genderCombo1.getSelectedItem().toString();
+        String nama_karyawan = nameField.getText();
+        String jabatan = jabatancom.getSelectedItem().toString();
+        String username = usernameField.getText();
+        String password = passwordField.getText();
+        String repassword = rePassField.getText();
+        String no_hp = phoneField.getText();
+        String jenis_kelamin = genderCombo1.getSelectedItem().toString();
 
     if (password.equals(repassword)) {
         try {
-          
-            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/aplikasi_warung", "root", "");
-            connection.setAutoCommit(false); 
+            connection = konek.GetConnection();
+            connection.setAutoCommit(false);
 
-        String sqlTabel1 = "INSERT INTO data_karyawan (username, nama_karyawan, jenis_kelamin, no_hp, jabatan) VALUES (?, ?, ?, ?, ?)";
-        statementTabel1 = connection.prepareStatement(sqlTabel1);
-        statementTabel1.setString(1, username); 
-        statementTabel1.setString(2, nama_karyawan); 
-        statementTabel1.setString(3, jenis_kelamin);
-        statementTabel1.setString(4, no_hp); 
-        statementTabel1.setString(5, jabatan);  
-            
+            String sqlTabel1 = "INSERT INTO data_karyawan (username, nama_karyawan, jenis_kelamin, no_hp, jabatan) VALUES (?, ?, ?, ?, ?)";
+            statementTabel1 = connection.prepareStatement(sqlTabel1);
+            statementTabel1.setString(1, username);
+            statementTabel1.setString(2, nama_karyawan);
+            statementTabel1.setString(3, jenis_kelamin);
+            statementTabel1.setString(4, no_hp);
+            statementTabel1.setString(5, jabatan);
+
             statementTabel1.executeUpdate();
-            
+
             String sqlTabel2 = "INSERT INTO akun (username, password) VALUES (?, ?)";
             statementTabel2 = connection.prepareStatement(sqlTabel2);
             statementTabel2.setString(1, username);
@@ -317,32 +311,24 @@ public class RegistrasiKaryawan extends javax.swing.JFrame {
 
             statementTabel2.executeUpdate();
 
-            connection.commit();
+              connection.commit();
 
-            JOptionPane.showMessageDialog(this, "Registrasi Berhasil");
-            nameField.setText("");
-            jabatancom.setSelectedItem("");
-            genderCombo1.setSelectedItem("");
-            usernameField.setText("");
-            passwordField.setText("");
-            rePassField.setText("");
-            phoneField.setText("");
+        JOptionPane.showMessageDialog(this, "Registrasi Berhasil");
         } catch (SQLException e) {
+        if (connection != null) {
             try {
-           
-                if (connection != null) {
-                    connection.rollback();
-                }
+                connection.rollback();
             } catch (SQLException ex) {
                 ex.printStackTrace();
             }
-            e.printStackTrace();
-            JOptionPane.showMessageDialog(this, "Registrasi Gagal. Terjadi kesalahan database."+e.getMessage());
         }
-    } else {
-        JOptionPane.showMessageDialog(this, "Kata Sandi dan Konfirmasi Kata Sandi Tidak Cocok. Registrasi Gagal.");
-    }
-    
+        JOptionPane.showMessageDialog(this, "Registrasi Gagal"+e.getMessage());
+        e.printStackTrace();
+        }
+
+        } else {
+            JOptionPane.showMessageDialog(this, "Kata Sandi dan Konfirmasi Kata Sandi Tidak Cocok. Registrasi Gagal.");
+}
     }//GEN-LAST:event_jsimpanActionPerformed
 
     private void jabatancomActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jabatancomActionPerformed

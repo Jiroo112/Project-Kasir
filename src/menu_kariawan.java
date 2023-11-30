@@ -187,6 +187,7 @@ public class menu_kariawan extends javax.swing.JFrame {
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 470, 800, 30));
 
+        minuman.setBackground(new java.awt.Color(204, 255, 204));
         minuman.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null},
@@ -213,6 +214,7 @@ public class menu_kariawan extends javax.swing.JFrame {
 
         getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 150, 240, 220));
 
+        makanan.setBackground(new java.awt.Color(204, 255, 204));
         makanan.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null},

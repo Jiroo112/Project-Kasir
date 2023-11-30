@@ -86,6 +86,7 @@ public class BelanjaMentah extends javax.swing.JFrame {
         jPanel1.add(jLabel3);
         jLabel3.setBounds(60, 160, 100, 30);
 
+        date1.setBackground(new java.awt.Color(204, 255, 204));
         date1.setDateFormatString("yyyy-MM- dd");
         date1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -94,6 +95,8 @@ public class BelanjaMentah extends javax.swing.JFrame {
         });
         jPanel1.add(date1);
         date1.setBounds(230, 82, 370, 30);
+
+        kulakField.setBackground(new java.awt.Color(204, 255, 204));
         jPanel1.add(kulakField);
         kulakField.setBounds(230, 122, 370, 30);
 
@@ -102,6 +105,7 @@ public class BelanjaMentah extends javax.swing.JFrame {
         jPanel1.add(jLabel2);
         jLabel2.setBounds(60, 120, 110, 30);
 
+        keteranganField.setBackground(new java.awt.Color(204, 255, 204));
         keteranganField.setColumns(20);
         keteranganField.setRows(5);
         keteranganField.setTabSize(4);
@@ -110,6 +114,7 @@ public class BelanjaMentah extends javax.swing.JFrame {
         jPanel1.add(jScrollPane1);
         jScrollPane1.setBounds(230, 160, 370, 110);
 
+        tabel.setBackground(new java.awt.Color(204, 255, 204));
         tabel.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         tabel.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -125,8 +130,9 @@ public class BelanjaMentah extends javax.swing.JFrame {
         jScrollPane2.setViewportView(tabel);
 
         jPanel1.add(jScrollPane2);
-        jScrollPane2.setBounds(40, 290, 730, 200);
+        jScrollPane2.setBounds(40, 290, 730, 180);
 
+        jButtonSimpan.setBackground(new java.awt.Color(204, 255, 204));
         jButtonSimpan.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jButtonSimpan.setText("simpan");
         jButtonSimpan.addActionListener(new java.awt.event.ActionListener() {
@@ -135,13 +141,14 @@ public class BelanjaMentah extends javax.swing.JFrame {
             }
         });
         jPanel1.add(jButtonSimpan);
-        jButtonSimpan.setBounds(630, 220, 90, 40);
+        jButtonSimpan.setBounds(640, 230, 90, 40);
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
         jLabel4.setText("Belanja Harian");
         jPanel1.add(jLabel4);
-        jLabel4.setBounds(270, 20, 270, 40);
+        jLabel4.setBounds(280, 20, 270, 40);
 
+        keluar.setBackground(new java.awt.Color(204, 255, 204));
         keluar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         keluar.setText("kembali");
         keluar.addActionListener(new java.awt.event.ActionListener() {
@@ -150,7 +157,7 @@ public class BelanjaMentah extends javax.swing.JFrame {
             }
         });
         jPanel1.add(keluar);
-        keluar.setBounds(630, 170, 90, 40);
+        keluar.setBounds(640, 180, 90, 40);
 
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/Picture1.png"))); // NOI18N
         jPanel1.add(jLabel5);
@@ -166,7 +173,7 @@ public class BelanjaMentah extends javax.swing.JFrame {
     }//GEN-LAST:event_date1MouseClicked
 
     private void jButtonSimpanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSimpanActionPerformed
-       Connection connection = null;
+        Connection connection = null;
         PreparedStatement statementTabel1 = null;
         String tanggal = "yyyy-MM-dd";
         SimpleDateFormat fm = new SimpleDateFormat(tanggal);
@@ -193,9 +200,10 @@ public class BelanjaMentah extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonSimpanActionPerformed
 
     private void keluarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_keluarActionPerformed
-         laporanUang uang = new laporanUang();
-        uang.setVisible(true);
+        KeuntunganFrame untung = new KeuntunganFrame();
+        untung.setVisible(true);
         dispose();
+        
     }//GEN-LAST:event_keluarActionPerformed
 
     /**
