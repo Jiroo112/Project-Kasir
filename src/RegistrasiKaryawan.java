@@ -53,13 +53,11 @@ public class RegistrasiKaryawan extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-        passwordField = new javax.swing.JTextField();
         usernameField = new javax.swing.JTextField();
         phoneField = new javax.swing.JTextField();
         nameField = new javax.swing.JTextField();
         jabatancom = new javax.swing.JComboBox<>();
         jsimpan = new javax.swing.JButton();
-        rePassField = new javax.swing.JTextField();
         jPanel3 = new javax.swing.JPanel();
         labelKeluar = new javax.swing.JLabel();
         jLabelDataKaryawan = new javax.swing.JLabel();
@@ -67,6 +65,8 @@ public class RegistrasiKaryawan extends javax.swing.JFrame {
         labelmenu = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         genderCombo1 = new javax.swing.JComboBox<>();
+        passwordField = new javax.swing.JPasswordField();
+        rePassField = new javax.swing.JPasswordField();
         background = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -108,18 +108,6 @@ public class RegistrasiKaryawan extends javax.swing.JFrame {
         jLabel7.setText("Jabatan");
         jPanel1.add(jLabel7);
         jLabel7.setBounds(430, 160, 170, 32);
-
-        passwordField.setBackground(new java.awt.Color(0, 153, 153));
-        passwordField.setFont(new java.awt.Font("Serif", 1, 18)); // NOI18N
-        passwordField.setActionCommand("<Not Set>");
-        passwordField.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(102, 153, 255), 1, true));
-        passwordField.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                passwordFieldActionPerformed(evt);
-            }
-        });
-        jPanel1.add(passwordField);
-        passwordField.setBounds(110, 280, 230, 30);
 
         usernameField.setBackground(new java.awt.Color(0, 153, 153));
         usernameField.setFont(new java.awt.Font("Serif", 1, 18)); // NOI18N
@@ -176,12 +164,6 @@ public class RegistrasiKaryawan extends javax.swing.JFrame {
         });
         jPanel1.add(jsimpan);
         jsimpan.setBounds(490, 330, 120, 32);
-
-        rePassField.setBackground(new java.awt.Color(0, 153, 153));
-        rePassField.setFont(new java.awt.Font("Serif", 1, 18)); // NOI18N
-        rePassField.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(102, 153, 255), 1, true));
-        jPanel1.add(rePassField);
-        rePassField.setBounds(110, 360, 230, 30);
 
         jPanel3.setBackground(new java.awt.Color(0, 102, 102));
         jPanel3.setForeground(new java.awt.Color(255, 255, 255));
@@ -247,6 +229,19 @@ public class RegistrasiKaryawan extends javax.swing.JFrame {
         jPanel1.add(genderCombo1);
         genderCombo1.setBounds(430, 120, 240, 30);
 
+        passwordField.setBackground(new java.awt.Color(0, 153, 153));
+        jPanel1.add(passwordField);
+        passwordField.setBounds(110, 280, 230, 30);
+
+        rePassField.setBackground(new java.awt.Color(0, 153, 153));
+        rePassField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rePassFieldActionPerformed(evt);
+            }
+        });
+        jPanel1.add(rePassField);
+        rePassField.setBounds(110, 360, 230, 30);
+
         background.setBackground(new java.awt.Color(0, 153, 153));
         background.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         background.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/Picture1.png"))); // NOI18N
@@ -258,10 +253,6 @@ public class RegistrasiKaryawan extends javax.swing.JFrame {
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-
-    private void passwordFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passwordFieldActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_passwordFieldActionPerformed
 
     private void usernameFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_usernameFieldActionPerformed
         // TODO add your handling code here:
@@ -364,6 +355,10 @@ public class RegistrasiKaryawan extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_jLabelLaporanMouseClicked
 
+    private void rePassFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rePassFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_rePassFieldActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -420,9 +415,9 @@ public class RegistrasiKaryawan extends javax.swing.JFrame {
     private javax.swing.JLabel labelKeluar;
     private javax.swing.JLabel labelmenu;
     private javax.swing.JTextField nameField;
-    private javax.swing.JTextField passwordField;
+    private javax.swing.JPasswordField passwordField;
     private javax.swing.JTextField phoneField;
-    private javax.swing.JTextField rePassField;
+    private javax.swing.JPasswordField rePassField;
     private javax.swing.JTextField usernameField;
     // End of variables declaration//GEN-END:variables
 }

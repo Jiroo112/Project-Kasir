@@ -36,16 +36,18 @@ public class KeuntunganFrame extends javax.swing.JFrame {
     try {
       Statement statement = konek.GetConnection().createStatement();
     ResultSet res = statement.executeQuery(
-            "SELECT transaksi.tgl_transaksi, belanja.total, belanja.keterangan, transaksi.total " +
-            "FROM transaksi LEFT JOIN belanja ON transaksi.tgl_transaksi = belanja.tanggal");
+            "SELECT transaksi.tgl_transaksi, SUM(belanja.total) AS belanja_total, GROUP_CONCAT"
+                    + "(belanja.keterangan SEPARATOR ', ') AS keterangan_belanja, SUM(transaksi.total)"
+                    + " AS transaksi_total FROM transaksi LEFT JOIN belanja ON transaksi.tgl_transaksi = belanja.tanggal "
+                    + "WHERE transaksi.tgl_transaksi IS NOT NULL GROUP BY transaksi.tgl_transaksi;");
                
         
           while (res.next()) {
         tbl.addRow(new Object[]{
                 res.getDate("tgl_transaksi"),
-                res.getInt("total"),
-                res.getString("keterangan"),
-                res.getString("total")
+                res.getInt("belanja_total"),
+                res.getString("keterangan_belanja"),
+                res.getString("transaksi_total")
         });
     }
     tabel.setModel(tbl);
@@ -69,7 +71,7 @@ public class KeuntunganFrame extends javax.swing.JFrame {
         while (res.next())
         {
             nilaiModal = res.getDouble("total_belanja");
-            fieldModal.setText(String.valueOf(nilaiModal));
+            
         }
     } catch (SQLException e) {
         e.printStackTrace();
@@ -90,7 +92,7 @@ public class KeuntunganFrame extends javax.swing.JFrame {
 
         while (res.next()) {
             nilaiTotal = res.getDouble("total_transaksi");
-            totalField.setText(String.valueOf(nilaiTotal));
+            
         }
     } catch (SQLException e) {
         e.printStackTrace();
@@ -100,14 +102,7 @@ public class KeuntunganFrame extends javax.swing.JFrame {
   }
  
    public void Keuntungan(String tanggal1, String tanggal2) {
-       
-    double modalValue = Double.parseDouble(fieldModal.getText());
-    double transaksiValue = Double.parseDouble(totalField.getText());
 
-    double keuntungan = transaksiValue - modalValue;
-    keuntunganField.setText(String.valueOf(keuntungan));
-    
-    presentaseUntung();
     
 
   /* private void refresh() {
@@ -128,11 +123,6 @@ public class KeuntunganFrame extends javax.swing.JFrame {
 }
 
 public void presentaseUntung() {
-    double modalValue = Double.parseDouble(fieldModal.getText());
-    double keuntunganValue = Double.parseDouble(keuntunganField.getText());
-
-    double presentaseKeuntungan = hitungPresentaseUntung(keuntunganValue, modalValue);
-    presentaseField.setText(String.format("%.2f%%", presentaseKeuntungan));
 }
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -144,17 +134,12 @@ public void presentaseUntung() {
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         ButtonHitung = new javax.swing.JButton();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tabel = new javax.swing.JTable();
-        fieldModal = new javax.swing.JTextField();
-        totalField = new javax.swing.JTextField();
-        keuntunganField = new javax.swing.JTextField();
         BelanjaMentah = new javax.swing.JButton();
         kembalibtn = new javax.swing.JButton();
-        presentaseField = new javax.swing.JTextField();
+        totaluntungField = new javax.swing.JTextField();
         background = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -170,7 +155,7 @@ public void presentaseUntung() {
             }
         });
         jPanel1.add(date1);
-        date1.setBounds(60, 90, 280, 30);
+        date1.setBounds(50, 90, 280, 30);
 
         date2.setBackground(new java.awt.Color(204, 255, 204));
         date2.setDateFormatString("yyyy-MM- dd");
@@ -180,7 +165,7 @@ public void presentaseUntung() {
             }
         });
         jPanel1.add(date2);
-        date2.setBounds(440, 90, 280, 30);
+        date2.setBounds(400, 90, 240, 30);
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
         jLabel1.setText("Perhitungan Keuntungan");
@@ -188,12 +173,12 @@ public void presentaseUntung() {
         jLabel1.setBounds(190, 10, 450, 48);
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel3.setText("sampai tanggal");
+        jLabel3.setText("Sampai Tanggal");
         jPanel1.add(jLabel3);
-        jLabel3.setBounds(530, 60, 140, 30);
+        jLabel3.setBounds(460, 60, 140, 30);
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel4.setText("dari tanggal");
+        jLabel4.setText("Dari Tanggal");
         jPanel1.add(jLabel4);
         jLabel4.setBounds(120, 60, 110, 30);
 
@@ -206,22 +191,12 @@ public void presentaseUntung() {
             }
         });
         jPanel1.add(ButtonHitung);
-        ButtonHitung.setBounds(560, 140, 140, 30);
-
-        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel2.setText("Modal");
-        jPanel1.add(jLabel2);
-        jLabel2.setBounds(50, 140, 110, 25);
-
-        jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel5.setText("Pemasukan");
-        jPanel1.add(jLabel5);
-        jLabel5.setBounds(50, 180, 160, 25);
+        ButtonHitung.setBounds(650, 90, 80, 30);
 
         jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel6.setText("Keuntungan");
         jPanel1.add(jLabel6);
-        jLabel6.setBounds(50, 220, 150, 25);
+        jLabel6.setBounds(60, 440, 130, 25);
 
         tabel.setBackground(new java.awt.Color(204, 255, 204));
         tabel.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -239,37 +214,7 @@ public void presentaseUntung() {
         jScrollPane1.setViewportView(tabel);
 
         jPanel1.add(jScrollPane1);
-        jScrollPane1.setBounds(40, 300, 730, 180);
-
-        fieldModal.setBackground(new java.awt.Color(204, 255, 204));
-        fieldModal.setForeground(new java.awt.Color(204, 255, 204));
-        fieldModal.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                fieldModalActionPerformed(evt);
-            }
-        });
-        jPanel1.add(fieldModal);
-        fieldModal.setBounds(220, 140, 320, 30);
-
-        totalField.setBackground(new java.awt.Color(204, 255, 204));
-        totalField.setForeground(new java.awt.Color(204, 255, 204));
-        totalField.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                totalFieldActionPerformed(evt);
-            }
-        });
-        jPanel1.add(totalField);
-        totalField.setBounds(220, 180, 320, 30);
-
-        keuntunganField.setBackground(new java.awt.Color(204, 255, 204));
-        keuntunganField.setForeground(new java.awt.Color(204, 255, 204));
-        keuntunganField.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                keuntunganFieldActionPerformed(evt);
-            }
-        });
-        jPanel1.add(keuntunganField);
-        keuntunganField.setBounds(220, 220, 320, 30);
+        jScrollPane1.setBounds(50, 140, 680, 270);
 
         BelanjaMentah.setBackground(new java.awt.Color(204, 255, 204));
         BelanjaMentah.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -280,22 +225,23 @@ public void presentaseUntung() {
             }
         });
         jPanel1.add(BelanjaMentah);
-        BelanjaMentah.setBounds(560, 180, 140, 30);
+        BelanjaMentah.setBounds(650, 420, 140, 30);
 
         kembalibtn.setBackground(new java.awt.Color(204, 255, 204));
         kembalibtn.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        kembalibtn.setText("kembali");
+        kembalibtn.setText("Kembali");
         kembalibtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 kembalibtnActionPerformed(evt);
             }
         });
         jPanel1.add(kembalibtn);
-        kembalibtn.setBounds(560, 220, 140, 30);
+        kembalibtn.setBounds(650, 460, 140, 30);
 
-        presentaseField.setBackground(new java.awt.Color(204, 255, 204));
-        jPanel1.add(presentaseField);
-        presentaseField.setBounds(220, 260, 90, 30);
+        totaluntungField.setBackground(new java.awt.Color(204, 255, 204));
+        totaluntungField.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jPanel1.add(totaluntungField);
+        totaluntungField.setBounds(190, 440, 310, 30);
 
         background.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         background.setForeground(new java.awt.Color(204, 255, 204));
@@ -317,62 +263,63 @@ public void presentaseUntung() {
         // TODO add your handling code here:
     }//GEN-LAST:event_date2MouseClicked
 
-    private void fieldModalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fieldModalActionPerformed
-       
-    }//GEN-LAST:event_fieldModalActionPerformed
-
     private void ButtonHitungActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonHitungActionPerformed
-    String tanggalPattern = "yyyy-MM-dd";
-    SimpleDateFormat dateFormat = new SimpleDateFormat(tanggalPattern);
+        String tanggalPattern = "yyyy-MM-dd";
+        SimpleDateFormat dateFormat = new SimpleDateFormat(tanggalPattern);
 
-         String tanggal1 = dateFormat.format(date1.getDate());
-    String tanggal2 = dateFormat.format(date2.getDate());
+        String tanggal1 = dateFormat.format(date1.getDate());
+        String tanggal2 = dateFormat.format(date2.getDate());
 
-    modal(tanggal1, tanggal2);
-    transaksi(tanggal1, tanggal2);
-    Keuntungan(tanggal1, tanggal2); 
+        modal(tanggal1, tanggal2);
+        transaksi(tanggal1, tanggal2);
+        Keuntungan(tanggal1, tanggal2);
 
-    try{
-   String sqlQry = "SELECT transaksi.tgl_transaksi, belanja.total, belanja.keterangan, transaksi.total " +
-                    "FROM transaksi LEFT JOIN belanja ON transaksi.tgl_transaksi = belanja.tanggal " +
-                    "WHERE transaksi.tgl_transaksi BETWEEN ? AND ? " +
-                    "GROUP BY transaksi.tgl_transaksi";
+    try {
+        String sqlQry = "SELECT transaksi.tgl_transaksi, SUM(belanja.total) AS belanja_total, "
+                + "GROUP_CONCAT(belanja.keterangan SEPARATOR ', ') AS keterangan_belanja, "
+                + "SUM(transaksi.total) AS transaksi_total FROM transaksi LEFT JOIN belanja "
+                + "ON transaksi.tgl_transaksi = belanja.tanggal WHERE transaksi.tgl_transaksi "
+                + "IS NOT NULL AND transaksi.tgl_transaksi BETWEEN ? AND ? GROUP BY transaksi.tgl_transaksi;";
 
-    PreparedStatement statement = konek.GetConnection().prepareStatement(sqlQry);
-    statement.setString(1, tanggal1);
-    statement.setString(2, tanggal2);
+            PreparedStatement statement = konek.GetConnection().prepareStatement(sqlQry);
+            statement.setString(1, tanggal1);
+            statement.setString(2, tanggal2);
 
-    ResultSet res = statement.executeQuery();
+            ResultSet res = statement.executeQuery();
 
-    DefaultTableModel tbl = new DefaultTableModel();
-    tbl.addColumn("Tanggal");
-    tbl.addColumn("Modal");
-    tbl.addColumn("Keterangan");
-    tbl.addColumn("Pemasukan");
+            DefaultTableModel tbl = new DefaultTableModel();
+            tbl.addColumn("Tanggal");
+            tbl.addColumn("Modal");
+            tbl.addColumn("Keterangan");
+            tbl.addColumn("Pemasukan");
+            tbl.addColumn("Keuntungan"); 
 
-    while (res.next()) {
-        tbl.addRow(new Object[]{
-                res.getDate("tgl_transaksi"),
-                res.getInt("total"), 
-                res.getString("keterangan"),
-                res.getString("total")
-        });
-    }
-    tabel.setModel(tbl);
+    
+            double totalKeuntungan = 0.0;
+            while (res.next()) {
 
-} catch (Exception e) {
-    JOptionPane.showMessageDialog(rootPane, "Error: " + e.getMessage());
-    e.printStackTrace();
-}
+                double modal = res.getDouble("belanja_total");
+                        double transaksi = res.getDouble("transaksi_total");
+                        double keuntungan = transaksi - modal;
+                        totalKeuntungan += keuntungan;
+
+                tbl.addRow(new Object[]{
+                        res.getDate("tgl_transaksi"),
+                        modal,
+                        res.getString("keterangan_belanja"),
+                        transaksi,
+                        keuntungan 
+                });
+            }
+             totaluntungField.setText(String.valueOf(totalKeuntungan));
+            tabel.setModel(tbl);
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(rootPane, "Error: " + e.getMessage());
+            e.printStackTrace();
+
+        }
     }//GEN-LAST:event_ButtonHitungActionPerformed
-
-    private void totalFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_totalFieldActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_totalFieldActionPerformed
-
-    private void keuntunganFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_keuntunganFieldActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_keuntunganFieldActionPerformed
 
     private void BelanjaMentahActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BelanjaMentahActionPerformed
         BelanjaMentah belanja = new BelanjaMentah();
@@ -428,19 +375,14 @@ public void presentaseUntung() {
     private javax.swing.JLabel background;
     private com.toedter.calendar.JDateChooser date1;
     private com.toedter.calendar.JDateChooser date2;
-    private javax.swing.JTextField fieldModal;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton kembalibtn;
-    private javax.swing.JTextField keuntunganField;
-    private javax.swing.JTextField presentaseField;
     private javax.swing.JTable tabel;
-    private javax.swing.JTextField totalField;
+    private javax.swing.JTextField totaluntungField;
     // End of variables declaration//GEN-END:variables
 }

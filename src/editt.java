@@ -182,7 +182,7 @@ String path2 = null;
         jPanel1.add(txt_harga, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 170, 180, 30));
 
         btn_keluar.setBackground(new java.awt.Color(204, 255, 204));
-        btn_keluar.setFont(new java.awt.Font("Segoe UI Emoji", 0, 18)); // NOI18N
+        btn_keluar.setFont(new java.awt.Font("Segoe UI Emoji", 1, 18)); // NOI18N
         btn_keluar.setText("Keluar");
         btn_keluar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -192,7 +192,7 @@ String path2 = null;
         jPanel1.add(btn_keluar, new org.netbeans.lib.awtextra.AbsoluteConstraints(43, 326, 100, 40));
 
         btn_hapus.setBackground(new java.awt.Color(204, 255, 204));
-        btn_hapus.setFont(new java.awt.Font("Segoe UI Emoji", 0, 18)); // NOI18N
+        btn_hapus.setFont(new java.awt.Font("Segoe UI Emoji", 1, 18)); // NOI18N
         btn_hapus.setText("Hapus");
         btn_hapus.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -202,7 +202,7 @@ String path2 = null;
         jPanel1.add(btn_hapus, new org.netbeans.lib.awtextra.AbsoluteConstraints(247, 326, 100, 40));
 
         btn_simpan.setBackground(new java.awt.Color(204, 255, 204));
-        btn_simpan.setFont(new java.awt.Font("Segoe UI Emoji", 0, 18)); // NOI18N
+        btn_simpan.setFont(new java.awt.Font("Segoe UI Emoji", 1, 18)); // NOI18N
         btn_simpan.setText("Simpan");
         btn_simpan.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -218,7 +218,7 @@ String path2 = null;
                 btn_pilihActionPerformed(evt);
             }
         });
-        jPanel1.add(btn_pilih, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 70, 100, 23));
+        jPanel1.add(btn_pilih, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 70, 100, 23));
 
         filefoto.setBackground(new java.awt.Color(255, 255, 255));
         filefoto.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -229,13 +229,14 @@ String path2 = null;
         jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 220, -1, -1));
         jPanel1.add(txt_stok, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 220, 90, 30));
 
+        btn_sfoto.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btn_sfoto.setText("Simpan Foto");
         btn_sfoto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_sfotoActionPerformed(evt);
             }
         });
-        jPanel1.add(btn_sfoto, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 70, 80, -1));
+        jPanel1.add(btn_sfoto, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 270, 130, -1));
 
         jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/Picture1.png"))); // NOI18N
         jLabel6.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 5));
@@ -331,7 +332,7 @@ String path2 = null;
            pst.setBlob(1, is);
            pst.execute();
            filefoto.setIcon(null); 
-           JOptionPane.showMessageDialog(null, "Menu Berhasil Ditambahkan");
+           JOptionPane.showMessageDialog(null, "Foto Berhasil Ditambahkan");
         }catch(Exception e){
             JOptionPane.showMessageDialog(null, e.getMessage());
             foto();
