@@ -133,11 +133,15 @@ String path2 = null;
         filefoto = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         txt_stok = new javax.swing.JSpinner();
+        btn_sfoto = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
         addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowActivated(java.awt.event.WindowEvent evt) {
+                formWindowActivated(evt);
+            }
             public void windowOpened(java.awt.event.WindowEvent evt) {
                 formWindowOpened(evt);
             }
@@ -214,7 +218,7 @@ String path2 = null;
                 btn_pilihActionPerformed(evt);
             }
         });
-        jPanel1.add(btn_pilih, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 70, 100, 23));
+        jPanel1.add(btn_pilih, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 70, 100, 23));
 
         filefoto.setBackground(new java.awt.Color(255, 255, 255));
         filefoto.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -225,7 +229,16 @@ String path2 = null;
         jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 220, -1, -1));
         jPanel1.add(txt_stok, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 220, 90, 30));
 
-        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/Picture1_1.png"))); // NOI18N
+        btn_sfoto.setText("Simpan Foto");
+        btn_sfoto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_sfotoActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btn_sfoto, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 70, 80, -1));
+
+        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/Picture1.png"))); // NOI18N
+        jLabel6.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 5));
         jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 620, 400));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 620, 400));
@@ -258,37 +271,27 @@ String path2 = null;
         }
         makanan();
         minuman();
+        dispose();
     }//GEN-LAST:event_btn_hapusActionPerformed
 
     private void btn_simpanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_simpanActionPerformed
         // TODO add your handling code here:
+         String kode_menu = txt_kode.getText();
         String nama_menu = txt_nama.getText();
         String harga = txt_harga.getText();
         String stok = txt_stok.getValue().toString();
-        String kode_menu = txt_kode.getText();
-        String sql = ("UPDATE menu SET nama_menu= ? , harga= ? , gambar= ?, stok = stok + ? WHERE kode_menu= ? ;");
         try {
-           Class.forName("com.mysql.cj.jdbc.Driver");
-           Connection con = (Connection) DriverManager.getConnection("jdbc:mysql://localhost:3306/aplikasi_warung", "root", "");
-           PreparedStatement pst = con.prepareStatement(sql);
-           pst.setString(1, nama_menu);
-           pst.setString(2, harga);
-           pst.setString(4, stok);
-           pst.setString(5, kode_menu);
-           InputStream is = new FileInputStream (new File(path2));
-           pst.setBlob(3, is);
-           pst.execute();
-           txt_kode.setText("");
-           txt_nama.setText("");
-           txt_harga.setText("");
-           txt_stok.getValue().toString();
-           filefoto.setIcon(null); 
-           JOptionPane.showMessageDialog(null, "Menu Berhasil Ditambahkan");
+            Statement st = konek.GetConnection().createStatement();
+            st.executeUpdate("UPDATE menu SET nama_menu='" + nama_menu + "', harga= '" + harga + "', stok= stok+'"+stok+"' WHERE kode_menu='"+ kode_menu +"' OR nama_menu='" + nama_menu + "';");
+            JOptionPane.showMessageDialog(null, "Menu Berhasil Disimpan");
+
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "Menu Gagal Disimpan" + e.getMessage());
+            JOptionPane.showMessageDialog(null, "Menu Gagal Disimpan");
         }
+        
         makanan();
         minuman();
+        dispose();
     }//GEN-LAST:event_btn_simpanActionPerformed
 
     private void btn_pilihActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_pilihActionPerformed
@@ -298,7 +301,7 @@ String path2 = null;
             File f = chooser.getSelectedFile();
             String path = f.getAbsolutePath();
             path2 = path;
-    try {
+     try {
         BufferedImage bi = ImageIO.read(new File(path));
         Image img = bi.getScaledInstance(180, 160, Image.SCALE_SMOOTH);
         ImageIcon ic = new ImageIcon(img);
@@ -315,6 +318,29 @@ String path2 = null;
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         foto();
     }//GEN-LAST:event_formWindowOpened
+
+    private void btn_sfotoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_sfotoActionPerformed
+        // TODO add your handling code here:
+        String kode_menu = txt_kode.getText();
+        String sql = ("UPDATE menu SET gambar = ? WHERE kode_menu= '"+kode_menu+"' ");
+        try {
+           Class.forName("com.mysql.cj.jdbc.Driver");
+           Connection con = (Connection) DriverManager.getConnection("jdbc:mysql://localhost:3306/aplikasi_warung", "root", "");
+           PreparedStatement pst = con.prepareStatement(sql);
+           InputStream is = new FileInputStream (new File(path2));
+           pst.setBlob(1, is);
+           pst.execute();
+           filefoto.setIcon(null); 
+           JOptionPane.showMessageDialog(null, "Menu Berhasil Ditambahkan");
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(null, e.getMessage());
+            foto();
+        }
+    }//GEN-LAST:event_btn_sfotoActionPerformed
+
+    private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
+        foto();
+    }//GEN-LAST:event_formWindowActivated
 
     /**
      * @param args the command line arguments
@@ -356,6 +382,7 @@ String path2 = null;
     private javax.swing.JButton btn_hapus;
     private javax.swing.JButton btn_keluar;
     private javax.swing.JButton btn_pilih;
+    private javax.swing.JButton btn_sfoto;
     private javax.swing.JButton btn_simpan;
     public static javax.swing.JLabel filefoto;
     private javax.swing.JLabel jLabel1;
