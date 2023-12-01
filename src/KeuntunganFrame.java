@@ -24,43 +24,66 @@ public class KeuntunganFrame extends javax.swing.JFrame {
      public KeuntunganFrame() {
         initComponents();
         data_table();   
+        data_table_belanja();
   }
  public void data_table() {
     DefaultTableModel tbl = new DefaultTableModel();
     tbl.addColumn("Tanggal");
-    tbl.addColumn("Modal");
-    tbl.addColumn("Keterangan");
+    tbl.addColumn("Kode Transaksi");
     tbl.addColumn("Pemasukan");
     tabel.setModel(tbl);
 
     try {
       Statement statement = konek.GetConnection().createStatement();
     ResultSet res = statement.executeQuery(
-            "SELECT transaksi.tgl_transaksi, SUM(belanja.total) AS belanja_total, GROUP_CONCAT"
-                    + "(belanja.keterangan SEPARATOR ', ') AS keterangan_belanja, SUM(transaksi.total)"
-                    + " AS transaksi_total FROM transaksi LEFT JOIN belanja ON transaksi.tgl_transaksi = belanja.tanggal "
-                    + "WHERE transaksi.tgl_transaksi IS NOT NULL GROUP BY transaksi.tgl_transaksi;");
-               
-        
+            "select transaksi.tgl_transaksi, transaksi.kode_transaksi, transaksi.total"
+                    + " FROM transaksi order by tgl_transaksi ASC");
+ 
           while (res.next()) {
         tbl.addRow(new Object[]{
                 res.getDate("tgl_transaksi"),
-                res.getInt("belanja_total"),
-                res.getString("keterangan_belanja"),
-                res.getString("transaksi_total")
+                res.getString("kode_transaksi"),
+                res.getInt("total"),
+                
         });
     }
     tabel.setModel(tbl);
 
 } catch (Exception e) {
+
+}
+ }
+    public void data_table_belanja() {
+    DefaultTableModel tblB = new DefaultTableModel();
+    tblB.addColumn("Tanggal");
+    tblB.addColumn("Total Belanja");
+    tblB.addColumn("Keterangan");
+    belanjatabel.setModel(tblB);
+
+    try {
+      Statement statement = konek.GetConnection().createStatement();
+    ResultSet res = statement.executeQuery("select belanja.tanggal, belanja.total, belanja.keterangan "
+            + "FROM belanja ORDER BY tanggal ASC;");
+ 
+          while (res.next()) {
+        tblB.addRow(new Object[]{
+                res.getDate("tanggal"),
+                res.getInt("total"),
+                res.getString("keterangan"),
+                
+        });
+    }
+    belanjatabel.setModel(tblB);
+
+} catch (Exception e) {
     JOptionPane.showMessageDialog(rootPane, "Error: " + e.getMessage());
     e.printStackTrace();
 }
-}
-  public  double modal(String tanggal1, String tanggal2) {
+    }
+  public double modal(String tanggal1, String tanggal2) {
     double nilaiModal = 0.0;
     try {
-        String query = "SELECT SUM(total) AS total_belanja FROM belanja WHERE tanggal BETWEEN ? AND ?";
+        String query = "SELECT SUM(belanja.total) AS total_belanja FROM belanja WHERE tanggal BETWEEN ? AND ?";
         PreparedStatement preparedStatement = konek.GetConnection().prepareStatement(query);
 
         preparedStatement.setString(1, tanggal1);
@@ -68,21 +91,19 @@ public class KeuntunganFrame extends javax.swing.JFrame {
 
         ResultSet res = preparedStatement.executeQuery();
 
-        while (res.next())
-        {
+        while (res.next()) {
             nilaiModal = res.getDouble("total_belanja");
-            
         }
     } catch (SQLException e) {
         e.printStackTrace();
     }
-    return modal; 
-    
+    return nilaiModal;
 }
-  public  double transaksi(String tanggal1, String tanggal2) {
+
+public double transaksi(String tanggal1, String tanggal2) {
     double nilaiTotal = 0.0;
     try {
-        String query = "SELECT SUM(total) AS total_transaksi FROM transaksi WHERE tgl_transaksi BETWEEN ? AND ?";
+        String query = "SELECT SUM(transaksi.total) AS total_transaksi FROM transaksi WHERE tgl_transaksi BETWEEN ? AND ?";
         PreparedStatement preparedStatement = konek.GetConnection().prepareStatement(query);
 
         preparedStatement.setString(1, tanggal1);
@@ -92,19 +113,17 @@ public class KeuntunganFrame extends javax.swing.JFrame {
 
         while (res.next()) {
             nilaiTotal = res.getDouble("total_transaksi");
-            
         }
     } catch (SQLException e) {
         e.printStackTrace();
     }
-      return transaksi; 
- 
-  }
- 
-   public void Keuntungan(String tanggal1, String tanggal2) {
+    return nilaiTotal;
+}
 
+ 
+  
+//   public void Keuntungan(String tanggal1, String tanggal2) {
     
-
   /* private void refresh() {
   
           fieldModal.setText("");
@@ -113,17 +132,17 @@ public class KeuntunganFrame extends javax.swing.JFrame {
   
           date1.setDate(null);
          date2.setDate(null);*/
-}
-   public double hitungPresentaseUntung(double keuntungan, double modal) {
-    if (modal != 0) {
-        return (keuntungan / modal) * 100;
-    } else {
-        return 0.0;
-    }
-}
+////}
+//   public double hitungPresentaseUntung(double keuntungan, double modal) {
+////    if (modal != 0) {
+//        return (keuntungan / modal) * 100;
+////    } else {
+//        return 0.0;
+//    }
+//}
 
-public void presentaseUntung() {
-}
+//public void presentaseUntung() {
+
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
@@ -140,6 +159,8 @@ public void presentaseUntung() {
         BelanjaMentah = new javax.swing.JButton();
         kembalibtn = new javax.swing.JButton();
         totaluntungField = new javax.swing.JTextField();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        belanjatabel = new javax.swing.JTable();
         background = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -202,19 +223,19 @@ public void presentaseUntung() {
         tabel.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         tabel.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null},
+                {null, null, null},
+                {null, null, null}
             },
             new String [] {
-                "Tanggal", "Modal", "Keterangan", "Pemasukan"
+                "Tanggal", "Kode Transaksi", "Pemasukan"
             }
         ));
         tabel.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         jScrollPane1.setViewportView(tabel);
 
         jPanel1.add(jScrollPane1);
-        jScrollPane1.setBounds(50, 140, 680, 270);
+        jScrollPane1.setBounds(70, 150, 320, 250);
 
         BelanjaMentah.setBackground(new java.awt.Color(204, 255, 204));
         BelanjaMentah.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -243,6 +264,24 @@ public void presentaseUntung() {
         jPanel1.add(totaluntungField);
         totaluntungField.setBounds(190, 440, 310, 30);
 
+        belanjatabel.setBackground(new java.awt.Color(204, 255, 204));
+        belanjatabel.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        belanjatabel.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null},
+                {null, null},
+                {null, null}
+            },
+            new String [] {
+                "Total Belanja", "Keterangan"
+            }
+        ));
+        belanjatabel.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        jScrollPane2.setViewportView(belanjatabel);
+
+        jPanel1.add(jScrollPane2);
+        jScrollPane2.setBounds(420, 150, 320, 250);
+
         background.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         background.setForeground(new java.awt.Color(204, 255, 204));
         background.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/background.png"))); // NOI18N
@@ -264,61 +303,71 @@ public void presentaseUntung() {
     }//GEN-LAST:event_date2MouseClicked
 
     private void ButtonHitungActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonHitungActionPerformed
-        String tanggalPattern = "yyyy-MM-dd";
-        SimpleDateFormat dateFormat = new SimpleDateFormat(tanggalPattern);
+                                   
+    String tanggalPattern = "yyyy-MM-dd";
+    SimpleDateFormat dateFormat = new SimpleDateFormat(tanggalPattern);
 
-        String tanggal1 = dateFormat.format(date1.getDate());
-        String tanggal2 = dateFormat.format(date2.getDate());
-
-        modal(tanggal1, tanggal2);
-        transaksi(tanggal1, tanggal2);
-        Keuntungan(tanggal1, tanggal2);
+    String tanggal1 = dateFormat.format(date1.getDate());
+    String tanggal2 = dateFormat.format(date2.getDate());
 
     try {
-        String sqlQry = "SELECT transaksi.tgl_transaksi, SUM(belanja.total) AS belanja_total, "
-                + "GROUP_CONCAT(belanja.keterangan SEPARATOR ', ') AS keterangan_belanja, "
-                + "SUM(transaksi.total) AS transaksi_total FROM transaksi LEFT JOIN belanja "
-                + "ON transaksi.tgl_transaksi = belanja.tanggal WHERE transaksi.tgl_transaksi "
-                + "IS NOT NULL AND transaksi.tgl_transaksi BETWEEN ? AND ? GROUP BY transaksi.tgl_transaksi;";
+      
+        String queryTransaksi = "SELECT tgl_transaksi, kode_transaksi, total "
+            + "FROM transaksi WHERE tgl_transaksi BETWEEN ? AND ? order by tgl_transaksi asc";
+        PreparedStatement statementTransaksi = konek.GetConnection().prepareStatement(queryTransaksi);
+        statementTransaksi.setString(1, tanggal1);
+        statementTransaksi.setString(2, tanggal2);
 
-            PreparedStatement statement = konek.GetConnection().prepareStatement(sqlQry);
-            statement.setString(1, tanggal1);
-            statement.setString(2, tanggal2);
+        ResultSet resTransaksi = statementTransaksi.executeQuery();
 
-            ResultSet res = statement.executeQuery();
+        DefaultTableModel tblTransaksi = new DefaultTableModel();
+        tblTransaksi.addColumn("Tanggal");
+        tblTransaksi.addColumn("Kode Transaksi");
+        tblTransaksi.addColumn("Pemasukan");
 
-            DefaultTableModel tbl = new DefaultTableModel();
-            tbl.addColumn("Tanggal");
-            tbl.addColumn("Modal");
-            tbl.addColumn("Keterangan");
-            tbl.addColumn("Pemasukan");
-            tbl.addColumn("Keuntungan"); 
-
-    
-            double totalKeuntungan = 0.0;
-            while (res.next()) {
-
-                double modal = res.getDouble("belanja_total");
-                        double transaksi = res.getDouble("transaksi_total");
-                        double keuntungan = transaksi - modal;
-                        totalKeuntungan += keuntungan;
-
-                tbl.addRow(new Object[]{
-                        res.getDate("tgl_transaksi"),
-                        modal,
-                        res.getString("keterangan_belanja"),
-                        transaksi,
-                        keuntungan 
-                });
-            }
-             totaluntungField.setText(String.valueOf(totalKeuntungan));
-            tabel.setModel(tbl);
-
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(rootPane, "Error: " + e.getMessage());
-            e.printStackTrace();
-
+        while (resTransaksi.next()) {
+            tblTransaksi.addRow(new Object[]{
+                    resTransaksi.getDate("tgl_transaksi"),
+                    resTransaksi.getString("kode_transaksi"),
+                    resTransaksi.getInt("total")
+            });
         }
+
+      
+        String queryBelanja = "SELECT tanggal, total, keterangan "
+            + "FROM belanja WHERE tanggal BETWEEN ? AND ? order by tanggal asc";
+        PreparedStatement statementBelanja = konek.GetConnection().prepareStatement(queryBelanja);
+        statementBelanja.setString(1, tanggal1);
+        statementBelanja.setString(2, tanggal2);
+
+        ResultSet resBelanja = statementBelanja.executeQuery();
+
+        DefaultTableModel tblBelanja = new DefaultTableModel();
+        tblBelanja.addColumn("Tanggal");
+        tblBelanja.addColumn("Total Belanja");
+        tblBelanja.addColumn("Keterangan");
+
+        while (resBelanja.next()) {
+            tblBelanja.addRow(new Object[]{
+                    resBelanja.getDate("tanggal"),
+                    resBelanja.getInt("total"),
+                    resBelanja.getString("keterangan")
+            });
+        }
+        tabel.setModel(tblTransaksi);
+        belanjatabel.setModel(tblBelanja);
+        
+        
+        double modal = modal(tanggal1, tanggal2);
+        double transaksi = transaksi(tanggal1, tanggal2);
+        double keuntungan = transaksi - modal;
+        totaluntungField.setText(String.valueOf(keuntungan));
+        
+    } catch (SQLException e) {
+        JOptionPane.showMessageDialog(rootPane, "Error: " + e.getMessage());
+        e.printStackTrace();
+    }
+
     }//GEN-LAST:event_ButtonHitungActionPerformed
 
     private void BelanjaMentahActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BelanjaMentahActionPerformed
@@ -373,6 +422,7 @@ public void presentaseUntung() {
     private javax.swing.JButton BelanjaMentah;
     private javax.swing.JButton ButtonHitung;
     private javax.swing.JLabel background;
+    private javax.swing.JTable belanjatabel;
     private com.toedter.calendar.JDateChooser date1;
     private com.toedter.calendar.JDateChooser date2;
     private javax.swing.JLabel jLabel1;
@@ -381,6 +431,7 @@ public void presentaseUntung() {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JButton kembalibtn;
     private javax.swing.JTable tabel;
     private javax.swing.JTextField totaluntungField;
