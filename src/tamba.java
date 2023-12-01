@@ -319,7 +319,7 @@ String path2 = null;
            JOptionPane.showMessageDialog(null, "Menu Berhasil Ditambahkan");
             id_autoincrement();
         }catch(Exception e){
-            JOptionPane.showMessageDialog(null, "Menu Gagal Ditambahkan");
+            JOptionPane.showMessageDialog(null, e.getMessage());
         }
         this.setVisible(false);
         new data().setVisible(true);

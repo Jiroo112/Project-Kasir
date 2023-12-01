@@ -59,10 +59,7 @@ public class RegistrasiKaryawan extends javax.swing.JFrame {
         jabatancom = new javax.swing.JComboBox<>();
         jsimpan = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
-        labelKeluar = new javax.swing.JLabel();
-        jLabelDataKaryawan = new javax.swing.JLabel();
-        jLabelLaporan = new javax.swing.JLabel();
-        labelmenu = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         genderCombo1 = new javax.swing.JComboBox<>();
         passwordField = new javax.swing.JPasswordField();
@@ -156,6 +153,7 @@ public class RegistrasiKaryawan extends javax.swing.JFrame {
 
         jsimpan.setBackground(new java.awt.Color(0, 153, 153));
         jsimpan.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jsimpan.setForeground(new java.awt.Color(255, 255, 255));
         jsimpan.setText("simpan");
         jsimpan.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -163,51 +161,20 @@ public class RegistrasiKaryawan extends javax.swing.JFrame {
             }
         });
         jPanel1.add(jsimpan);
-        jsimpan.setBounds(490, 330, 120, 32);
+        jsimpan.setBounds(540, 340, 120, 32);
 
         jPanel3.setBackground(new java.awt.Color(0, 102, 102));
         jPanel3.setForeground(new java.awt.Color(255, 255, 255));
         jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        labelKeluar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        labelKeluar.setForeground(new java.awt.Color(255, 255, 255));
-        labelKeluar.setText("Keluar");
-        labelKeluar.addMouseListener(new java.awt.event.MouseAdapter() {
+        jLabel9.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel9.setText("Kembali");
+        jLabel9.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                labelKeluarMouseClicked(evt);
+                jLabel9MouseClicked(evt);
             }
         });
-        jPanel3.add(labelKeluar, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 10, -1, -1));
-
-        jLabelDataKaryawan.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabelDataKaryawan.setForeground(new java.awt.Color(255, 255, 255));
-        jLabelDataKaryawan.setText("Data Karyawan");
-        jLabelDataKaryawan.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabelDataKaryawanMouseClicked(evt);
-            }
-        });
-        jPanel3.add(jLabelDataKaryawan, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 10, -1, -1));
-
-        jLabelLaporan.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabelLaporan.setForeground(new java.awt.Color(255, 255, 255));
-        jLabelLaporan.setText("Laporan");
-        jLabelLaporan.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabelLaporanMouseClicked(evt);
-            }
-        });
-        jPanel3.add(jLabelLaporan, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 10, -1, -1));
-
-        labelmenu.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        labelmenu.setForeground(new java.awt.Color(255, 255, 255));
-        labelmenu.setText("Daftar Menu");
-        labelmenu.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                labelmenuMouseClicked(evt);
-            }
-        });
-        jPanel3.add(labelmenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 10, -1, -1));
+        jPanel3.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 10, 60, 20));
 
         jPanel1.add(jPanel3);
         jPanel3.setBounds(-10, 450, 800, 40);
@@ -326,38 +293,19 @@ public class RegistrasiKaryawan extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jabatancomActionPerformed
 
-    private void jLabelDataKaryawanMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelDataKaryawanMouseClicked
-        data_karyawan p = new data_karyawan();
-        p.setVisible(true);
-        dispose();
-    }//GEN-LAST:event_jLabelDataKaryawanMouseClicked
-
-    private void labelKeluarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelKeluarMouseClicked
-       login_page login = new login_page();
-       login.setVisible(true);
-       dispose();
-       
-    }//GEN-LAST:event_labelKeluarMouseClicked
-
     private void genderCombo1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_genderCombo1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_genderCombo1ActionPerformed
 
-    private void labelmenuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelmenuMouseClicked
-        data menu = new data();
-        menu.setVisible(true);
-        dispose();
-    }//GEN-LAST:event_labelmenuMouseClicked
-
-    private void jLabelLaporanMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelLaporanMouseClicked
-        KeuntunganFrame untung = new KeuntunganFrame();
-        untung.setVisible(true);
-        dispose();
-    }//GEN-LAST:event_jLabelLaporanMouseClicked
-
     private void rePassFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rePassFieldActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_rePassFieldActionPerformed
+
+    private void jLabel9MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel9MouseClicked
+        dashboard_admin db = new dashboard_admin();
+        db.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_jLabel9MouseClicked
 
     /**
      * @param args the command line arguments
@@ -406,14 +354,11 @@ public class RegistrasiKaryawan extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabelDataKaryawan;
-    private javax.swing.JLabel jLabelLaporan;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JComboBox<String> jabatancom;
     private javax.swing.JButton jsimpan;
-    private javax.swing.JLabel labelKeluar;
-    private javax.swing.JLabel labelmenu;
     private javax.swing.JTextField nameField;
     private javax.swing.JPasswordField passwordField;
     private javax.swing.JTextField phoneField;

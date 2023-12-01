@@ -49,10 +49,7 @@ public class data_karyawan extends javax.swing.JFrame {
         btn_hapus = new javax.swing.JButton();
         btn_edit = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
-        jLabel3 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
         bg = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -83,12 +80,14 @@ public class data_karyawan extends javax.swing.JFrame {
         jScrollPane1.setBounds(60, 90, 700, 280);
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(0, 0, 0));
         jLabel2.setText("DATA KARYAWAN");
         jPanel1.add(jLabel2);
         jLabel2.setBounds(250, 10, 320, 70);
 
         btn_hapus.setBackground(new java.awt.Color(204, 255, 204));
         btn_hapus.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        btn_hapus.setForeground(new java.awt.Color(0, 0, 0));
         btn_hapus.setText("HAPUS");
         btn_hapus.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -100,6 +99,7 @@ public class data_karyawan extends javax.swing.JFrame {
 
         btn_edit.setBackground(new java.awt.Color(204, 255, 204));
         btn_edit.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        btn_edit.setForeground(new java.awt.Color(0, 0, 0));
         btn_edit.setText("EDIT DATA");
         btn_edit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -113,23 +113,10 @@ public class data_karyawan extends javax.swing.JFrame {
         jPanel2.setForeground(new java.awt.Color(115, 206, 191));
         jPanel2.setLayout(null);
 
-        jLabel3.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel3.setText("DAFTAR MENU");
-        jLabel3.setVerticalAlignment(javax.swing.SwingConstants.TOP);
-        jLabel3.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel3MouseClicked(evt);
-            }
-        });
-        jPanel2.add(jLabel3);
-        jLabel3.setBounds(400, 10, 110, 20);
-
         jLabel1.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("KELUAR");
+        jLabel1.setText("Kembali");
         jLabel1.setVerticalAlignment(javax.swing.SwingConstants.TOP);
         jLabel1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -138,32 +125,6 @@ public class data_karyawan extends javax.swing.JFrame {
         });
         jPanel2.add(jLabel1);
         jLabel1.setBounds(720, 10, 60, 20);
-
-        jLabel4.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel4.setText("REGISTRASI");
-        jLabel4.setVerticalAlignment(javax.swing.SwingConstants.TOP);
-        jLabel4.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel4MouseClicked(evt);
-            }
-        });
-        jPanel2.add(jLabel4);
-        jLabel4.setBounds(530, 10, 90, 20);
-
-        jLabel5.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel5.setText("LAPORAN");
-        jLabel5.setVerticalAlignment(javax.swing.SwingConstants.TOP);
-        jLabel5.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel5MouseClicked(evt);
-            }
-        });
-        jPanel2.add(jLabel5);
-        jLabel5.setBounds(630, 10, 70, 20);
 
         jPanel1.add(jPanel2);
         jPanel2.setBounds(0, 460, 800, 40);
@@ -221,34 +182,11 @@ public class data_karyawan extends javax.swing.JFrame {
         tabelkaryawan();
     }//GEN-LAST:event_btn_hapusActionPerformed
 
-    private void jLabel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MouseClicked
-        data menu = new data();
-        menu.setVisible(true);
-        dispose();
-    }//GEN-LAST:event_jLabel3MouseClicked
-
     private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked
-        int result = JOptionPane.showConfirmDialog(null, "Apakah anda yakin ingin keluar?");
-        if (result == JOptionPane.YES_NO_OPTION) {
-            login_page login = new login_page();
-            login.setVisible(true);
-            dispose();
-        } else {
-            JOptionPane.showMessageDialog(null, "Batal keluar");
-        }
+        dashboard_admin db = new dashboard_admin();
+        db.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_jLabel1MouseClicked
-
-    private void jLabel4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel4MouseClicked
-    RegistrasiKaryawan regist = new RegistrasiKaryawan();
-    regist.setVisible(true);
-    dispose();
-    }//GEN-LAST:event_jLabel4MouseClicked
-
-    private void jLabel5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel5MouseClicked
-    KeuntunganFrame untung = new KeuntunganFrame();
-    untung.setVisible(true);
-    dispose();
-    }//GEN-LAST:event_jLabel5MouseClicked
     
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -288,9 +226,6 @@ public class data_karyawan extends javax.swing.JFrame {
     private javax.swing.JButton btn_hapus;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;

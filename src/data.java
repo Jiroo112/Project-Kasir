@@ -87,9 +87,6 @@ public class data extends javax.swing.JFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        keluar = new javax.swing.JButton();
         tambah_menu = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
 
@@ -161,9 +158,9 @@ public class data extends javax.swing.JFrame {
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("KELUAR");
+        jLabel1.setText("Kembali");
         jLabel1.setVerticalAlignment(javax.swing.SwingConstants.TOP);
         jLabel1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -172,42 +169,7 @@ public class data extends javax.swing.JFrame {
         });
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 10, -1, -1));
 
-        jLabel5.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel5.setText("LAPORAN");
-        jLabel5.setVerticalAlignment(javax.swing.SwingConstants.TOP);
-        jLabel5.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel5MouseClicked(evt);
-            }
-        });
-        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 10, -1, -1));
-
-        jLabel4.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel4.setText("REGISTRASI");
-        jLabel4.setVerticalAlignment(javax.swing.SwingConstants.TOP);
-        jLabel4.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel4MouseClicked(evt);
-            }
-        });
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 10, -1, -1));
-
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 460, 780, 40));
-
-        keluar.setBackground(new java.awt.Color(0, 153, 153));
-        keluar.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        keluar.setForeground(new java.awt.Color(255, 255, 255));
-        keluar.setText("Kembali");
-        keluar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                keluarActionPerformed(evt);
-            }
-        });
-        getContentPane().add(keluar, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 400, -1, -1));
 
         tambah_menu.setBackground(new java.awt.Color(0, 153, 153));
         tambah_menu.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
@@ -218,7 +180,7 @@ public class data extends javax.swing.JFrame {
                 tambah_menuActionPerformed(evt);
             }
         });
-        getContentPane().add(tambah_menu, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 400, -1, -1));
+        getContentPane().add(tambah_menu, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 400, -1, -1));
 
         jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/111.png"))); // NOI18N
         getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(-70, 0, 850, 500));
@@ -288,33 +250,10 @@ public class data extends javax.swing.JFrame {
     }//GEN-LAST:event_minumanMouseClicked
 
     private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked
-        int result = JOptionPane.showConfirmDialog(null, "Apakah anda yakin ingin keluar?");
-        if (result == JOptionPane.YES_NO_OPTION) {
-            dispose();
-            login_page log = new login_page();
-            log.setVisible(true);
-        } else {
-            JOptionPane.showMessageDialog(null, "Batal keluar");
-        }
-    }//GEN-LAST:event_jLabel1MouseClicked
-
-    private void jLabel5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel5MouseClicked
-        KeuntunganFrame untung = new KeuntunganFrame();
-        untung.setVisible(true);
-        dispose();
-    }//GEN-LAST:event_jLabel5MouseClicked
-
-    private void jLabel4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel4MouseClicked
-        RegistrasiKaryawan regis = new RegistrasiKaryawan();
-        regis.setVisible(true);
-        dispose();
-    }//GEN-LAST:event_jLabel4MouseClicked
-
-    private void keluarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_keluarActionPerformed
         dashboard_admin d = new dashboard_admin();
         d.setVisible(true);
         dispose();
-    }//GEN-LAST:event_keluarActionPerformed
+    }//GEN-LAST:event_jLabel1MouseClicked
 
     private void tambah_menuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tambah_menuActionPerformed
         this.setVisible(false);
@@ -361,14 +300,11 @@ public class data extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JButton keluar;
     public static final javax.swing.JTable makanan = new javax.swing.JTable();
     public static final javax.swing.JTable minuman = new javax.swing.JTable();
     private javax.swing.JButton tambah_menu;
