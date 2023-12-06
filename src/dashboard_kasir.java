@@ -30,7 +30,7 @@ public class dashboard_kasir extends javax.swing.JFrame {
         jPanel2.setBackground(new java.awt.Color(204, 255, 204));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/Screenshot (582).png"))); // NOI18N
+        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/UMKM1.png"))); // NOI18N
         jPanel2.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -10, 800, 510));
 
         jLabel3.setText("jLabel3");
@@ -54,7 +54,7 @@ public class dashboard_kasir extends javax.swing.JFrame {
                 homeMouseClicked(evt);
             }
         });
-        jPanel2.add(home, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 430, 50, 50));
+        jPanel2.add(home, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 410, 80, 70));
 
         getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 

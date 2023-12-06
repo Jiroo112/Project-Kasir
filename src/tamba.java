@@ -1,5 +1,5 @@
 
-//import com.mysql.cj.jdbc.Driver;
+import com.mysql.jdbc.Driver;
 //import com.sun.jdi.connect.spi.Connection;
 import java.awt.Image;
 import java.awt.image.BufferedImage;
@@ -301,7 +301,8 @@ String path2 = null;
         String stok = txt_stok.getValue().toString();
         String sql = ("INSERT INTO menu (kode_menu, nama_menu, harga, gambar, stok)" + " VALUES (?,?,?,?,?)");
         try {
-           Class.forName("com.mysql.cj.jdbc.Driver");
+            
+           Class.forName("com.mysql.jdbc.Driver");
            Connection con = (Connection) DriverManager.getConnection("jdbc:mysql://localhost:3306/aplikasi_warung", "root", "");
            PreparedStatement pst = con.prepareStatement(sql);
            pst.setString(1, n);

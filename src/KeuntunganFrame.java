@@ -371,9 +371,9 @@ public double transaksi(String tanggal1, String tanggal2) {
     }//GEN-LAST:event_ButtonHitungActionPerformed
 
     private void BelanjaMentahActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BelanjaMentahActionPerformed
-        BelanjaMentah belanja = new BelanjaMentah();
+        /*BelanjaMentah belanja = new BelanjaMentah();
         belanja.setVisible(true);
-        dispose();
+        dispose();*/
     }//GEN-LAST:event_BelanjaMentahActionPerformed
 
     private void kembalibtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_kembalibtnActionPerformed

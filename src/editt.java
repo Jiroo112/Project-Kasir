@@ -3,8 +3,8 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 
-//import com.mysql.cj.jdbc.Driver;
-import com.mysql.cj.jdbc.Blob;
+import com.mysql.jdbc.Driver;
+import com.mysql.jdbc.Blob;
 import java.awt.Color;
 import java.awt.Image;
 import java.awt.image.BufferedImage;
@@ -160,6 +160,7 @@ String path2 = null;
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 60, -1, -1));
 
         txt_kode.setBackground(new java.awt.Color(204, 255, 204));
+        txt_kode.setEnabled(false);
         jPanel1.add(txt_kode, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 60, 180, 30));
 
         jLabel2.setFont(new java.awt.Font("Trebuchet MS", 0, 24)); // NOI18N
@@ -325,7 +326,7 @@ String path2 = null;
         String kode_menu = txt_kode.getText();
         String sql = ("UPDATE menu SET gambar = ? WHERE kode_menu= '"+kode_menu+"' ");
         try {
-           Class.forName("com.mysql.cj.jdbc.Driver");
+           Class.forName("com.mysql.jdbc.Driver");
            Connection con = (Connection) DriverManager.getConnection("jdbc:mysql://localhost:3306/aplikasi_warung", "root", "");
            PreparedStatement pst = con.prepareStatement(sql);
            InputStream is = new FileInputStream (new File(path2));

@@ -24,6 +24,7 @@ public class dashboard_admin extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
+        belanja = new javax.swing.JLabel();
         home = new javax.swing.JLabel();
         background = new javax.swing.JLabel();
 
@@ -44,37 +45,54 @@ public class dashboard_admin extends javax.swing.JFrame {
                 jLabel2MouseClicked(evt);
             }
         });
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 130, 290, 120));
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 100, 290, 130));
 
         jLabel1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel1MouseClicked(evt);
             }
         });
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 290, 300, 140));
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 350, 300, 130));
 
         jLabel3.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel3MouseClicked(evt);
             }
         });
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 120, 300, 120));
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 100, 300, 130));
 
         jLabel4.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel4MouseClicked(evt);
             }
         });
-        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 290, 320, 130));
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 230, 320, 130));
+
+        belanja.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                belanjaMouseClicked(evt);
+            }
+        });
+        getContentPane().add(belanja, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 230, 330, 130));
 
         home.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 homeMouseClicked(evt);
             }
         });
-        getContentPane().add(home, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 430, 50, 60));
+        getContentPane().add(home, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 420, 80, 70));
 
-        background.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/Screenshot (580).png"))); // NOI18N
+        background.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/dashboardADMIN.png"))); // NOI18N
+        background.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                backgroundMouseClicked(evt);
+            }
+        });
+        background.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                backgroundKeyTyped(evt);
+            }
+        });
         getContentPane().add(background, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, 500));
 
         pack();
@@ -122,6 +140,22 @@ public class dashboard_admin extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_homeMouseClicked
 
+    private void backgroundMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_backgroundMouseClicked
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_backgroundMouseClicked
+
+    private void belanjaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_belanjaMouseClicked
+        // TODO add your handling code here:
+        BelanjaMentah A = new BelanjaMentah();
+        A.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_belanjaMouseClicked
+
+    private void backgroundKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_backgroundKeyTyped
+        // TODO add your handling code here:
+    }//GEN-LAST:event_backgroundKeyTyped
+
     /**
      * @param args the command line arguments
      */
@@ -159,6 +193,7 @@ public class dashboard_admin extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel background;
+    private javax.swing.JLabel belanja;
     private javax.swing.JLabel home;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

@@ -168,6 +168,7 @@ public class login_page extends javax.swing.JFrame {
         try {
             Statement st = konek.GetConnection().createStatement();
             ResultSet rs = st.executeQuery("SELECT akun.username, akun.password, data_karyawan.jabatan FROM data_karyawan JOIN akun ON data_karyawan.username = akun.username WHERE akun.username='"+id+"' AND akun.password = '"+pw+"';");
+            
             if(rs.next()){
                 String jabatan = rs.getString("jabatan");
                 if(jabatan.equals("Admin")){
@@ -188,10 +189,11 @@ public class login_page extends javax.swing.JFrame {
                     dasbord_kayawan.setLocation(null);
                     dasbord_kayawan.setDefaultCloseOperation(EXIT_ON_CLOSE);
                 }
-            }
-            else{
-                JOptionPane.showMessageDialog(rootPane,"salah");
-            }       
+            
+            
+            } else {
+                JOptionPane.showMessageDialog(rootPane, "Username/Password salah");
+            }      
             
             
         } catch (Exception e) {
