@@ -77,12 +77,12 @@ public class BelanjaMentah extends javax.swing.JFrame {
         jPanel1.setLayout(null);
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel1.setText("tanggal");
+        jLabel1.setText("Tanggal");
         jPanel1.add(jLabel1);
         jLabel1.setBounds(60, 90, 80, 30);
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel3.setText("keterangan");
+        jLabel3.setText("Keterangan");
         jPanel1.add(jLabel3);
         jLabel3.setBounds(60, 160, 100, 30);
 
@@ -101,9 +101,9 @@ public class BelanjaMentah extends javax.swing.JFrame {
         kulakField.setBounds(230, 122, 370, 30);
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel2.setText("uang belanja");
+        jLabel2.setText("Uang Belanja");
         jPanel1.add(jLabel2);
-        jLabel2.setBounds(60, 120, 110, 30);
+        jLabel2.setBounds(60, 120, 130, 30);
 
         keteranganField.setBackground(new java.awt.Color(204, 255, 204));
         keteranganField.setColumns(20);
@@ -124,7 +124,7 @@ public class BelanjaMentah extends javax.swing.JFrame {
                 {null, null, null}
             },
             new String [] {
-                "tanggal", "uang belanja", "keterangan"
+                "Tanggal", "Uang Belanja", "Keterangan"
             }
         ));
         jScrollPane2.setViewportView(tabel);
@@ -134,7 +134,7 @@ public class BelanjaMentah extends javax.swing.JFrame {
 
         jButtonSimpan.setBackground(new java.awt.Color(204, 255, 204));
         jButtonSimpan.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jButtonSimpan.setText("simpan");
+        jButtonSimpan.setText("Simpan");
         jButtonSimpan.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonSimpanActionPerformed(evt);
@@ -146,11 +146,11 @@ public class BelanjaMentah extends javax.swing.JFrame {
         jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
         jLabel4.setText("Belanja Harian");
         jPanel1.add(jLabel4);
-        jLabel4.setBounds(280, 20, 270, 40);
+        jLabel4.setBounds(280, 20, 270, 50);
 
         keluar.setBackground(new java.awt.Color(204, 255, 204));
         keluar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        keluar.setText("kembali");
+        keluar.setText("Kembali");
         keluar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 keluarActionPerformed(evt);

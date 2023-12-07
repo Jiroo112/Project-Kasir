@@ -154,7 +154,7 @@ public class RegistrasiKaryawan extends javax.swing.JFrame {
         jsimpan.setBackground(new java.awt.Color(0, 153, 153));
         jsimpan.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jsimpan.setForeground(new java.awt.Color(255, 255, 255));
-        jsimpan.setText("simpan");
+        jsimpan.setText("Simpan");
         jsimpan.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jsimpanActionPerformed(evt);
@@ -167,14 +167,15 @@ public class RegistrasiKaryawan extends javax.swing.JFrame {
         jPanel3.setForeground(new java.awt.Color(255, 255, 255));
         jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel9.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel9.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel9.setForeground(new java.awt.Color(255, 255, 255));
         jLabel9.setText("Kembali");
         jLabel9.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel9MouseClicked(evt);
             }
         });
-        jPanel3.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 10, 60, 20));
+        jPanel3.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 10, 60, 20));
 
         jPanel1.add(jPanel3);
         jPanel3.setBounds(-10, 450, 800, 40);
