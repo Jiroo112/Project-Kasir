@@ -213,6 +213,7 @@ public class data extends javax.swing.JFrame {
               
               
               p.txt_kode.setText(kode_menu);
+              p.txt_kode.disable();
               
             }
             rs.close();
@@ -241,6 +242,7 @@ public class data extends javax.swing.JFrame {
 
               
               p.txt_kode.setText(kode_menu);
+              p.txt_kode.disable();
 
             }
             rs.close();

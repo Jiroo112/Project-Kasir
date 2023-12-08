@@ -1,5 +1,5 @@
 
-import com.mysql.jdbc.Driver;
+//import com.mysql.cj.jdbc.Driver;
 //import com.sun.jdi.connect.spi.Connection;
 import java.awt.Image;
 import java.awt.image.BufferedImage;
@@ -35,28 +35,9 @@ String path2 = null;
      */
     public tamba() {
         initComponents();
-        id_autoincrement();
+       
     }
-  private void id_autoincrement(){
-        try {
-            Statement st = konek.GetConnection().createStatement();
-            ResultSet rs = st.executeQuery("SELECT MAX(RIGHT(kode_menu,3)) AS no_auto FROM menu WHERE kode_menu LIKE 'MA%'");
-            if(rs.next()){
-                String no_auto, nol_plus;
-                int p;
-                no_auto = Integer.toString(rs.getInt(1)+1);
-                p = no_auto.length();
-                nol_plus = "";
-                for(int i=1;i<=3-p; i++){
-                    nol_plus = nol_plus + "0";
-                }
-                txt_kode.setText("MA" + nol_plus + no_auto);
-            }
-        } catch (Exception e){
-            txt_kode.setText("MA001");
-            JOptionPane.showMessageDialog(null, e);
-        }
-    }
+ 
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -89,7 +70,7 @@ String path2 = null;
         jCheckBox2 = new javax.swing.JCheckBox();
         jLabel7 = new javax.swing.JLabel();
         txt_stok = new javax.swing.JSpinner();
-        jLabel8 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -258,8 +239,8 @@ String path2 = null;
         jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 230, 130, 40));
         jPanel1.add(txt_stok, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 330, 130, 30));
 
-        jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/Picture1.png"))); // NOI18N
-        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 810, 470));
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/Picture1.png"))); // NOI18N
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 810, 470));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -295,14 +276,15 @@ String path2 = null;
 
     private void btn_simpanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_simpanActionPerformed
         // TODO add your handling code here:
+       
         String n= txt_kode.getText();
         String nama_menu = txt_nama.getText();
         String harga = txt_harga.getText();
         String stok = txt_stok.getValue().toString();
         String sql = ("INSERT INTO menu (kode_menu, nama_menu, harga, gambar, stok)" + " VALUES (?,?,?,?,?)");
+
         try {
-            
-           Class.forName("com.mysql.jdbc.Driver");
+           Class.forName("com.mysql.cj.jdbc.Driver");
            Connection con = (Connection) DriverManager.getConnection("jdbc:mysql://localhost:3306/aplikasi_warung", "root", "");
            PreparedStatement pst = con.prepareStatement(sql);
            pst.setString(1, n);
@@ -312,18 +294,18 @@ String path2 = null;
            InputStream is = new FileInputStream (new File(path2));
            pst.setBlob(4, is);
            pst.execute();
-           txt_kode.setText("");
+           txt_kode.enable();
+           txt_kode.disable();
            txt_nama.setText("");
            txt_harga.setText("");
            txt_stok.getValue().toString();
            filefoto.setIcon(null); 
            JOptionPane.showMessageDialog(null, "Menu Berhasil Ditambahkan");
-            id_autoincrement();
+           this.setVisible(false);
+           new data().setVisible(true);
         }catch(Exception e){
-            JOptionPane.showMessageDialog(null, e.getMessage());
+            JOptionPane.showMessageDialog(null, "Kode Menu Kosong");
         }
-        this.setVisible(false);
-        new data().setVisible(true);
     }//GEN-LAST:event_btn_simpanActionPerformed
 
     private void btn_cancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_cancelActionPerformed
@@ -458,10 +440,10 @@ String path2 = null;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JSpinner jSpinner1;

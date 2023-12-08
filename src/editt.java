@@ -3,8 +3,8 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 
-import com.mysql.jdbc.Driver;
-import com.mysql.jdbc.Blob;
+//import com.mysql.cj.jdbc.Driver;
+import com.mysql.cj.jdbc.Blob;
 import java.awt.Color;
 import java.awt.Image;
 import java.awt.image.BufferedImage;
@@ -134,7 +134,7 @@ String path2 = null;
         jLabel4 = new javax.swing.JLabel();
         txt_stok = new javax.swing.JSpinner();
         btn_sfoto = new javax.swing.JButton();
-        jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -160,7 +160,6 @@ String path2 = null;
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 60, -1, -1));
 
         txt_kode.setBackground(new java.awt.Color(204, 255, 204));
-        txt_kode.setEnabled(false);
         jPanel1.add(txt_kode, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 60, 180, 30));
 
         jLabel2.setFont(new java.awt.Font("Trebuchet MS", 0, 24)); // NOI18N
@@ -239,9 +238,9 @@ String path2 = null;
         });
         jPanel1.add(btn_sfoto, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 270, 130, -1));
 
-        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/Picture1.png"))); // NOI18N
-        jLabel6.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 5));
-        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 620, 400));
+        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/Picture1.png"))); // NOI18N
+        jLabel7.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 4));
+        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 620, 400));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 620, 400));
 
@@ -268,17 +267,18 @@ String path2 = null;
             txt_kode.setText("");
             txt_nama.setText("");
             txt_harga.setText("");
+            
         } catch (Exception t) {
             JOptionPane.showMessageDialog(null, "Menu Gagal Dihapus");
         }
+        dispose();
         makanan();
         minuman();
-        dispose();
     }//GEN-LAST:event_btn_hapusActionPerformed
 
     private void btn_simpanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_simpanActionPerformed
         // TODO add your handling code here:
-         String kode_menu = txt_kode.getText();
+        String kode_menu = txt_kode.getText();
         String nama_menu = txt_nama.getText();
         String harga = txt_harga.getText();
         String stok = txt_stok.getValue().toString();
@@ -290,10 +290,10 @@ String path2 = null;
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Menu Gagal Disimpan");
         }
-        
+        dispose();
         makanan();
         minuman();
-        dispose();
+        
     }//GEN-LAST:event_btn_simpanActionPerformed
 
     private void btn_pilihActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_pilihActionPerformed
@@ -326,7 +326,7 @@ String path2 = null;
         String kode_menu = txt_kode.getText();
         String sql = ("UPDATE menu SET gambar = ? WHERE kode_menu= '"+kode_menu+"' ");
         try {
-           Class.forName("com.mysql.jdbc.Driver");
+           Class.forName("com.mysql.cj.jdbc.Driver");
            Connection con = (Connection) DriverManager.getConnection("jdbc:mysql://localhost:3306/aplikasi_warung", "root", "");
            PreparedStatement pst = con.prepareStatement(sql);
            InputStream is = new FileInputStream (new File(path2));
@@ -392,7 +392,7 @@ String path2 = null;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     public javax.swing.JTextField txt_harga;
     public javax.swing.JTextField txt_kode;
