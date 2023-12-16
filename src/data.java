@@ -21,6 +21,7 @@ import koneksi.konek;
 
 public class data extends javax.swing.JFrame {
 
+
     public data() {
         initComponents();
         makanan();

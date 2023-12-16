@@ -282,7 +282,9 @@ String path2 = null;
         String harga = txt_harga.getText();
         String stok = txt_stok.getValue().toString();
         String sql = ("INSERT INTO menu (kode_menu, nama_menu, harga, gambar, stok)" + " VALUES (?,?,?,?,?)");
-
+        if (txt_nama.equals(nama_menu)) {
+            JOptionPane.showMessageDialog(null, "Menu Sudah Ada");
+        } else {
         try {
            Class.forName("com.mysql.cj.jdbc.Driver");
            Connection con = (Connection) DriverManager.getConnection("jdbc:mysql://localhost:3306/aplikasi_warung", "root", "");
@@ -305,6 +307,7 @@ String path2 = null;
            new data().setVisible(true);
         }catch(Exception e){
             JOptionPane.showMessageDialog(null, "Kode Menu Kosong");
+           }
         }
     }//GEN-LAST:event_btn_simpanActionPerformed
 

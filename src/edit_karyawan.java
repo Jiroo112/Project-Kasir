@@ -163,7 +163,7 @@ public class edit_karyawan extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Data berhasil disimpan");
             tabelkaryawan();
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "Data gagal diubah"+e.getMessage());
+            JOptionPane.showMessageDialog(null, "Data gagal diubah");
             this.dispose();
         }
     }//GEN-LAST:event_btn_simpanActionPerformed
