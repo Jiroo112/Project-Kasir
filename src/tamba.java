@@ -306,7 +306,7 @@ String path2 = null;
            this.setVisible(false);
            new data().setVisible(true);
         }catch(Exception e){
-            JOptionPane.showMessageDialog(null, "Kode Menu Kosong");
+            JOptionPane.showMessageDialog(null, "Menu Gagal Ditambahkan");
            }
         }
     }//GEN-LAST:event_btn_simpanActionPerformed
